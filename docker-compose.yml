@@ -1,0 +1,38 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: trailmate-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: trailmate
+      MYSQL_USER: trailmate_user
+      MYSQL_PASSWORD: trailmate_pass
+      MYSQL_ROOT_PASSWORD: root_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    build:
+      context: ./backend
+    container_name: trailmate-backend
+    restart: unless-stopped
+    environment:
+      DJANGO_SECRET_KEY: "dev-secret-key-change-later"
+      DJANGO_DEBUG: "1"
+      DB_NAME: "trailmate"
+      DB_USER: "trailmate_user"
+      DB_PASSWORD: "trailmate_pass"
+      DB_HOST: "db"
+      DB_PORT: "3306"
+      ALLOWED_HOSTS: "localhost,127.0.0.1"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/app
+
+volumes:
+  mysql_data:
