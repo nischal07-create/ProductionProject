@@ -27,6 +27,7 @@ SECRET_KEY = 'django-insecure-je-pf925fs5ad61-++w1!3y9!h)56+8f(xh%t0b4ji6(j^t4z^
 DEBUG = True
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY", "")
 
 
 # Application definition
