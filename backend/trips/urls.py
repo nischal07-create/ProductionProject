@@ -1,0 +1,38 @@
+from django.urls import path
+from .views import (
+    DestinationListView,
+    ActivityListView,
+    TripPlanListCreateView,
+    TripPlanRetrieveUpdateDestroyView,
+    TripPlanItemListCreateView,
+    TripPlanItemRetrieveDestroyView,
+    city_ai_guide,
+    city_guide_options,
+    kathmandu_ai_guide,
+    place_media_svg,
+    food_media_svg,
+    trek_route_media_svg,
+    trekking_routes_list,
+    trekking_route_detail,
+    trekking_offline_pack,
+    media_upload,
+)
+
+urlpatterns = [
+    path("destinations/", DestinationListView.as_view(), name="destination-list"),
+    path("activities/", ActivityListView.as_view(), name="activity-list"),
+    path("plans/", TripPlanListCreateView.as_view(), name="trip-plan-list-create"),
+    path("plans/<int:pk>/", TripPlanRetrieveUpdateDestroyView.as_view(), name="trip-plan-detail"),
+    path("plans/<int:plan_id>/items/", TripPlanItemListCreateView.as_view(), name="trip-plan-items"),
+    path("plans/<int:plan_id>/items/<int:item_id>/", TripPlanItemRetrieveDestroyView.as_view(), name="trip-plan-item-detail"),
+    path("media/place/<slug:city>/<slug:place_slug>.svg", place_media_svg, name="place-media-svg"),
+    path("media/food/<slug:city>/<slug:food_slug>.svg", food_media_svg, name="food-media-svg"),
+    path("media/trek/<slug:route_id>.svg", trek_route_media_svg, name="trek-route-media-svg"),
+    path("media/upload/", media_upload, name="media-upload"),
+    path("guide/cities/", city_guide_options, name="city-guide-options"),
+    path("guide/<slug:city>/", city_ai_guide, name="city-ai-guide"),
+    path("guide/kathmandu/", kathmandu_ai_guide, name="kathmandu-ai-guide"),
+    path("trekking/routes/", trekking_routes_list, name="trekking-routes-list"),
+    path("trekking/routes/<slug:route_id>/", trekking_route_detail, name="trekking-route-detail"),
+    path("trekking/routes/<slug:route_id>/offline/", trekking_offline_pack, name="trekking-route-offline-pack"),
+]

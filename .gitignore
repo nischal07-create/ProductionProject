@@ -12,3 +12,6 @@ venv/
 
 # VS Code
 .vscode/
+
+# Local oversized media (kept locally, not tracked)
+backend/core/static/core/photos/places/kathmandu/swayambhunath-stupa-monkey-temple.jpg

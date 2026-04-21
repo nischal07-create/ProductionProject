@@ -1,0 +1,3296 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrailMate | Plan Your Adventures</title>
+  <link rel="icon" type="image/svg+xml" href="/static/core/favicon.svg" />
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-light: #ccfbf1;
+      --primary-dark: #0f766e;
+        --secondary: #ea580c;
+        --bg: #fffaf4;
+      --bg-dark: #0f172a;
+      --card: rgba(255,255,255,0.92);
+      --border: rgba(148,163,184,0.22);
+      --text: #0f172a;
+      --text-light: #475569;
+      --accent-sky: #0284c7;
+      --accent-indigo: #4338ca;
+      --accent-rose: #e11d48;
+      --ok: #10b981;
+      --err: #ef4444;
+      --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    }
+    * { box-sizing: border-box; }
+    body { 
+      margin: 0; 
+        font-family: Poppins, "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+      background:
+          radial-gradient(circle at top left, rgba(20,184,166,0.2), transparent 30%),
+          radial-gradient(circle at bottom right, rgba(234,88,12,0.2), transparent 28%),
+          radial-gradient(circle at 75% 20%, rgba(2,132,199,0.12), transparent 24%),
+          linear-gradient(180deg, #fffaf4 0%, #f8fbff 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .navbar {
+      background: linear-gradient(135deg, var(--primary) 0%, #14b8a6 100%);
+      color: white;
+      padding: 16px 24px;
+      box-shadow: var(--shadow-lg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .navbar-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .navbar h1 { 
+      margin: 0; 
+      font-size: 28px; 
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .auth-status {
+      padding: 6px 14px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .auth-status.authenticated {
+      background: rgba(15, 118, 110, 0.34);
+    }
+    .top-auth {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .auth-inline {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.26);
+      backdrop-filter: blur(8px);
+    }
+    .auth-inline input {
+      width: 140px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.96);
+      font-size: 13px;
+    }
+    .top-login-btn,
+    .top-logout-btn {
+      width: auto;
+      padding: 9px 14px;
+      border-radius: 10px;
+      background: #0f172a;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.22);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .top-logout-btn {
+      background: rgba(239, 68, 68, 0.92);
+    }
+    .wrap { 
+      max-width: 1400px; 
+      margin: 0 auto; 
+      padding: 32px 24px; 
+    }
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(120px, 1fr));
+      gap: 10px;
+      margin-bottom: 32px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.82), rgba(204,251,241,0.56));
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 86px;
+      z-index: 90;
+      backdrop-filter: blur(12px);
+    }
+    .portal-banner {
+      display: grid;
+      grid-template-columns: 1.2fr auto;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.88), rgba(239,246,255,0.8));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+    .portal-banner h2 {
+      margin: 0;
+      font-size: 18px;
+      color: #0f172a;
+    }
+    .portal-banner p {
+      margin: 4px 0 0;
+      color: var(--text-light);
+      font-size: 13px;
+    }
+    .portal-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .portal-links a {
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #fff;
+        color: #0f172a;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .portal-links a.primary-link {
+      background: linear-gradient(135deg, var(--primary) 0%, #14b8a6 100%);
+      color: #fff;
+      border-color: transparent;
+    }
+    .tab-btn {
+      padding: 14px 16px;
+      border: 1px solid rgba(15,118,110,0.12);
+      background: linear-gradient(160deg, rgba(255,255,255,0.95), rgba(240,253,250,0.9));
+      color: var(--text-light);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+      border-radius: 16px;
+      margin-bottom: 0;
+      transition: all 0.2s ease;
+      letter-spacing: 0.2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 52px;
+    }
+    .tab-btn:hover {
+      color: var(--primary);
+      background: linear-gradient(160deg, rgba(236,254,255,1), rgba(204,251,241,0.95));
+      transform: translateY(-2px);
+    }
+    .tab-btn.active {
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), #14b8a6);
+      border-color: transparent;
+      box-shadow: 0 14px 24px rgba(15,118,110,0.3);
+    }
+    .tab-icon {
+      font-size: 15px;
+    }
+    .screen { display: none; }
+    .screen.active { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .screen h2 { 
+      margin-top: 0;
+      margin-bottom: 24px;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .hero-card {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+      padding: 26px;
+      margin: 4px 0 26px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+        background: linear-gradient(145deg, rgba(255,255,255,0.96), rgba(236,253,245,0.9) 52%, rgba(255,237,213,0.82));
+      box-shadow: var(--shadow-lg);
+    }
+    .hero-card h2 {
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .hero-card p {
+      margin: 0 0 18px;
+      color: var(--text-light);
+      font-size: 16px;
+      max-width: 700px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .hero-actions .ghost,
+    .hero-actions .cta-primary,
+    .hero-actions .cta-secondary,
+    .hero-actions a {
+      width: auto;
+      min-width: 160px;
+    }
+    .hero-actions .cta-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, #14b8a6 100%);
+      color: #fff;
+      box-shadow: 0 18px 28px rgba(20, 184, 166, 0.28);
+    }
+    .hero-actions .cta-secondary {
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--border);
+      text-decoration: none;
+    }
+    .hero-actions .cta-secondary:hover {
+      background: #f8fafc;
+      transform: translateY(-2px);
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .stat-item {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid var(--border);
+    }
+    .stat-item strong {
+      display: block;
+      font-size: 22px;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .stat-item span {
+      color: var(--text-light);
+      font-size: 13px;
+    }
+    .hero-side {
+      display: grid;
+      gap: 12px;
+    }
+    .hero-note {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(15,118,110,0.06);
+      border: 1px solid rgba(20,184,166,0.14);
+    }
+    .hero-note strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+    .hero-feature-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0 0 16px;
+    }
+    .hero-feature-chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.08);
+      border: 1px solid rgba(20, 184, 166, 0.2);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+    .guide-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.95fr;
+      gap: 24px;
+    }
+    .guide-summary {
+      padding: 20px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(255,255,255,0.95));
+      border: 1px solid rgba(16,185,129,0.16);
+      margin-bottom: 18px;
+    }
+    .guide-summary h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+    .guide-summary p {
+      margin: 0 0 14px;
+      color: var(--text-light);
+    }
+    .guide-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .guide-pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .guide-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 12px;
+        background: linear-gradient(160deg, rgba(255,255,255,0.96), rgba(239,246,255,0.88));
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      width: fit-content;
+    }
+    .map-preview-btn {
+      margin-top: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.1);
+      border: 1px solid rgba(20, 184, 166, 0.2);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .map-frame {
+      width: 100%;
+      height: 165px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-top: 10px;
+      background: #fff;
+    }
+    .city-map-frame {
+      height: 220px;
+    }
+    .map-board {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.8);
+    }
+    .map-board h4 {
+      margin: 0 0 8px;
+      font-size: 14px;
+    }
+    .map-board-toolbar {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .map-board-toolbar-label {
+      margin: 0;
+      font-size: 12px;
+      color: var(--text-light);
+      font-weight: 700;
+    }
+    .map-board-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .map-chip {
+      border: 1px solid rgba(20, 184, 166, 0.26);
+      background: #ecfeff;
+      color: #0f766e;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .map-chip.active {
+      background: linear-gradient(135deg, var(--primary), #14b8a6);
+      color: #fff;
+      border-color: transparent;
+    }
+    .map-chip.near-me {
+      background: #fff7ed;
+      border-color: #fed7aa;
+      color: #9a3412;
+    }
+    .map-board-frame {
+      height: 260px;
+    }
+    .guide-section-card {
+      margin-bottom: 0;
+    }
+    .guide-list .items-list li {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--primary);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 10px 20px rgba(15,23,42,0.05);
+    }
+    .guide-list .items-list li a {
+      display: inline-block;
+      margin-top: 10px;
+      color: var(--primary-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .guide-list .items-list li a:hover {
+      text-decoration: underline;
+    }
+    .food-card {
+      background: linear-gradient(135deg, rgba(254, 243, 199, 0.66), rgba(255, 255, 255, 0.95));
+      border-left-color: var(--secondary) !important;
+    }
+    .guide-photo {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin: 8px 0;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      display: block;
+    }
+    .category-pill {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-light);
+    }
+    .guide-itinerary {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .itinerary-day {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .itinerary-day strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+    .itinerary-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .itinerary-tag {
+      background: #ecfeff;
+      color: #0f766e;
+      border: 1px solid #a7f3d0;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .trust-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .trust-pill {
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+    }
+    .trust-pill.primary {
+      background: linear-gradient(135deg, var(--primary), #14b8a6);
+      color: #fff;
+      border-color: transparent;
+    }
+    .trust-pill.high {
+      background: linear-gradient(135deg, #16a34a, #22c55e);
+      color: #fff;
+      border-color: transparent;
+    }
+    .trust-pill.medium {
+      background: linear-gradient(135deg, #d97706, #f59e0b);
+      color: #fff;
+      border-color: transparent;
+    }
+    .trust-pill.low {
+      background: linear-gradient(135deg, #dc2626, #ef4444);
+      color: #fff;
+      border-color: transparent;
+    }
+    .trust-reasons {
+      margin: 10px 0 0 18px;
+      color: #475569;
+      font-size: 12px;
+    }
+    .screen-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .screen-head h2 { margin: 0; }
+    .screen-head p { margin: 0; color: var(--text-light); max-width: 760px; }
+    .locked-overlay {
+      margin-top: 18px;
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(254, 242, 242, 0.9);
+      color: #7f1d1d;
+      font-size: 14px;
+      display: none;
+    }
+    .locked-overlay.active {
+      display: block;
+    }
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+      gap: 24px;
+    }
+    .card { 
+      background: var(--card); 
+      border: 1px solid var(--border); 
+      border-radius: 12px; 
+      padding: 24px;
+      box-shadow: var(--shadow);
+      transition: all 0.2s ease;
+    }
+    .card:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-light);
+    }
+    .card h3 { 
+      margin-top: 0;
+      margin-bottom: 16px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .hidden {
+      display: none !important;
+    }
+    .traveler-card {
+      background: linear-gradient(135deg, rgba(20,184,166,0.11), rgba(255,255,255,0.95));
+      border: 1px solid rgba(20,184,166,0.24);
+    }
+    .row { 
+      display: flex; 
+      gap: 12px; 
+      margin-bottom: 12px; 
+    }
+    .row > * { flex: 1; }
+    .form-group {
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+    }
+    .form-group:has(button) {
+      position: relative;
+    }
+    .form-group:has(button) select {
+      padding-right: 100px;
+    }
+    .form-group button.btn-small-secondary {
+      position: absolute;
+      right: 4px;
+      top: 28px;
+      width: auto;
+    }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    input, select, textarea {
+      width: 100%; 
+      padding: 11px 13px; 
+      border-radius: 8px; 
+      border: 1px solid var(--border); 
+      font: inherit;
+      transition: all 0.2s ease;
+      background: #fafafa;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: white;
+      box-shadow: 0 0 0 3px var(--primary-light);
+    }
+    textarea {
+      resize: vertical;
+      font-family: inherit;
+    }
+    button {
+      padding: 12px 20px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: 100%;
+      justify-content: center;
+    }
+    button:not(.ghost):not(.danger) { 
+      background: linear-gradient(135deg, var(--primary) 0%, #14b8a6 100%);
+      color: white;
+    }
+    button:not(.ghost):not(.danger):hover { 
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+    }
+    button:not(.ghost):not(.danger):active {
+      transform: translateY(0);
+    }
+    button.ghost { 
+      background: transparent; 
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+    button.ghost:hover {
+      background: var(--primary-light);
+    }
+    button.danger { 
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: white;
+    }
+    button.danger:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+    }
+    button.btn-small-secondary {
+      width: auto;
+      padding: 6px 12px;
+      font-size: 12px;
+      margin-top: 8px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      border-radius: 8px;
+    }
+    button.btn-small-secondary:hover {
+      background: var(--primary);
+      color: white;
+      transform: none;
+    }
+    .status { 
+      margin-top: 12px;
+      padding: 10px 12px;
+      font-size: 13px; 
+      border-radius: 6px;
+      color: var(--text-light); 
+    }
+    .status.ok { 
+      color: var(--ok);
+      background: rgba(16, 185, 129, 0.1);
+    }
+    .status.danger { 
+      color: var(--err);
+      background: rgba(239, 68, 68, 0.1);
+    }
+    .hint { 
+      color: var(--text-light); 
+      font-size: 13px;
+      margin: 0;
+    }
+    .items-list {
+      list-style: none;
+      margin: 16px 0 0;
+      padding: 0;
+    }
+    .items-list li {
+      padding: 12px;
+      background: var(--bg);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      border-left: 4px solid var(--primary);
+      font-size: 13px;
+    }
+    .items-list li strong {
+      color: var(--text);
+    }
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: #fff7ed;
+      color: #9a3412;
+      border: 1px solid #fed7aa;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .trekking-itinerary {
+      display: grid;
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .trekking-day-card {
+      background: linear-gradient(135deg, rgba(15,118,110,0.08), rgba(20,184,166,0.08));
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: 12px;
+      padding: 16px;
+      transition: all 0.2s ease;
+    }
+    .trekking-day-card:hover {
+      transform: translateX(4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .trekking-day-title {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .trekking-day-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 8px;
+      margin: 10px 0;
+      font-size: 13px;
+    }
+    .trekking-info-item {
+      padding: 8px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 8px;
+      border-left: 2px solid var(--secondary);
+    }
+    .trekking-info-label {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 12px;
+    }
+    .trekking-info-value {
+      color: var(--text-light);
+      margin-top: 2px;
+    }
+    .trekking-highlights {
+      background: #fffbeb;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 10px;
+      border-left: 3px solid #f59e0b;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .trekking-map-image {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 12px;
+      margin: 14px 0;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      object-fit: cover;
+    }
+    .trekking-regions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 16px 0;
+    }
+    .trekking-region-item {
+      background: linear-gradient(135deg, rgba(15,118,110,0.06), rgba(20,184,166,0.06));
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .trekking-ordered-info {
+      margin: 10px 0 0;
+      padding-left: 20px;
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+    .region-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: var(--primary);
+      color: white;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .trekking-shell {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: linear-gradient(165deg, rgba(255,255,255,0.92), rgba(236,253,245,0.76));
+      box-shadow: var(--shadow-lg);
+      padding: 22px;
+    }
+    .trekking-shell .screen-head {
+      margin-bottom: 12px;
+    }
+    .trekking-shell .screen-head h2 {
+      font-size: clamp(28px, 3.6vw, 42px);
+      letter-spacing: -0.4px;
+    }
+    .trekking-subline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 18px;
+    }
+    .trekking-subline span {
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #0f766e;
+      border: 1px solid rgba(20, 184, 166, 0.22);
+      background: #ecfeff;
+    }
+    .trekking-shell .guide-grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.95fr) minmax(360px, 1.05fr);
+      gap: 18px;
+    }
+    .trekking-panel {
+      border-radius: 18px;
+      border: 1px solid rgba(20, 184, 166, 0.2);
+      background: linear-gradient(140deg, rgba(255,255,255,0.95), rgba(236,254,255,0.82));
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+      padding: 18px;
+    }
+    .trekking-panel h3 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 17px;
+      margin-bottom: 12px;
+    }
+    .trekking-control-card {
+      position: sticky;
+      top: 160px;
+      align-self: start;
+    }
+    .trekking-summary-card,
+    .trekking-itinerary-card,
+    .trekking-map-card,
+    .trekking-region-card {
+      grid-column: 2;
+    }
+    .trekking-status-bar {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px dashed rgba(20, 184, 166, 0.35);
+      color: var(--text-light);
+      font-size: 13px;
+      background: rgba(255,255,255,0.75);
+    }
+    .trekking-map-image {
+      min-height: 220px;
+      max-height: 340px;
+      object-fit: cover;
+    }
+    .trekking-region-card .trekking-regions-grid {
+      margin: 10px 0 0;
+    }
+    .launch-kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(140px, 1fr));
+      gap: 12px;
+      margin: 0 0 20px;
+    }
+    .kpi-mini {
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.86);
+      box-shadow: var(--shadow);
+        border-top: 3px solid var(--primary);
+    }
+
+      .kpi-mini:nth-child(2) {
+        border-top-color: var(--accent-sky);
+      }
+
+      .kpi-mini:nth-child(3) {
+        border-top-color: var(--secondary);
+      }
+
+      .kpi-mini:nth-child(4) {
+        border-top-color: var(--accent-indigo);
+      }
+    .kpi-mini strong {
+      display: block;
+      font-size: 16px;
+      color: var(--primary);
+      margin-bottom: 2px;
+    }
+    .kpi-mini span {
+      font-size: 12px;
+      color: var(--text-light);
+      font-weight: 600;
+    }
+    @keyframes fadeLift {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .portal-banner,
+    .launch-kpi-strip,
+    .hero-card,
+    .tabs {
+      animation: fadeLift 0.45s ease both;
+    }
+    .screen.active .card {
+      animation: fadeLift 0.35s ease both;
+    }
+    .screen.active .card:nth-child(2) { animation-delay: 0.04s; }
+    .screen.active .card:nth-child(3) { animation-delay: 0.08s; }
+    .screen.active .card:nth-child(4) { animation-delay: 0.12s; }
+    @media (prefers-reduced-motion: reduce) {
+      .portal-banner,
+      .launch-kpi-strip,
+      .hero-card,
+      .tabs,
+      .screen.active .card {
+        animation: none;
+      }
+    }
+    @media (max-width: 1024px) {
+      .wrap {
+        padding: 24px 18px;
+      }
+      .hero-card {
+        grid-template-columns: 1fr;
+        padding: 22px;
+      }
+      .hero-card h2 {
+        font-size: clamp(28px, 4vw, 38px);
+      }
+      .launch-kpi-strip {
+        grid-template-columns: repeat(2, minmax(140px, 1fr));
+      }
+      .guide-grid {
+        grid-template-columns: 1fr;
+      }
+      .trekking-shell .guide-grid {
+        grid-template-columns: 1fr;
+      }
+      .trekking-control-card,
+      .trekking-summary-card,
+      .trekking-itinerary-card,
+      .trekking-map-card,
+      .trekking-region-card {
+        grid-column: auto;
+      }
+      .trekking-control-card {
+        position: static;
+      }
+      .screen-head {
+        align-items: flex-start;
+      }
+    }
+    @media (max-width: 768px) {
+      .navbar-content {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .top-auth {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .auth-inline {
+        width: 100%;
+      }
+      .auth-inline input {
+        width: 100%;
+      }
+      .tabs {
+        grid-template-columns: 1fr 1fr;
+        top: 10px;
+        margin-bottom: 20px;
+        padding: 10px;
+      }
+      .grid { 
+        grid-template-columns: 1fr; 
+      }
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+      button {
+        padding: 10px 14px;
+        font-size: 13px;
+      }
+      .hero-actions {
+        gap: 8px;
+      }
+      .hero-actions button {
+        width: 100%;
+      }
+      .hero-card p {
+        font-size: 15px;
+      }
+      .screen h2 {
+        font-size: 24px;
+        margin-bottom: 16px;
+      }
+      .card {
+        padding: 18px;
+      }
+      .launch-kpi-strip {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .trekking-shell {
+        padding: 14px;
+      }
+      .trekking-subline {
+        margin: 8px 0 14px;
+      }
+    }
+    @media (max-width: 520px) {
+      .wrap {
+        padding: 18px 12px;
+      }
+      .hero-card {
+        padding: 16px;
+        border-radius: 18px;
+      }
+      .hero-card h2 {
+        font-size: 26px;
+      }
+      .portal-banner {
+        grid-template-columns: 1fr;
+        padding: 12px;
+      }
+      .portal-banner h2 {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+  <script>
+    window.TRAILMATE_MAPS_API_KEY = "{{ google_maps_api_key|escapejs }}";
+  </script>
+      <div class="top-auth">
+        <div id="authChip" class="auth-status">Not authenticated</div>
+        <div class="auth-inline guest-only">
+          <input id="navUsername" placeholder="Username" autocomplete="username" />
+          <input id="navPassword" type="password" placeholder="Password" autocomplete="current-password" />
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="portal-banner">
+      <div>
+        <h2>Tourist Portal</h2>
+        <p>Login first to use planner features. Before login, this page is view-only.</p>
+      </div>
+      <div class="portal-links">
+        <a class="primary-link" href="#guide" data-jump="screen-guide">Main Feature: Smart Tourist Planner</a>
+      </div>
+    </div>
+
+    <div id="featureLockedNotice" class="locked-overlay">
+      Features are locked until tourist login. Go to the home page and login from Tourist Login panel, or sign in from the top bar here.
+    </div>
+
+    <section class="launch-kpi-strip" aria-label="Portal KPIs">
+      <article class="kpi-mini">
+        <strong>4 Trek Zones</strong>
+        <span>Route-mapped mountain regions</span>
+      </article>
+      <article class="kpi-mini">
+        <strong>AI Planning</strong>
+        <span>Personalized day-wise itineraries</span>
+      </article>
+      <article class="kpi-mini">
+        <strong>Budget Layer</strong>
+        <span>Transparent spending guidance</span>
+      </article>
+      <article class="kpi-mini">
+        <strong>Safety-First</strong>
+        <span>Trust, comfort, and route clarity</span>
+      </article>
+    </section>
+
+    <section class="hero-card">
+      <div>
+        <div class="pill" style="display:inline-block; margin-bottom:14px;">Nepal Tourist Portal</div>
+        <h2>Plan and enjoy Nepal with clear, practical travel tools.</h2>
+        <p>
+          TrailMate helps tourists build day-wise plans, discover trusted places, and navigate routes with confidence.
+          The flow is kept simple so you can decide faster and travel better.
+        </p>
+        <div class="hero-feature-row">
+          <span class="hero-feature-chip">Smart Tourist Planner</span>
+          <span class="hero-feature-chip">Trekking Route Insights</span>
+          <span class="hero-feature-chip">Budget and Safety Support</span>
+          <span class="hero-feature-chip">City Guide with Maps</span>
+        </div>
+        <div class="hero-actions">
+          <button type="button" class="cta-primary" data-jump="screen-guide">Open Smart Tourist Planner</button>
+        </div>
+        <div class="stat-grid">
+          <div class="stat-item"><strong>4</strong><span>Major trekking regions ready</span></div>
+          <div class="stat-item"><strong>Maps + Guide</strong><span>Integrated city planning support</span></div>
+          <div class="stat-item"><strong>Clear UX</strong><span>Fast, simple, mobile-ready flow</span></div>
+        </div>
+      </div>
+      <div class="hero-side">
+        <div class="hero-note">
+          <strong>Tourist-first experience</strong>
+          Focused on what travelers need most: where to go, what to do, and how to move safely.
+        </div>
+        <div class="hero-note">
+          <strong>Built for real-world travel</strong>
+          Includes practical guidance for budget, route timing, trusted places, and trek selection.
+        </div>
+      </div>
+    </section>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-target="screen-dashboard"><span class="tab-icon">🏠</span>Home</button>
+      <button class="tab-btn" data-target="screen-catalog" data-requires-auth="1"><span class="tab-icon">🧭</span>Discovery</button>
+      <button class="tab-btn" data-target="screen-plans" data-requires-auth="1"><span class="tab-icon">📅</span>Planner</button>
+      <button class="tab-btn" data-target="screen-items" data-requires-auth="1"><span class="tab-icon">🎯</span>Scheduler</button>
+      <button class="tab-btn" data-target="screen-guide" data-requires-auth="1"><span class="tab-icon">🗺️</span>Guide</button>
+      <button class="tab-btn" data-target="screen-trekking" data-requires-auth="1"><span class="tab-icon">⛰️</span>Trekking</button>
+    </div>
+
+    <section id="screen-dashboard" class="screen active">
+      <h2>Login Dashboard</h2>
+      <div class="grid">
+        <div class="card guest-only">
+          <h3>🔐 Account Access</h3>
+          <p class="hint">Sign in from the top-right bar for cleaner access from anywhere in the portal.</p>
+          <div id="authStatus" class="status">Use the top-right sign in to continue</div>
+          <div class="row" style="margin-top:12px;">
+            <button type="button" class="ghost" data-jump="screen-guide">Open Smart Tourist Planner</button>
+          </div>
+        </div>
+        <div class="card guest-only">
+          <h3>📝 Create Account</h3>
+          <p class="hint">New to TrailMate? Sign up to start planning.</p>
+          <div class="form-group">
+            <label>Username</label>
+            <input id="regUsername" placeholder="Choose a username (3+ chars)" />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input id="regPassword" type="password" placeholder="Enter password (6+ chars)" />
+          </div>
+          <div class="form-group">
+            <label>Confirm Password</label>
+            <input id="regPasswordConfirm" type="password" placeholder="Confirm password" />
+          </div>
+          <button id="registerBtn">Create Account</button>
+          <div id="registerStatus" class="status">Sign up to get started</div>
+        </div>
+        <div id="travelerPanel" class="card traveler-card user-only hidden">
+          <h3>🎉 Traveler Control Panel</h3>
+          <p class="hint">Welcome back, <strong id="travelerName">traveler</strong>. Your personalized tools are ready.</p>
+          <div class="row" style="margin-top:14px;">
+            <button type="button" data-jump="screen-plans">My Trip Plans</button>
+            <button type="button" class="ghost" data-jump="screen-guide">Open Smart Tourist Planner</button>
+          </div>
+          <div class="row">
+            <button type="button" class="ghost" data-jump="screen-items">Open Scheduler</button>
+            <button id="logoutUserPanel" type="button" class="danger">Sign Out</button>
+          </div>
+          <div class="status ok">Signed-in mode enabled: planning, activities, and saved trips.</div>
+        </div>
+        <div class="card">
+          <h3>✨ Quick Status</h3>
+          <p class="hint">Run platform health and authentication endpoint checks.</p>
+          <div class="row">
+            <button id="checkHealthBtn" class="ghost">Run Health Check</button>
+            <button id="checkTokenGetBtn" class="ghost">Check Token API</button>
+          </div>
+          <div id="quickStatus" class="status">System checks not run yet</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-catalog" class="screen">
+      <h2>🗺️ Discovery Engine</h2>
+      <p class="hint">Explore verified destinations and activities curated for practical trip execution.</p>
+      <div class="row" style="margin-bottom: 24px;">
+        <button id="loadDestinations">Load Destinations</button>
+        <button id="loadActivities" class="ghost">Load Activity Catalog</button>
+      </div>
+      <div id="catalogStatus" class="status">Discovery engine ready</div>
+      <div class="grid">
+        <div class="card">
+          <h3>🏔️ Destinations</h3>
+          <ul id="destinationsList" class="items-list"></ul>
+        </div>
+        <div class="card">
+          <h3>🎯 Activity Opportunities</h3>
+          <ul id="activitiesList" class="items-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-plans" class="screen">
+      <h2>📋 Journey Planner</h2>
+      <p class="hint">Build clear itineraries with dates, budget control, and personal notes.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>✍️ Create Trip Blueprint</h3>
+          <div class="form-group">
+            <label>Trip Title</label>
+            <input id="planTitle" placeholder="e.g., Nepal Mountain Trek" />
+          </div>
+          <div class="form-group">
+            <label>Destination</label>
+            <select id="planDestination"></select>
+          </div>
+          <div class="row">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>Start Date</label>
+              <input id="planStart" type="date" />
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>End Date</label>
+              <input id="planEnd" type="date" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Budget ($)</label>
+            <input id="planBudget" type="number" step="0.01" min="0" placeholder="0.00" />
+          </div>
+          <div class="form-group">
+            <label>Notes</label>
+            <textarea id="planNotes" rows="3" placeholder="Add any notes about your trip..."></textarea>
+          </div>
+          <div class="row">
+            <button id="createPlan">Create Blueprint</button>
+            <button id="loadPlans" class="ghost">Sync Blueprints</button>
+          </div>
+          <div id="planStatus" class="status">Sign in to activate trip blueprint creation</div>
+        </div>
+        <div class="card">
+          <h3>📌 Active Blueprints</h3>
+          <div class="form-group">
+            <label>Select Plan</label>
+            <select id="selectedPlan"></select>
+          </div>
+          <div class="row">
+            <button id="editPlanBtn" class="ghost">Edit Blueprint</button>
+            <button id="deletePlan" class="danger">Delete Blueprint</button>
+          </div>
+          <ul id="planList" class="items-list"></ul>
+        </div>
+        <div class="card">
+          <h3>🔍 Advanced Plan Filters</h3>
+          <p class="hint">Segment your journeys by title, destination, and budget range instantly.</p>
+          <div class="form-group">
+            <label>Search by Title</label>
+            <input id="filterSearch" placeholder="Search plans..." />
+          </div>
+          <div class="form-group">
+            <label>Destination</label>
+            <select id="filterDestination"></select>
+          </div>
+          <div class="row">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>Min Budget ($)</label>
+              <input id="filterBudgetMin" type="number" min="0" step="0.01" placeholder="Any" />
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>Max Budget ($)</label>
+              <input id="filterBudgetMax" type="number" min="0" step="0.01" placeholder="Any" />
+            </div>
+          </div>
+          <div class="row">
+            <button id="applyFiltersBtn">Apply Filters</button>
+            <button id="clearFiltersBtn" class="ghost">Clear</button>
+          </div>
+          <div id="filterStatus" class="status">Filter engine ready</div>
+        </div>
+        <div class="card" id="editPlanCard" style="display: none;">
+          <h3>✏️ Update Blueprint</h3>
+          <div class="form-group">
+            <label>Trip Title</label>
+            <input id="editPlanTitle" placeholder="Trip title" />
+          </div>
+          <div class="form-group">
+            <label>Destination</label>
+            <select id="editPlanDestination"></select>
+          </div>
+          <div class="row">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>Start Date</label>
+              <input id="editPlanStart" type="date" />
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>End Date</label>
+              <input id="editPlanEnd" type="date" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Budget ($)</label>
+            <input id="editPlanBudget" type="number" step="0.01" min="0" placeholder="0.00" />
+          </div>
+          <div class="form-group">
+            <label>Notes</label>
+            <textarea id="editPlanNotes" rows="3" placeholder="Add any notes about your trip..."></textarea>
+          </div>
+          <div class="row">
+            <button id="savePlanBtn">Save Changes</button>
+            <button id="cancelEditBtn" class="ghost">Cancel</button>
+          </div>
+          <div id="editPlanStatus" class="status">Blueprint edit mode active</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-items" class="screen">
+      <h2>🎒 Activity Scheduler</h2>
+      <p class="hint">Assign activities day-by-day with execution order for a smooth on-ground experience.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>➕ Add Scheduled Activity</h3>
+          <div class="form-group">
+            <label>Trip Plan</label>
+            <select id="itemPlan"></select>
+          </div>
+          <div class="form-group">
+            <label>Activity</label>
+            <select id="itemActivity"></select>
+          </div>
+          <div class="row">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>Day</label>
+              <input id="itemDay" type="number" min="1" value="1" />
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>Order</label>
+              <input id="itemOrder" type="number" min="1" value="1" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Notes</label>
+            <textarea id="itemNotes" rows="3" placeholder="Add notes for this activity..."></textarea>
+          </div>
+          <div class="row">
+            <button id="addItem">Add Activity</button>
+            <button id="loadItems" class="ghost">Sync Schedule</button>
+          </div>
+          <div id="itemStatus" class="status">Select a blueprint and activity to schedule</div>
+        </div>
+        <div class="card">
+          <h3>📝 Scheduled Activity Board</h3>
+          <ul id="itemsList" class="items-list"></ul>
+        </div>
+      </div>
+    </section>
+    <section id="screen-guide" class="screen">
+      <div class="screen-head">
+        <div>
+          <h2>Smart Tourist Planner</h2>
+          <p>Generate clear places, day-wise itinerary, food picks, and route-ready maps from one page.</p>
+        </div>
+      </div>
+
+      <div class="guide-grid">
+        <div class="card guide-section-card">
+          <h3>Plan My Trip</h3>
+          <div class="form-group">
+            <label>Tourist Persona</label>
+            <select id="guidePersona">
+              <option value="custom" selected>Custom (manual settings)</option>
+              <option value="budget_backpacker">Budget Backpacker</option>
+              <option value="family_comfort">Family Comfort</option>
+              <option value="nightlife_explorer">Nightlife Explorer</option>
+              <option value="adventure_hiker">Adventure Hiker</option>
+            </select>
+            <button id="applyPersonaBtn" type="button" class="btn-small-secondary">Quick Load</button>
+          </div>
+          <div class="form-group">
+            <label>City</label>
+            <select id="guideCity">
+              <option value="kathmandu" selected>Kathmandu</option>
+              <option value="pokhara">Pokhara</option>
+              <option value="chitwan">Chitwan</option>
+              <option value="lumbini">Lumbini</option>
+              <option value="mustang">Mustang</option>
+              <option value="janakpur">Janakpur</option>
+              <option value="ilam">Ilam</option>
+              <option value="bandipur">Bandipur</option>
+              <option value="gorkha">Gorkha</option>
+              <option value="rara">Rara</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Interests (comma separated)</label>
+            <input id="guideInterests" placeholder="culture, history, food, nature, photography" value="culture, history, food" />
+          </div>
+          <div class="form-group">
+            <label>Focus Activities (comma separated)</label>
+            <input id="guideFocus" placeholder="clubbing, hiking, shopping, nightlife" value="hiking" />
+          </div>
+          <div class="form-group">
+            <label>Avoid Categories (comma separated)</label>
+            <input id="guideAvoid" placeholder="heritage, nightlife, hiking" value="" />
+          </div>
+          <div class="row">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>Trip Days</label>
+              <input id="guideDays" type="number" min="1" max="7" value="2" />
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>Budget (NPR)</label>
+              <input id="guideBudget" type="number" min="1000" step="500" value="4000" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Transport Preference</label>
+            <select id="guideTransport">
+              <option value="balanced" selected>Balanced (recommended)</option>
+              <option value="walking">Mostly Walking</option>
+              <option value="public">Public Transport</option>
+              <option value="ride-share">Ride-share</option>
+              <option value="taxi">Taxi</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>
+              <input id="guideFamily" type="checkbox" style="width:auto; margin-right:8px;" />
+              Family-friendly mode
+            </label>
+          </div>
+          <div class="form-group">
+            <label>
+              <input id="guideFood" type="checkbox" checked style="width:auto; margin-right:8px;" />
+              Include famous food suggestions
+            </label>
+          </div>
+          <div class="form-group">
+            <label>
+              <input id="guideSafety" type="checkbox" checked style="width:auto; margin-right:8px;" />
+              Safety-first routing
+            </label>
+          </div>
+          <div class="form-group">
+            <label>
+              <input id="guidePricing" type="checkbox" checked style="width:auto; margin-right:8px;" />
+              Fair-pricing suggestions
+            </label>
+          </div>
+          <button id="getGuideBtn">Generate Tourist Plan</button>
+          <div id="guideStatus" class="status">AI guide engine ready for generation</div>
+        </div>
+
+        <div class="card guide-section-card guide-list">
+          <h3>🏛️ Best Places to Visit</h3>
+          <ul id="guidePlacesList" class="items-list"></ul>
+        </div>
+
+        <div class="card guide-section-card guide-list">
+          <h3>⭐ Top 3 Must-Visit</h3>
+          <ul id="guideHighlightsList" class="items-list"></ul>
+        </div>
+
+        <div class="card guide-section-card guide-list">
+          <h3>🧭 Highlights by Category</h3>
+          <ul id="guideCategoryList" class="items-list"></ul>
+        </div>
+
+        <div class="card guide-section-card guide-list">
+          <h3>🍲 Famous Foods</h3>
+          <ul id="guideFoodsList" class="items-list"></ul>
+        </div>
+
+        <div class="card guide-section-card">
+          <h3>🗓️ Day-wise Itinerary</h3>
+          <div id="guideItinerary" class="guide-itinerary"></div>
+        </div>
+
+        <div class="card guide-section-card guide-list">
+          <h3>🚖 Transport Between Stops</h3>
+          <ul id="guideTransportList" class="items-list"></ul>
+        </div>
+
+        <div class="card guide-section-card guide-list">
+          <h3>🛡️ Safety + Fair Pricing</h3>
+          <ul id="guideComfortList" class="items-list"></ul>
+        </div>
+
+        <div class="card guide-section-card guide-list">
+          <h3>🧑‍🤝‍🧑 Local Lifestyle and City Connect</h3>
+          <ul id="guideConnectionList" class="items-list">
+            <li>Generate a city plan to load local lifestyle, main activities, and street food scene.</li>
+          </ul>
+        </div>
+
+        <div class="card guide-section-card guide-list">
+          <h3>🧰 Tourist Essentials Toolkit</h3>
+          <ul id="touristToolkitList" class="items-list">
+            <li>Generate a city plan to load emergency contacts, fair pricing, and safety checklist.</li>
+          </ul>
+        </div>
+
+        <div class="card guide-section-card">
+          <h3>City Map and Summary</h3>
+          <div id="guideSummary" class="guide-summary">
+            <h3>City travel preview</h3>
+            <p>Run AI generation to surface ranked experiences, food picks, and execution-ready map routes.</p>
+            <div class="guide-meta">
+              <span class="guide-pill">Culture</span>
+              <span class="guide-pill">Food</span>
+              <span class="guide-pill">Map-guided</span>
+            </div>
+          </div>
+          <div id="mapApiStatus" class="status">Google Maps API: waiting for configuration</div>
+          <div id="personalCityMap" class="map-frame city-map-frame"></div>
+          <a id="cityMapLink" class="guide-action" href="https://www.google.com/maps/search/?api=1&query=Kathmandu+Tourist+Attractions" target="_blank" rel="noopener noreferrer">Open Full City Map</a>
+          <iframe id="cityMapFrame" class="map-frame city-map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Kathmandu+Tourist+Attractions&output=embed" title="City map preview"></iframe>
+
+          <div class="map-board">
+            <h4>Recommended Places Map Access</h4>
+            <div class="map-board-toolbar">
+              <p class="map-board-toolbar-label">Filter by category</p>
+              <div id="mapBoardCategories" class="map-board-chips"></div>
+              <p class="map-board-toolbar-label">Jump to day-wise route</p>
+              <div id="mapBoardDayRoutes" class="map-board-chips"></div>
+              <div class="map-board-chips">
+                <button id="mapNearMeBtn" type="button" class="map-chip near-me">Near Me</button>
+              </div>
+            </div>
+            <div id="mapBoardChips" class="map-board-chips"></div>
+            <iframe id="mapBoardFrame" class="map-frame map-board-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Kathmandu+Tourist+Attractions&output=embed" title="Recommended place map"></iframe>
+          </div>
+          <div class="map-board" style="margin-top: 14px;">
+            <h4>My Route: Current Location to Destination</h4>
+            <div class="form-group" style="margin-bottom: 10px;">
+              <label>Destination from your guide</label>
+              <select id="guideRouteDestination">
+                <option value="">Generate a city plan first...</option>
+              </select>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+              <button id="guideUseLocationBtn" type="button" class="ghost">Use My Current Location</button>
+              <button id="guideShowDirectionsBtn" type="button">Show Directions</button>
+            </div>
+            <div id="guideRouteStatus" class="status">Directions are ready after city plan generation.</div>
+            <a id="guideRouteLink" class="guide-action" href="https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination=Kathmandu+Durbar+Square" target="_blank" rel="noopener noreferrer">Open Route in Google Maps</a>
+            <iframe id="guideRouteFrame" class="map-frame city-map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Kathmandu+Durbar+Square&output=embed" title="Directions map preview"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+      <section id="screen-trekking" class="screen trekking-shell">
+          <div class="screen-head">
+            <div>
+              <h2>⛰️ Nepal Trekking Routes</h2>
+            <script>
+              window.TRAILMATE_MAPS_API_KEY = "{{ google_maps_api_key|escapejs }}";
+            </script>
+              <p>Browse practical trekking routes with clear day plans, altitude context, and map previews.</p>
+            </div>
+          </div>
+          <div class="trekking-subline">
+            <span>Live route catalog</span>
+            <span>Altitude-aware day flow</span>
+            <span>Fast filter and compare</span>
+          </div>
+      
+          <div class="guide-grid">
+            <div class="card guide-section-card trekking-panel trekking-control-card">
+              <h3>🧗 Choose Trekking Route</h3>
+              <div class="row">
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label>Difficulty</label>
+                  <select id="trekkingDifficultyFilter">
+                    <option value="">All</option>
+                    <option value="Easy">Easy</option>
+                    <option value="Moderate">Moderate</option>
+                    <option value="Hard">Hard</option>
+                  </select>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label>Max Days</label>
+                  <input id="trekkingMaxDaysFilter" type="number" min="1" max="20" placeholder="Any" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Available Routes</label>
+                <select id="trekkingRouteSelect">
+                  <option value="">Select a trekking route...</option>
+                  <option value="poon_hill">Poon Hill Trek (3 days, Easy)</option>
+                  <option value="langtang_valley">Langtang Valley Trek (5 days, Moderate)</option>
+                  <option value="mardi_himal">Mardi Himal Trek (5 days, Moderate)</option>
+                  <option value="annapurna_base_camp">Annapurna Base Camp Trek (7 days, Moderate)</option>
+                  <option value="upper_mustang">Upper Mustang Trek (10 days, Hard)</option>
+                  <option value="gokyo_lakes">Gokyo Lakes Trek (11 days, Hard)</option>
+                  <option value="manaslu_circuit">Manaslu Circuit Trek (12 days, Hard)</option>
+                  <option value="everest_base_camp">Everest Base Camp Trek (14 days, Hard)</option>
+                </select>
+              </div>
+              <div class="row" style="margin-bottom: 0;">
+                <button id="clearTrekkingFiltersBtn" type="button" class="ghost">Clear Filters</button>
+                <button id="refreshTrekkingBtn" type="button" class="ghost">Refresh Catalog</button>
+                <button id="loadTrekkingBtn" type="button">Load Trekking Route</button>
+              </div>
+              <div class="row" style="margin-top: 10px; margin-bottom: 0;">
+                <button id="downloadOfflinePackBtn" type="button" class="ghost">Download Offline Trek Pack</button>
+              </div>
+              <div id="trekkingStatus" class="trekking-status-bar">Select a route to load full trekking details.</div>
+              <div id="trekkingCatalogMeta" class="hint" style="margin-top:10px;">Route catalog not loaded yet.</div>
+            </div>
+
+            <div class="card guide-section-card trekking-panel trekking-summary-card">
+              <h3>📋 Route Summary</h3>
+              <div id="trekkingSummary">
+                <p class="hint">Information will appear here when you select a route.</p>
+              </div>
+            </div>
+
+            <div class="card guide-section-card guide-list trekking-panel trekking-itinerary-card">
+              <h3>🗓️ Day-wise Itinerary</h3>
+              <div id="trekkingItinerary" class="trekking-itinerary"></div>
+            </div>
+
+            <div class="card guide-section-card trekking-panel trekking-map-card">
+              <h3>🗺️ Trekking Zone Map</h3>
+              <p class="hint">Map preview for your selected route:</p>
+              <div id="trekkingMapDisplay"><p class="hint">Select a route to load the map preview.</p></div>
+            </div>
+          </div>
+
+          <div class="card guide-section-card trekking-panel trekking-region-card" style="margin-top: 16px;">
+            <h3>🏔️ Route Region Guide</h3>
+            <div id="trekkingRegionDetails" class="trekking-regions-grid">
+              <p class="hint">Select a route to show ordered region details.</p>
+            </div>
+          </div>
+        </section>
+
+  <script>
+    const tokenKey = "trailmate_access_token";
+    const usernameKey = "trailmate_username";
+
+    const authStatus = document.getElementById("authStatus");
+    const registerStatus = document.getElementById("registerStatus");
+    const authChip = document.getElementById("authChip");
+    const navUsername = document.getElementById("navUsername");
+    const navPassword = document.getElementById("navPassword");
+    const navLoginBtn = document.getElementById("navLoginBtn");
+    const navLogoutBtn = document.getElementById("navLogoutBtn");
+    const quickStatus = document.getElementById("quickStatus");
+    const featureLockedNotice = document.getElementById("featureLockedNotice");
+    const catalogStatus = document.getElementById("catalogStatus");
+    const planStatus = document.getElementById("planStatus");
+    const filterStatus = document.getElementById("filterStatus");
+    const itemStatus = document.getElementById("itemStatus");
+    const guideStatus = document.getElementById("guideStatus");
+    const guideSummary = document.getElementById("guideSummary");
+    const guideItinerary = document.getElementById("guideItinerary");
+    const mapApiStatus = document.getElementById("mapApiStatus");
+    const personalCityMap = document.getElementById("personalCityMap");
+    const cityMapLink = document.getElementById("cityMapLink");
+    const cityMapFrame = document.getElementById("cityMapFrame");
+    const mapBoardFrame = document.getElementById("mapBoardFrame");
+    const mapBoardChips = document.getElementById("mapBoardChips");
+    const mapBoardCategories = document.getElementById("mapBoardCategories");
+    const mapBoardDayRoutes = document.getElementById("mapBoardDayRoutes");
+    const mapNearMeBtn = document.getElementById("mapNearMeBtn");
+    const guideRouteDestination = document.getElementById("guideRouteDestination");
+    const guideUseLocationBtn = document.getElementById("guideUseLocationBtn");
+    const guideShowDirectionsBtn = document.getElementById("guideShowDirectionsBtn");
+    const guideRouteStatus = document.getElementById("guideRouteStatus");
+    const guideRouteLink = document.getElementById("guideRouteLink");
+    const guideRouteFrame = document.getElementById("guideRouteFrame");
+
+    const destinationsList = document.getElementById("destinationsList");
+    const activitiesList = document.getElementById("activitiesList");
+    const planList = document.getElementById("planList");
+    const itemsList = document.getElementById("itemsList");
+    const guidePlacesList = document.getElementById("guidePlacesList");
+    const guideHighlightsList = document.getElementById("guideHighlightsList");
+    const guideFoodsList = document.getElementById("guideFoodsList");
+    const guideCategoryList = document.getElementById("guideCategoryList");
+    const guideTransportList = document.getElementById("guideTransportList");
+    const guideComfortList = document.getElementById("guideComfortList");
+    const guideConnectionList = document.getElementById("guideConnectionList");
+    const touristToolkitList = document.getElementById("touristToolkitList");
+    const guidePersona = document.getElementById("guidePersona");
+    const applyPersonaBtn = document.getElementById("applyPersonaBtn");
+
+    const planDestination = document.getElementById("planDestination");
+    const filterDestination = document.getElementById("filterDestination");
+    const selectedPlan = document.getElementById("selectedPlan");
+    const itemPlan = document.getElementById("itemPlan");
+    const itemActivity = document.getElementById("itemActivity");
+    const travelerPanel = document.getElementById("travelerPanel");
+    const travelerName = document.getElementById("travelerName");
+    const guestOnlyEls = Array.from(document.querySelectorAll(".guest-only"));
+    const userOnlyEls = Array.from(document.querySelectorAll(".user-only"));
+
+    let destinations = [];
+    let activities = [];
+    let plans = [];
+    let mapsLoaderPromise = null;
+    let personalMap = null;
+    let personalMapInfoWindow = null;
+    let personalMapMarkers = [];
+    let mapBoardState = {
+      cityName: "Kathmandu",
+      places: [],
+      foods: [],
+      itinerary: [],
+      activeCategory: "all",
+    };
+    let guideRouteState = {
+      cityName: "Kathmandu",
+      destinationQuery: "Kathmandu Durbar Square",
+      origin: null,
+    };
+
+    function setMapApiStatus(message, isError = false) {
+      if (!mapApiStatus) return;
+      mapApiStatus.textContent = message;
+      mapApiStatus.className = `status ${isError ? "danger" : "ok"}`;
+    }
+
+    function mapQueryFromUrl(mapUrl, fallback = "Kathmandu Tourist Attractions") {
+      if (!mapUrl) return fallback;
+      try {
+        const parsed = new URL(mapUrl);
+        const query = parsed.searchParams.get("query") || parsed.searchParams.get("q");
+        return query || fallback;
+      } catch {
+        return fallback;
+      }
+    }
+
+    function directionEmbedUrl(origin, destinationQuery, travelMode = "driving") {
+      if (!destinationQuery) {
+        return mapEmbedUrl("", "Kathmandu Tourist Attractions");
+      }
+
+      const apiKey = window.TRAILMATE_MAPS_API_KEY || "";
+      if (apiKey && origin) {
+        return `https://www.google.com/maps/embed/v1/directions?key=${encodeURIComponent(apiKey)}&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destinationQuery)}&mode=${encodeURIComponent(travelMode)}`;
+      }
+
+      if (origin) {
+        return `https://www.google.com/maps?output=embed&saddr=${encodeURIComponent(origin)}&daddr=${encodeURIComponent(destinationQuery)}&dirflg=d`;
+      }
+
+      return mapEmbedUrl("", destinationQuery);
+    }
+
+    function setGuideRouteStatus(message, isError = false) {
+      if (!guideRouteStatus) return;
+      guideRouteStatus.textContent = message;
+      guideRouteStatus.className = `status ${isError ? "danger" : "ok"}`;
+    }
+
+    function populateGuideRouteDestinations(cityName, places = [], foods = []) {
+      if (!guideRouteDestination) return;
+
+      const optionPool = [];
+      (places || []).forEach((place) => {
+        if (!place?.name) return;
+        optionPool.push({
+          label: `${place.name} (${place.category || "Place"})`,
+          query: mapQueryFromUrl(place.map_url, `${place.name} ${cityName}`),
+        });
+      });
+      (foods || []).forEach((food) => {
+        if (!food?.name) return;
+        optionPool.push({
+          label: `${food.name} (Food)`,
+          query: mapQueryFromUrl(food.map_url, `${food.name} ${cityName}`),
+        });
+      });
+
+      const uniqueOptions = [];
+      const seen = new Set();
+      optionPool.forEach((option) => {
+        const key = option.query.toLowerCase();
+        if (!seen.has(key)) {
+          seen.add(key);
+          uniqueOptions.push(option);
+        }
+      });
+
+      guideRouteDestination.innerHTML = "";
+      if (uniqueOptions.length === 0) {
+        const fallbackOption = document.createElement("option");
+        fallbackOption.value = `${cityName} Tourist Attractions`;
+        fallbackOption.textContent = `${cityName} Tourist Attractions`;
+        guideRouteDestination.appendChild(fallbackOption);
+      } else {
+        uniqueOptions.slice(0, 20).forEach((option, index) => {
+          const el = document.createElement("option");
+          el.value = option.query;
+          el.textContent = option.label;
+          if (index === 0) el.selected = true;
+          guideRouteDestination.appendChild(el);
+        });
+      }
+
+      guideRouteState.cityName = cityName;
+      guideRouteState.destinationQuery = guideRouteDestination.value || `${cityName} Tourist Attractions`;
+
+      if (guideRouteLink) {
+        guideRouteLink.href = `https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination=${encodeURIComponent(guideRouteState.destinationQuery)}`;
+      }
+      if (guideRouteFrame) {
+        guideRouteFrame.src = directionEmbedUrl(null, guideRouteState.destinationQuery);
+      }
+      setGuideRouteStatus("Choose destination and press Use My Current Location for live directions.");
+    }
+
+    async function useCurrentLocationForGuideRoute() {
+      if (!navigator.geolocation) {
+        setGuideRouteStatus("Geolocation is not available in this browser.", true);
+        return;
+      }
+
+      setGuideRouteStatus("Detecting your current location...");
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          guideRouteState.origin = `${position.coords.latitude.toFixed(6)},${position.coords.longitude.toFixed(6)}`;
+          setGuideRouteStatus("Current location captured ✓");
+        },
+        () => {
+          setGuideRouteStatus("Could not access your location. Please allow location permission.", true);
+        },
+        { enableHighAccuracy: true, timeout: 10000 }
+      );
+    }
+
+    function renderGuideRouteDirections() {
+      const destinationQuery = guideRouteDestination?.value || guideRouteState.destinationQuery || `${guideRouteState.cityName} Tourist Attractions`;
+      guideRouteState.destinationQuery = destinationQuery;
+
+      if (!guideRouteState.origin) {
+        setGuideRouteStatus("Use My Current Location first to generate route directions.", true);
+        return;
+      }
+
+      const transportMode = document.getElementById("guideTransport")?.value || "balanced";
+      const mode = transportMode === "walking" ? "walking" : "driving";
+      if (guideRouteFrame) {
+        guideRouteFrame.src = directionEmbedUrl(guideRouteState.origin, destinationQuery, mode);
+      }
+      if (guideRouteLink) {
+        guideRouteLink.href = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(guideRouteState.origin)}&destination=${encodeURIComponent(destinationQuery)}&travelmode=${encodeURIComponent(mode)}`;
+      }
+
+      setGuideRouteStatus(`Directions ready from your current location to ${destinationQuery} ✓`);
+    }
+
+    function clearPersonalMapMarkers() {
+      personalMapMarkers.forEach((marker) => marker.setMap(null));
+      personalMapMarkers = [];
+    }
+
+    function loadGoogleMapsApi() {
+      if (window.google?.maps) return Promise.resolve(true);
+      if (mapsLoaderPromise) return mapsLoaderPromise;
+
+      const apiKey = window.TRAILMATE_MAPS_API_KEY || "";
+      if (!apiKey) {
+        setMapApiStatus("Google Maps API key missing. Showing fallback map mode.", true);
+        return Promise.resolve(false);
+      }
+
+      setMapApiStatus("Connecting Google Maps API...");
+      mapsLoaderPromise = new Promise((resolve) => {
+        window.__trailmateMapsReady = () => resolve(true);
+        const script = document.createElement("script");
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=__trailmateMapsReady`;
+        script.async = true;
+        script.defer = true;
+        script.onerror = () => resolve(false);
+        document.head.appendChild(script);
+      });
+      return mapsLoaderPromise;
+    }
+
+    async function renderPersonalCityGuideMap(cityName, places) {
+      const isReady = await loadGoogleMapsApi();
+      if (!isReady || !window.google?.maps) {
+        if (personalCityMap) personalCityMap.classList.add("hidden");
+        cityMapFrame.classList.remove("hidden");
+        setMapApiStatus("Using fallback map mode. Set GOOGLE_MAPS_API_KEY to enable app map.", true);
+        return;
+      }
+
+      if (personalCityMap) personalCityMap.classList.remove("hidden");
+      cityMapFrame.classList.add("hidden");
+
+      if (!personalMap) {
+        personalMap = new google.maps.Map(personalCityMap, {
+          center: { lat: 27.7172, lng: 85.3240 },
+          zoom: 6,
+          mapTypeControl: false,
+          streetViewControl: false,
+          fullscreenControl: false,
+        });
+        personalMapInfoWindow = new google.maps.InfoWindow();
+      }
+
+      clearPersonalMapMarkers();
+      const geocoder = new google.maps.Geocoder();
+      const bounds = new google.maps.LatLngBounds();
+      const targets = (places || []).slice(0, 12);
+      if (targets.length === 0) {
+        setMapApiStatus("Google Maps API connected. Waiting for city data...");
+        return;
+      }
+
+      let markerCount = 0;
+      await Promise.all(
+        targets.map((place, index) =>
+          new Promise((resolve) => {
+            const addressQuery = mapQueryFromUrl(place.map_url, `${place.name} ${cityName} Nepal`);
+            geocoder.geocode({ address: addressQuery }, (results, status) => {
+              if (status === "OK" && results?.[0]) {
+                const marker = new google.maps.Marker({
+                  map: personalMap,
+                  position: results[0].geometry.location,
+                  title: place.name,
+                  label: String(index + 1),
+                });
+                marker.addListener("click", () => {
+                  personalMapInfoWindow.setContent(`<strong>${place.name}</strong><br>${place.category || "Tourist Spot"}`);
+                  personalMapInfoWindow.open(personalMap, marker);
+                });
+                personalMapMarkers.push(marker);
+                bounds.extend(results[0].geometry.location);
+                markerCount += 1;
+              }
+              resolve();
+            });
+          })
+        )
+      );
+
+      if (markerCount > 0) {
+        personalMap.fitBounds(bounds, 40);
+        setMapApiStatus(`Google Maps API connected. Personalized map loaded with ${markerCount} places ✓`);
+      } else {
+        setMapApiStatus("Google Maps connected but place geocoding failed; using fallback map.", true);
+        cityMapFrame.classList.remove("hidden");
+      }
+    }
+
+    const personaPresets = {
+      budget_backpacker: {
+        interests: "culture, food, walking, shopping",
+        focus: "budget food, local market",
+        avoid: "",
+        days: 2,
+        budget: 2500,
+        transport: "public",
+        family: false,
+        food: true,
+        safety: true,
+        pricing: true,
+      },
+      family_comfort: {
+        interests: "family, nature, culture, easy travel",
+        focus: "family attractions, easy walks",
+        avoid: "nightlife",
+        days: 3,
+        budget: 7000,
+        transport: "ride-share",
+        family: true,
+        food: true,
+        safety: true,
+        pricing: true,
+      },
+      nightlife_explorer: {
+        interests: "nightlife, food, music, shopping",
+        focus: "clubbing, rooftop, live music",
+        avoid: "heritage",
+        days: 2,
+        budget: 9000,
+        transport: "ride-share",
+        family: false,
+        food: true,
+        safety: true,
+        pricing: true,
+      },
+      adventure_hiker: {
+        interests: "hiking, sunrise, nature, photography",
+        focus: "hiking, viewpoint, adventure",
+        avoid: "nightlife",
+        days: 3,
+        budget: 6000,
+        transport: "balanced",
+        family: false,
+        food: true,
+        safety: true,
+        pricing: true,
+      },
+    };
+
+    const fallbackGuideCities = [
+      { slug: "kathmandu", name: "Kathmandu" },
+      { slug: "pokhara", name: "Pokhara" },
+      { slug: "chitwan", name: "Chitwan" },
+      { slug: "lumbini", name: "Lumbini" },
+      { slug: "mustang", name: "Mustang" },
+      { slug: "janakpur", name: "Janakpur" },
+      { slug: "ilam", name: "Ilam" },
+      { slug: "bandipur", name: "Bandipur" },
+      { slug: "gorkha", name: "Gorkha" },
+      { slug: "rara", name: "Rara" },
+    ];
+
+    const fallbackTrekkingRoutes = [
+      { id: "poon_hill", name: "Poon Hill Trek", difficulty: "Easy", duration_days: 3 },
+      { id: "langtang_valley", name: "Langtang Valley Trek", difficulty: "Moderate", duration_days: 5 },
+      { id: "mardi_himal", name: "Mardi Himal Trek", difficulty: "Moderate", duration_days: 5 },
+      { id: "annapurna_base_camp", name: "Annapurna Base Camp Trek", difficulty: "Moderate", duration_days: 7 },
+      { id: "upper_mustang", name: "Upper Mustang Trek", difficulty: "Hard", duration_days: 10 },
+      { id: "manaslu_circuit", name: "Manaslu Circuit Trek", difficulty: "Hard", duration_days: 12 },
+      { id: "gokyo_lakes", name: "Gokyo Lakes Trek", difficulty: "Hard", duration_days: 11 },
+      { id: "everest_base_camp", name: "Everest Base Camp Trek", difficulty: "Hard", duration_days: 14 },
+    ];
+
+      function renderTrekkingRouteOptions(routes, selected = "") {
+        trekkingRouteSelect.innerHTML = "";
+        const defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.textContent = "Select a trekking route...";
+        trekkingRouteSelect.appendChild(defaultOption);
+
+        routes.forEach((route) => {
+          const option = document.createElement("option");
+          option.value = route.id;
+          option.textContent = `${route.name} (${route.duration_days} days, ${route.difficulty})`;
+          trekkingRouteSelect.appendChild(option);
+        });
+
+        if (selected && routes.some((route) => route.id === selected)) {
+          trekkingRouteSelect.value = selected;
+        }
+      }
+
+    function renderToolkitFromGuide(payload) {
+      const comfort = payload?.comfort_pack || {};
+      const toolkitRows = [
+        ...(comfort.emergency_contacts || []).map((item) => `Emergency Contact: ${item}`),
+        ...(comfort.pricing_baseline || []).map((item) => `Fair Price Baseline: ${item}`),
+        ...(comfort.safety_checklist || []).map((item) => `Safety Checklist: ${item}`),
+        "Keep offline screenshots of bookings, IDs, and route maps.",
+        "Carry cash backup and power bank during inter-city travel.",
+      ];
+      renderList(touristToolkitList, toolkitRows, (row) => `<strong>${row}</strong>`);
+    }
+
+    async function loadGuideCityOptions() {
+      const citySelect = document.getElementById("guideCity");
+      if (!citySelect) return;
+
+      const currentValue = citySelect.value;
+      const { response, payload } = await api("/api/trips/guide/cities/", { method: "GET" }, false);
+
+      const cityOptions = response.ok && payload?.cities?.length
+        ? payload.cities.map((city) => ({ slug: city.slug, name: city.name }))
+        : fallbackGuideCities;
+
+      citySelect.innerHTML = "";
+      cityOptions.forEach((city, index) => {
+        const option = document.createElement("option");
+        option.value = city.slug;
+        option.textContent = city.name;
+        if ((currentValue && city.slug === currentValue) || (!currentValue && index === 0)) {
+          option.selected = true;
+        }
+        citySelect.appendChild(option);
+      });
+    }
+
+    const applyPersona = () => {
+      const key = guidePersona?.value || "custom";
+      if (key === "custom" || !personaPresets[key]) {
+        setStatus(guideStatus, "Custom mode selected. Adjust fields manually.");
+        return;
+      }
+      const p = personaPresets[key];
+      document.getElementById("guideInterests").value = p.interests;
+      document.getElementById("guideFocus").value = p.focus;
+      document.getElementById("guideAvoid").value = p.avoid;
+      document.getElementById("guideDays").value = p.days;
+      document.getElementById("guideBudget").value = p.budget;
+      document.getElementById("guideTransport").value = p.transport;
+      document.getElementById("guideFamily").checked = p.family;
+      document.getElementById("guideFood").checked = p.food;
+      document.getElementById("guideSafety").checked = p.safety;
+      document.getElementById("guidePricing").checked = p.pricing;
+      setStatus(guideStatus, `Persona applied: ${key.replaceAll("_", " ")} ✓`);
+    };
+
+    const getToken = () => localStorage.getItem(tokenKey);
+    const setToken = (token) => localStorage.setItem(tokenKey, token);
+    const clearToken = () => localStorage.removeItem(tokenKey);
+    const getAuthUsername = () => localStorage.getItem(usernameKey);
+    const setAuthUsername = (username) => localStorage.setItem(usernameKey, username);
+    const clearAuthUsername = () => localStorage.removeItem(usernameKey);
+
+    let mediaVersion = Date.now();
+
+    const setStatus = (el, message, isError = false) => {
+      el.textContent = message;
+      el.className = `status ${isError ? "danger" : "ok"}`;
+    };
+
+    const mediaSrc = (url) => {
+      if (!url) return "";
+      const separator = url.includes("?") ? "&" : "?";
+      return `${url}${separator}v=${mediaVersion}`;
+    };
+
+    const safePlaceImage = (url) => {
+      const src = mediaSrc(url);
+      return src || "/static/core/photos/places/default.svg";
+    };
+
+    const safeFoodImage = (url) => {
+      const src = mediaSrc(url);
+      return src || "/static/core/photos/foods/default.svg";
+    };
+
+    const mapEmbedUrl = (mapUrl, fallbackQuery = "Kathmandu Tourist Attractions") => {
+      if (!mapUrl) {
+        return `https://www.google.com/maps?q=${encodeURIComponent(fallbackQuery)}&output=embed`;
+      }
+      try {
+        const parsed = new URL(mapUrl);
+        const query = parsed.searchParams.get("query") || parsed.searchParams.get("q");
+        if (query) {
+          return `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
+        }
+      } catch (error) {
+        // Use fallback map when URL parsing fails.
+      }
+      return `https://www.google.com/maps?q=${encodeURIComponent(fallbackQuery)}&output=embed`;
+    };
+
+    const activateChip = (container, targetButton) => {
+      Array.from(container.querySelectorAll(".map-chip")).forEach((btn) => btn.classList.remove("active"));
+      targetButton.classList.add("active");
+    };
+
+    const renderMapBoardPlaceChips = () => {
+      mapBoardChips.innerHTML = "";
+      const { cityName, places, foods, activeCategory } = mapBoardState;
+
+      const filteredPlaces = activeCategory === "all" || activeCategory === "food"
+        ? places
+        : places.filter((place) => String(place.category || "").toLowerCase() === activeCategory);
+
+      const mapTargets = [
+        ...filteredPlaces.slice(0, 8).map((place) => ({
+          label: place.name,
+          mapUrl: place.map_url,
+          fallback: `${place.name} ${cityName}`,
+        })),
+        ...((activeCategory === "all" || activeCategory === "food")
+          ? foods.slice(0, 4).map((food) => ({
+              label: `${food.name} (Food)`,
+              mapUrl: food.map_url,
+              fallback: `${food.name} ${cityName}`,
+            }))
+          : []),
+      ];
+
+      if (mapTargets.length === 0) {
+        mapBoardFrame.src = mapEmbedUrl("", `${cityName} Tourist Attractions`);
+        return;
+      }
+
+      mapTargets.forEach((target, index) => {
+        const chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = `map-chip ${index === 0 ? "active" : ""}`;
+        chip.textContent = target.label;
+        chip.addEventListener("click", () => {
+          mapBoardFrame.src = mapEmbedUrl(target.mapUrl, target.fallback);
+          activateChip(mapBoardChips, chip);
+        });
+        mapBoardChips.appendChild(chip);
+      });
+
+      mapBoardFrame.src = mapEmbedUrl(mapTargets[0].mapUrl, mapTargets[0].fallback);
+    };
+
+    const renderMapBoardCategoryChips = () => {
+      mapBoardCategories.innerHTML = "";
+      const categories = ["all", ...new Set((mapBoardState.places || []).map((place) => String(place.category || "").toLowerCase()).filter(Boolean)), "food"];
+
+      categories.forEach((category, index) => {
+        const chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = `map-chip ${(mapBoardState.activeCategory === category || (index === 0 && !mapBoardState.activeCategory)) ? "active" : ""}`;
+        chip.textContent = category === "all" ? "All" : category.charAt(0).toUpperCase() + category.slice(1);
+        chip.addEventListener("click", () => {
+          mapBoardState.activeCategory = category;
+          activateChip(mapBoardCategories, chip);
+          renderMapBoardPlaceChips();
+        });
+        mapBoardCategories.appendChild(chip);
+      });
+    };
+
+    const renderMapBoardDayRouteChips = () => {
+      mapBoardDayRoutes.innerHTML = "";
+      const itinerary = mapBoardState.itinerary || [];
+
+      if (itinerary.length === 0) {
+        const emptyChip = document.createElement("span");
+        emptyChip.className = "guide-pill";
+        emptyChip.textContent = "Generate guide to see routes";
+        mapBoardDayRoutes.appendChild(emptyChip);
+        return;
+      }
+
+      itinerary.forEach((day, index) => {
+        const dayMap = day.stops?.[0]?.map_url;
+        const chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = `map-chip ${index === 0 ? "active" : ""}`;
+        chip.textContent = `Day ${day.day}`;
+        chip.addEventListener("click", () => {
+          mapBoardFrame.src = mapEmbedUrl(dayMap, `${mapBoardState.cityName} day ${day.day} itinerary`);
+          activateChip(mapBoardDayRoutes, chip);
+        });
+        mapBoardDayRoutes.appendChild(chip);
+      });
+    };
+
+    const renderMapBoard = (cityName, places = [], foods = [], itinerary = []) => {
+      mapBoardState = {
+        cityName,
+        places,
+        foods,
+        itinerary,
+        activeCategory: "all",
+      };
+
+      renderMapBoardCategoryChips();
+      renderMapBoardDayRouteChips();
+      renderMapBoardPlaceChips();
+    };
+
+    mapNearMeBtn.addEventListener("click", () => {
+      if (!navigator.geolocation) {
+        setStatus(guideStatus, "Geolocation is not available in this browser.", true);
+        return;
+      }
+      setStatus(guideStatus, "Getting your current location for nearby map...");
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude.toFixed(5);
+          const lng = position.coords.longitude.toFixed(5);
+          mapBoardFrame.src = mapEmbedUrl("", `tourist attractions near ${lat}, ${lng}`);
+          mapNearMeBtn.classList.add("active");
+          setStatus(guideStatus, "Showing nearby attractions based on your current location ✓");
+        },
+        () => {
+          setStatus(guideStatus, "Could not access location. Please allow location permission.", true);
+        },
+        { enableHighAccuracy: true, timeout: 10000 }
+      );
+    });
+
+    const api = async (url, options = {}, includeAuth = true) => {
+      const token = getToken();
+      const headers = { "Content-Type": "application/json", ...(options.headers || {}) };
+      if (includeAuth && token) headers.Authorization = `Bearer ${token}`;
+      const response = await fetch(url, { ...options, headers });
+      const text = await response.text();
+      let payload = null;
+      try { payload = text ? JSON.parse(text) : null; } catch { payload = text; }
+      return { response, payload };
+    };
+
+    const renderList = (target, items, mapper) => {
+      target.innerHTML = "";
+      if (!items || items.length === 0) {
+        const li = document.createElement("li");
+        li.textContent = "No items yet.";
+        li.style.borderLeft = "4px solid #e5e7eb";
+        li.style.color = "#9ca3af";
+        target.appendChild(li);
+        return;
+      }
+      items.forEach((item) => {
+        const li = document.createElement("li");
+        li.innerHTML = mapper(item);
+        target.appendChild(li);
+      });
+    };
+
+    const syncPlanSelects = () => {
+      [selectedPlan, itemPlan].forEach((el) => {
+        const previous = el.value;
+        el.innerHTML = "";
+        if (plans.length === 0) {
+          const opt = document.createElement("option");
+          opt.value = "";
+          opt.textContent = "No plans available";
+          el.appendChild(opt);
+        } else {
+          plans.forEach((p) => {
+            const opt = document.createElement("option");
+            opt.value = p.id;
+            opt.textContent = `${p.title} (${p.start_date})`;
+            el.appendChild(opt);
+          });
+        }
+        if (previous && [...el.options].some((o) => o.value === previous)) el.value = previous;
+      });
+    };
+
+    const syncDestinationSelect = () => {
+      const selects = [planDestination, filterDestination];
+      const editDestSelect = document.getElementById("editPlanDestination");
+      if (editDestSelect) selects.push(editDestSelect);
+      
+      selects.forEach(el => {
+        el.innerHTML = "";
+        if (el === filterDestination) {
+          const opt = document.createElement("option");
+          opt.value = "";
+          opt.textContent = "Any Destination";
+          el.appendChild(opt);
+        }
+        if (destinations.length === 0) {
+          const opt = document.createElement("option");
+          opt.value = "";
+          opt.textContent = el === filterDestination ? "No destinations" : "No destinations available";
+          if (el !== filterDestination) el.appendChild(opt);
+        } else {
+          destinations.forEach((d) => {
+            const opt = document.createElement("option");
+            opt.value = d.id;
+            opt.textContent = `${d.name}, ${d.country}`;
+            el.appendChild(opt);
+          });
+        }
+      });
+    };
+
+    const syncActivitySelect = () => {
+      itemActivity.innerHTML = "";
+      if (activities.length === 0) {
+        const opt = document.createElement("option");
+        opt.value = "";
+        opt.textContent = "No activities available";
+        itemActivity.appendChild(opt);
+      } else {
+        activities.forEach((a) => {
+          const opt = document.createElement("option");
+          opt.value = a.id;
+          opt.textContent = a.name;
+          itemActivity.appendChild(opt);
+        });
+      }
+    };
+
+    const updateAuthStatus = () => {
+      const token = getToken();
+      if (token) {
+        const username = getAuthUsername() || "traveler";
+        setStatus(authStatus, `You are logged in as ${username} ✓`);
+        authChip.textContent = "✓ Authenticated";
+        authChip.classList.add("authenticated");
+        travelerName.textContent = username;
+        guestOnlyEls.forEach((el) => el.classList.add("hidden"));
+        userOnlyEls.forEach((el) => el.classList.remove("hidden"));
+        featureLockedNotice.classList.remove("active");
+      } else {
+        authStatus.className = "status";
+        authStatus.textContent = "Ready to log in";
+        authChip.textContent = "Not authenticated";
+        authChip.classList.remove("authenticated");
+        guestOnlyEls.forEach((el) => el.classList.remove("hidden"));
+        userOnlyEls.forEach((el) => el.classList.add("hidden"));
+        featureLockedNotice.classList.add("active");
+      }
+    };
+
+    const register = async () => {
+      const username = document.getElementById("regUsername").value.trim();
+      const password = document.getElementById("regPassword").value.trim();
+      const passwordConfirm = document.getElementById("regPasswordConfirm").value.trim();
+      
+      if (!username || !password || !passwordConfirm) {
+        return setStatus(registerStatus, "Please fill in all fields", true);
+      }
+      
+      setStatus(registerStatus, "Creating account...");
+      const { response, payload } = await api("/api/auth/register/", {
+        method: "POST",
+        body: JSON.stringify({ username, password, password_confirm: passwordConfirm })
+      }, false);
+      
+      if (!response.ok) {
+        const error = payload?.error || `Registration failed (${response.status})`;
+        return setStatus(registerStatus, error, true);
+      }
+      
+      setStatus(registerStatus, "✓ Account created! You can now sign in.");
+      document.getElementById("regUsername").value = "";
+      document.getElementById("regPassword").value = "";
+      document.getElementById("regPasswordConfirm").value = "";
+      
+      // Auto-fill top-right sign-in form
+      if (navUsername) navUsername.value = username;
+      if (navPassword) {
+        navPassword.value = "";
+        navPassword.focus();
+      }
+    };
+
+    const loadDestinations = async () => {
+      setStatus(catalogStatus, "Loading destinations...");
+      const { response, payload } = await api("/api/trips/destinations/", { method: "GET" }, false);
+      if (!response.ok) return setStatus(catalogStatus, `Error loading destinations (${response.status})`, true);
+      destinations = payload;
+      renderList(destinationsList, payload, (d) => `<strong>${d.name}</strong><br><span style="color: #6b7280; font-size: 12px;">${d.country}</span>`);
+      syncDestinationSelect();
+      setStatus(catalogStatus, `Loaded ${payload.length} destinations ✓`);
+    };
+
+    const loadActivities = async () => {
+      setStatus(catalogStatus, "Loading activities...");
+      const { response, payload } = await api("/api/trips/activities/", { method: "GET" }, false);
+      if (!response.ok) return setStatus(catalogStatus, `Error loading activities (${response.status})`, true);
+      activities = payload;
+      renderList(activitiesList, payload, (a) => `<strong>${a.name}</strong>`);
+      syncActivitySelect();
+      setStatus(catalogStatus, `Loaded ${payload.length} activities ✓`);
+    };
+
+    const loadPlans = async () => {
+      const { response, payload } = await api("/api/trips/plans/", { method: "GET" });
+      if (!response.ok) {
+        if (response.status === 401) {
+          clearToken();
+          clearAuthUsername();
+          updateAuthStatus();
+          setStatus(planStatus, "Session expired. Please sign in again to load plans.", true);
+          openScreen("screen-dashboard");
+          return;
+        }
+        plans = [];
+        syncPlanSelects();
+        renderList(planList, [], (x) => x);
+        return setStatus(planStatus, `Error loading plans (${response.status})`, true);
+      }
+      plans = payload;
+      syncPlanSelects();
+      renderList(planList, payload, (p) => `<strong>${p.title}</strong><br><span style="color: #6b7280; font-size: 12px;">${p.start_date} → ${p.end_date} | Budget: $${p.budget}</span>`);
+      setStatus(planStatus, `Loaded ${payload.length} plans ✓`);
+    };
+
+    const applyFilters = async () => {
+      const search = document.getElementById("filterSearch").value.trim();
+      const destination = filterDestination.value;
+      const budgetMax = document.getElementById("filterBudgetMax").value;
+      
+      const params = new URLSearchParams();
+      if (search) params.append("search", search);
+      if (destination) params.append("destination_id", destination);
+      if (budgetMax) params.append("budget_max", budgetMax);
+      
+      const url = `/api/trips/plans/${params.toString() ? '?' + params.toString() : ''}`;
+      setStatus(filterStatus, "Filtering plans...");
+      
+      const { response, payload } = await api(url, { method: "GET" });
+      if (!response.ok) {
+        plans = [];
+        syncPlanSelects();
+        renderList(planList, [], (x) => x);
+        return setStatus(filterStatus, `Error filtering plans (${response.status})`, true);
+      }
+      
+      plans = payload;
+      syncPlanSelects();
+      renderList(planList, payload, (p) => `<strong>${p.title}</strong><br><span style="color: #6b7280; font-size: 12px;">${p.start_date} → ${p.end_date} | Budget: $${p.budget}</span>`);
+      setStatus(filterStatus, `Found ${payload.length} plans matching filters ✓`);
+      setStatus(planStatus, `Found ${payload.length} plans ✓`);
+    };
+
+    const clearFilters = () => {
+      document.getElementById("filterSearch").value = "";
+      filterDestination.value = "";
+      document.getElementById("filterBudgetMax").value = "";
+      setStatus(filterStatus, "Filters cleared");
+      loadPlans();
+    };
+
+    const createPlan = async () => {
+      if (!getToken()) {
+        setStatus(planStatus, "Please sign in to create a trip plan.", true);
+        openScreen("screen-dashboard");
+        return;
+      }
+      const title = document.getElementById("planTitle").value.trim();
+      if (!title) return setStatus(planStatus, "Please enter a trip title", true);
+      const payload = {
+        title,
+        destination: Number(planDestination.value),
+        start_date: document.getElementById("planStart").value,
+        end_date: document.getElementById("planEnd").value,
+        budget: document.getElementById("planBudget").value || 0,
+        notes: document.getElementById("planNotes").value,
+      };
+      setStatus(planStatus, "Creating plan...");
+      const { response, payload: data } = await api("/api/trips/plans/", { method: "POST", body: JSON.stringify(payload) });
+      if (!response.ok) {
+        if (response.status === 401) {
+          clearToken();
+          clearAuthUsername();
+          updateAuthStatus();
+          setStatus(planStatus, "Session expired (401). Please sign in and try again.", true);
+          openScreen("screen-dashboard");
+          return;
+        }
+        return setStatus(planStatus, `Error creating plan (${response.status})`, true);
+      }
+      setStatus(planStatus, `✓ Plan created: ${data.title}`);
+      document.getElementById("planTitle").value = "";
+      document.getElementById("planBudget").value = "";
+      document.getElementById("planNotes").value = "";
+      loadPlans();
+    };
+
+    const deletePlan = async () => {
+      const id = selectedPlan.value;
+      if (!id) return setStatus(planStatus, "Please select a plan to delete", true);
+      if (!confirm("Are you sure you want to delete this plan?")) return;
+      const { response } = await api(`/api/trips/plans/${id}/`, { method: "DELETE" });
+      if (response.status !== 204) return setStatus(planStatus, `Error deleting plan (${response.status})`, true);
+      setStatus(planStatus, "✓ Plan deleted");
+      loadPlans();
+      renderList(itemsList, [], (x) => x);
+    };
+
+    const editPlan = () => {
+      const id = selectedPlan.value;
+      if (!id) return setStatus(planStatus, "Please select a plan to edit", true);
+      
+      const plan = plans.find(p => p.id === Number(id));
+      if (!plan) return setStatus(planStatus, "Plan not found", true);
+      
+      // Populate edit form
+      document.getElementById("editPlanTitle").value = plan.title;
+      document.getElementById("editPlanStart").value = plan.start_date;
+      document.getElementById("editPlanEnd").value = plan.end_date;
+      document.getElementById("editPlanBudget").value = plan.budget;
+      document.getElementById("editPlanNotes").value = plan.notes || "";
+      document.getElementById("editPlanDestination").value = plan.destination;
+      
+      // Show edit card
+      document.getElementById("editPlanCard").style.display = "block";
+      setStatus(document.getElementById("editPlanStatus"), "Editing plan - make changes and save");
+    };
+
+    const savePlan = async () => {
+      const id = selectedPlan.value;
+      if (!id) return setStatus(planStatus, "No plan selected", true);
+      
+      const title = document.getElementById("editPlanTitle").value.trim();
+      if (!title) return setStatus(document.getElementById("editPlanStatus"), "Title is required", true);
+      
+      const payload = {
+        title,
+        destination: Number(document.getElementById("editPlanDestination").value),
+        start_date: document.getElementById("editPlanStart").value,
+        end_date: document.getElementById("editPlanEnd").value,
+        budget: document.getElementById("editPlanBudget").value || 0,
+        notes: document.getElementById("editPlanNotes").value,
+      };
+      
+      setStatus(document.getElementById("editPlanStatus"), "Saving changes...");
+      const { response } = await api(`/api/trips/plans/${id}/`, {
+        method: "PATCH",
+        body: JSON.stringify(payload)
+      });
+      
+      if (!response.ok) return setStatus(document.getElementById("editPlanStatus"), `Error saving plan (${response.status})`, true);
+      
+      setStatus(document.getElementById("editPlanStatus"), "✓ Plan updated!");
+      document.getElementById("editPlanCard").style.display = "none";
+      loadPlans();
+    };
+
+    const cancelEdit = () => {
+      document.getElementById("editPlanCard").style.display = "none";
+      setStatus(planStatus, "Edit cancelled");
+    };
+
+    const loadItems = async () => {
+      const id = itemPlan.value;
+      if (!id) return setStatus(itemStatus, "Please select a plan", true);
+      const { response, payload } = await api(`/api/trips/plans/${id}/items/`, { method: "GET" });
+      if (!response.ok) return setStatus(itemStatus, `Error loading activities (${response.status})`, true);
+      
+      itemsList.innerHTML = "";
+      if (!payload || payload.length === 0) {
+        const li = document.createElement("li");
+        li.textContent = "No activities in this plan yet.";
+        li.style.borderLeft = "4px solid #e5e7eb";
+        li.style.color = "#9ca3af";
+        itemsList.appendChild(li);
+        setStatus(itemStatus, "No activities added yet");
+      } else {
+        payload.forEach((it) => {
+          const activity = activities.find(a => a.id === it.activity);
+          const li = document.createElement("li");
+          li.style.display = "flex";
+          li.style.justifyContent = "space-between";
+          li.style.alignItems = "center";
+          
+          const textSpan = document.createElement("span");
+          textSpan.innerHTML = `<strong>Day ${it.day_number}, ${activity?.name || `Activity ${it.activity}`}</strong><br><span style="color: #6b7280; font-size: 12px;">Order: ${it.order} | ${it.notes || 'No notes'}</span>`;
+          
+          const deleteBtn = document.createElement("button");
+          deleteBtn.textContent = "Delete";
+          deleteBtn.className = "danger";
+          deleteBtn.style.width = "70px";
+          deleteBtn.style.padding = "6px 8px";
+          deleteBtn.style.fontSize = "12px";
+          deleteBtn.style.flexShrink = "0";
+          deleteBtn.style.marginLeft = "12px";
+          deleteBtn.onclick = async () => {
+            if (!confirm("Delete this activity?")) return;
+            const { response } = await api(`/api/trips/plans/${id}/items/${it.id}/`, { method: "DELETE" });
+            if (response.status !== 204) return setStatus(itemStatus, `Error deleting (${response.status})`, true);
+            setStatus(itemStatus, "✓ Activity deleted");
+            loadItems();
+          };
+          
+          li.appendChild(textSpan);
+          li.appendChild(deleteBtn);
+          itemsList.appendChild(li);
+        });
+        setStatus(itemStatus, `Loaded ${payload.length} activities ✓`);
+      }
+    };
+
+    const addItem = async () => {
+      const id = itemPlan.value;
+      if (!id) return setStatus(itemStatus, "Please select a plan", true);
+      if (!itemActivity.value) return setStatus(itemStatus, "Please select an activity", true);
+      const payload = {
+        trip_plan: Number(id),
+        activity: Number(itemActivity.value),
+        day_number: Number(document.getElementById("itemDay").value || 1),
+        order: Number(document.getElementById("itemOrder").value || 1),
+        notes: document.getElementById("itemNotes").value,
+      };
+      setStatus(itemStatus, "Adding activity...");
+      const { response } = await api(`/api/trips/plans/${id}/items/`, { method: "POST", body: JSON.stringify(payload) });
+      if (!response.ok) return setStatus(itemStatus, `Error adding activity (${response.status})`, true);
+      setStatus(itemStatus, "✓ Activity added");
+      document.getElementById("itemNotes").value = "";
+      loadItems();
+    };
+
+    document.querySelectorAll(".tab-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const requiresAuth = btn.dataset.requiresAuth === "1";
+        if (requiresAuth && !getToken()) {
+          setStatus(authStatus, "Please sign in first to unlock tourist features", true);
+          featureLockedNotice.classList.add("active");
+          const dashboardBtn = document.querySelector('.tab-btn[data-target="screen-dashboard"]');
+          if (dashboardBtn && btn.dataset.target !== "screen-dashboard") dashboardBtn.click();
+          return;
+        }
+        document.querySelectorAll(".screen").forEach((s) => s.classList.remove("active"));
+        const targetScreen = document.getElementById(btn.dataset.target);
+        if (targetScreen) targetScreen.classList.add("active");
+        document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+      });
+    });
+
+    const openScreen = (targetId) => {
+      const targetBtn = document.querySelector(`.tab-btn[data-target="${targetId}"]`);
+      if (targetBtn && targetBtn.dataset.requiresAuth === "1" && !getToken()) {
+        setStatus(authStatus, "Please sign in first to unlock tourist features", true);
+        featureLockedNotice.classList.add("active");
+        const dashboardBtn = document.querySelector('.tab-btn[data-target="screen-dashboard"]');
+        if (dashboardBtn) dashboardBtn.click();
+        return;
+      }
+      if (targetBtn) targetBtn.click();
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
+    document.querySelectorAll("[data-jump]").forEach((btn) => {
+      btn.addEventListener("click", () => openScreen(btn.dataset.jump));
+    });
+
+    const loginUser = async (usernameInput, passwordInput) => {
+      const username = usernameInput.trim();
+      const password = passwordInput;
+      if (!username || !password) return setStatus(authStatus, "Please enter both username and password", true);
+      setStatus(authStatus, "Signing in...");
+      const { response, payload } = await api("/api/auth/token/", { method: "POST", body: JSON.stringify({ username, password }) }, false);
+      if (!response.ok || !payload?.access) return setStatus(authStatus, "Login failed. Check your credentials", true);
+      setToken(payload.access);
+      setAuthUsername(username);
+      updateAuthStatus();
+      setStatus(authStatus, "✓ Signed in successfully");
+      if (navPassword) navPassword.value = "";
+      loadPlans();
+    };
+
+    if (navLoginBtn) {
+      navLoginBtn.addEventListener("click", () => loginUser(navUsername?.value || "", navPassword?.value || ""));
+    }
+
+    if (navPassword) {
+      navPassword.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          loginUser(navUsername?.value || "", navPassword?.value || "");
+        }
+      });
+    }
+
+    document.getElementById("registerBtn").addEventListener("click", register);
+
+    const logoutUser = () => {
+      clearToken();
+      clearAuthUsername();
+      updateAuthStatus();
+      setStatus(authStatus, "You have signed out");
+      plans = [];
+      syncPlanSelects();
+      renderList(planList, [], (x) => x);
+    };
+
+    if (navLogoutBtn) navLogoutBtn.addEventListener("click", logoutUser);
+    document.getElementById("logoutUserPanel").addEventListener("click", logoutUser);
+
+    document.getElementById("checkHealthBtn").addEventListener("click", async () => {
+      setStatus(quickStatus, "Checking health...");
+      const { response } = await api("/api/health/", { method: "GET" }, false);
+      setStatus(quickStatus, `Health: ${response.ok ? '✓ OK' : '✗ Error'} (${response.status})`);
+    });
+
+    document.getElementById("checkTokenGetBtn").addEventListener("click", async () => {
+      setStatus(quickStatus, "Checking token endpoint...");
+      const { response } = await api("/api/auth/token/", { method: "GET" }, false);
+      setStatus(quickStatus, `Token GET: ${response.status} (expected 405 ✓)`, response.status !== 405);
+    });
+
+    document.getElementById("loadDestinations").addEventListener("click", loadDestinations);
+    document.getElementById("loadActivities").addEventListener("click", loadActivities);
+    document.getElementById("createPlan").addEventListener("click", createPlan);
+    document.getElementById("loadPlans").addEventListener("click", loadPlans);
+    document.getElementById("applyFiltersBtn").addEventListener("click", applyFilters);
+    document.getElementById("clearFiltersBtn").addEventListener("click", clearFilters);
+    document.getElementById("editPlanBtn").addEventListener("click", editPlan);
+    document.getElementById("savePlanBtn").addEventListener("click", savePlan);
+    document.getElementById("cancelEditBtn").addEventListener("click", cancelEdit);
+    document.getElementById("deletePlan").addEventListener("click", deletePlan);
+    document.getElementById("addItem").addEventListener("click", addItem);
+    document.getElementById("loadItems").addEventListener("click", loadItems);
+    document.getElementById("getGuideBtn").addEventListener("click", loadKathmanduGuide);
+    if (applyPersonaBtn) applyPersonaBtn.addEventListener("click", applyPersona);
+    if (guidePersona) guidePersona.addEventListener("change", applyPersona);
+    if (guideUseLocationBtn) guideUseLocationBtn.addEventListener("click", useCurrentLocationForGuideRoute);
+    if (guideShowDirectionsBtn) guideShowDirectionsBtn.addEventListener("click", renderGuideRouteDirections);
+    if (guideRouteDestination) {
+      guideRouteDestination.addEventListener("change", () => {
+        guideRouteState.destinationQuery = guideRouteDestination.value;
+      });
+    }
+
+    async function loadKathmanduGuide() {
+      const city = document.getElementById("guideCity").value || "kathmandu";
+      const interests = document.getElementById("guideInterests").value;
+      const focus_activities = document.getElementById("guideFocus").value;
+      const avoid_categories = document.getElementById("guideAvoid").value;
+      const days = Number(document.getElementById("guideDays").value || 2);
+      const budget_npr = Number(document.getElementById("guideBudget").value || 4000);
+      const transport_preference = document.getElementById("guideTransport").value || "balanced";
+      const family_mode = document.getElementById("guideFamily").checked;
+      const include_food = document.getElementById("guideFood").checked;
+      const safety_priority = document.getElementById("guideSafety").checked;
+      const pricing_priority = document.getElementById("guidePricing").checked;
+
+      setStatus(guideStatus, `Generating ${city.charAt(0).toUpperCase() + city.slice(1)} AI guide...`);
+
+      const { response, payload } = await api(`/api/trips/guide/${city}/`, {
+        method: "POST",
+        body: JSON.stringify({
+          interests,
+          focus_activities,
+          avoid_categories,
+          days,
+          budget_npr,
+          transport_preference,
+          family_mode,
+          include_food,
+          safety_priority,
+          pricing_priority,
+        }),
+      }, false);
+
+      if (!response.ok || !payload) {
+        renderList(guidePlacesList, [], (x) => x);
+        renderList(guideHighlightsList, [], (x) => x);
+        renderList(guideCategoryList, [], (x) => x);
+        renderList(guideFoodsList, [], (x) => x);
+        renderList(guideTransportList, [], (x) => x);
+        renderList(guideComfortList, [], (x) => x);
+        renderList(guideConnectionList, [], (x) => x);
+        guideItinerary.innerHTML = "";
+        populateGuideRouteDestinations("Kathmandu", [], []);
+        return setStatus(guideStatus, `Guide generation failed (${response.status})`, true);
+      }
+
+      guideSummary.innerHTML = `
+        <h3>${payload.city} travel preview</h3>
+        <p>${payload.tagline || `Smart recommendations for ${payload.city} travel.`}</p>
+        <p style="margin-top:8px; color:#475569;">${payload.city_profile?.lifestyle || "Local lifestyle insights load here after plan generation."}</p>
+        <div class="guide-meta">
+          <span class="guide-pill">${payload.inputs?.budget_level || "smart"} budget</span>
+          <span class="guide-pill">${payload.inputs?.days || days} day trip</span>
+          <span class="guide-pill">${payload.inputs?.family_mode ? "Family friendly" : "Explorer mode"}</span>
+          <span class="guide-pill">${payload.inputs?.transport_preference || transport_preference} transport</span>
+          <span class="guide-pill">Trust score: ${payload.overall_trust || 70}/100</span>
+          <span class="guide-pill">${(payload.overall_trust || 70) >= 85 ? "High trust plan" : (payload.overall_trust || 70) >= 72 ? "Trusted plan" : "Review suggested"}</span>
+        </div>
+      `;
+      if (payload.city_map_url) {
+        cityMapLink.href = payload.city_map_url;
+        cityMapLink.textContent = `Open ${payload.city} Map`;
+      }
+      cityMapFrame.src = mapEmbedUrl(payload.city_map_url, `${payload.city} Tourist Attractions`);
+      await renderPersonalCityGuideMap(payload.city, payload.best_places || []);
+      renderMapBoard(payload.city, payload.best_places || [], payload.famous_foods || [], payload.day_wise_itinerary || []);
+      populateGuideRouteDestinations(payload.city, payload.best_places || [], payload.famous_foods || []);
+
+      renderList(guideHighlightsList, payload.top_highlights || (payload.best_places || []).slice(0, 3), (place) => {
+        const tags = (place.recommended_for || []).slice(0, 2).map((tag) => `<span class="guide-pill">${tag}</span>`).join(" ");
+        const placePhoto = place.area_photo_url
+          ? `<img class="guide-photo" src="${safePlaceImage(place.area_photo_url)}" alt="${place.name} area photo" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/places/default.svg';" />`
+          : "";
+        return `<strong>${place.name}</strong><br><span style="color:#6b7280;font-size:12px;">${place.category}</span><br><span style="display:block; margin:8px 0;">${place.why_best}</span>${placePhoto}<iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapEmbedUrl(place.map_url, `${place.name} ${payload.city}`)}" title="${place.name} map"></iframe><a class="map-preview-btn" href="${place.map_url}" target="_blank" rel="noopener noreferrer">🗺️ Open in Google Maps</a><div class="guide-meta" style="margin-top:10px;">${tags}</div>`;
+      });
+
+      const groupedCategories = (payload.best_places || []).reduce((acc, place) => {
+        const category = place.category || "Must See";
+        if (!acc[category]) acc[category] = [];
+        if (acc[category].length < 3) acc[category].push(place.name);
+        return acc;
+      }, {});
+      renderList(guideCategoryList, Object.entries(groupedCategories), ([category, names]) => {
+        return `<strong>${category}</strong><br><span style="color:#6b7280;font-size:12px;">${names.join(" • ")}</span><span class="category-pill">Top category pick</span>`;
+      });
+
+      renderList(guidePlacesList, payload.best_places || [], (place) => {
+        const tags = (place.recommended_for || []).slice(0, 3).map((tag) => `<span class="guide-pill">${tag}</span>`).join(" ");
+        const foodLine = place.famous_food_nearby?.length ? `<br><span style="color:#6b7280;font-size:12px;">Food nearby: ${place.famous_food_nearby.join(", ")}</span>` : "";
+        const priceLine = place.price_band_npr ? `<br><span style="color:#0f766e;font-size:12px;">Expected spend: ${place.price_band_npr}</span>` : "";
+        const activityLine = place.main_activity ? `<br><span style="color:#1d4ed8;font-size:12px;">Main activity: ${place.main_activity}</span>` : "";
+        const areaPhoto = place.area_photo_url
+          ? `<img class="guide-photo" src="${safePlaceImage(place.area_photo_url)}" alt="${place.name} area photo" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/places/default.svg';" />`
+          : "";
+        const historyLine = place.historical_formation ? `<br><span style="color:#334155;font-size:12px; display:block; margin-top:6px;"><strong>Historical formation:</strong> ${place.historical_formation}</span>` : "";
+        const safetyLine = place.safety_note ? `<br><span style="color:#475569;font-size:12px;">Safety: ${place.safety_note}</span>` : "";
+        return `<strong>${place.name}</strong><br><span style="color:#6b7280;font-size:12px;">${place.category}</span><br><span style="display:block; margin:8px 0;">${place.why_best}</span>${areaPhoto}${foodLine}${priceLine}${activityLine}${historyLine}${safetyLine}<br><iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapEmbedUrl(place.map_url, `${place.name} ${payload.city}`)}" title="${place.name} map"></iframe><div class="guide-meta" style="margin-top:10px;">${tags}</div><a class="map-preview-btn" href="${place.map_url}" target="_blank" rel="noopener noreferrer">🗺️ Open in Google Maps</a>`;
+      });
+
+      renderList(guideFoodsList, payload.famous_foods || [], (food) => {
+        const foodFare = food.price_range_npr ? ` • Fare: ${food.price_range_npr}` : "";
+        const foodPhoto = food.photo_url
+          ? `<img class="guide-photo" src="${safeFoodImage(food.photo_url)}" alt="${food.name} photo" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/foods/default.svg';" />`
+          : "";
+        const foodOrigin = food.origin_note ? `<br><span style="color:#334155;font-size:12px;"><strong>Food history:</strong> ${food.origin_note}</span>` : "";
+        return `<div class="food-card"><strong>${food.name}</strong><br><span style="color:#6b7280;font-size:12px;">${food.type} • ${food.where_to_try}${foodFare}</span>${foodPhoto}${foodOrigin}<iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapEmbedUrl(food.map_url, `${food.name} ${payload.city}`)}" title="${food.name} map"></iframe><a class="map-preview-btn" href="${food.map_url}" target="_blank" rel="noopener noreferrer">🍽️ Open in Google Maps</a></div>`;
+      });
+
+      guideItinerary.innerHTML = "";
+      (payload.day_wise_itinerary || []).forEach((day) => {
+        const dayCard = document.createElement("div");
+        dayCard.className = "itinerary-day";
+        const overview = (day.overview || []).map((slot) => `<li><strong>${slot.slot}:</strong> ${slot.title}<br><span style="color:#6b7280;font-size:12px;">${slot.note || ""} • ${slot.duration_hint || "2-3 hrs"}</span><br><span style="color:#0f766e;font-size:12px;">Open: ${slot.opening_hours || "Check local timings"}</span><br><span style="color:#475569;font-size:12px;">${slot.timing_note || "Slot selected for practical routing."}</span></li>`).join("");
+        const trust = day.trust || {};
+        const trustLevel = trust.level || "medium";
+        const trustReasons = (trust.reasons || []).map((reason) => `<li>${reason}</li>`).join("");
+        const mapHref = day.stops?.[0]?.map_url || payload.city_map_url || "https://www.google.com/maps/search/?api=1&query=Kathmandu+Tourist+Attractions";
+        const mapFrameUrl = mapEmbedUrl(mapHref, `${payload.city} day ${day.day} itinerary`);
+        dayCard.innerHTML = `
+          <strong>Day ${day.day}</strong>
+          <div style="color:#6b7280;font-size:13px;">${day.practical_note || "Practical day plan"}</div>
+          <div style="color:#0f766e;font-size:12px;margin-top:6px;">Stops: ${day.stop_count || 0} • Estimated day spend: NPR ${day.day_budget_estimate_npr || 0}</div>
+          <div class="trust-row">
+            <span class="trust-pill ${trustLevel}">${trust.badge || "Trusted"}</span>
+            <span class="trust-pill">Safety: ${trust.safety_score || 70}/100</span>
+            <span class="trust-pill">Pricing: ${trust.pricing_score || 70}/100</span>
+            <span class="trust-pill">Comfort: ${trust.comfort_score || 70}/100</span>
+          </div>
+          <ul class="trust-reasons">${trustReasons}</ul>
+          <ul style="margin:10px 0 0 18px; color:#111827;">${overview}</ul>
+          <iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapFrameUrl}" title="Day ${day.day} route map"></iframe>
+          <div class="itinerary-tags">
+            <span class="itinerary-tag">Map ready</span>
+            <span class="itinerary-tag">Tourist friendly</span>
+            <a class="itinerary-tag" href="${mapHref}" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">Open full route</a>
+          </div>
+        `;
+        guideItinerary.appendChild(dayCard);
+      });
+
+      const transportRows = [];
+      (payload.day_wise_itinerary || []).forEach((day) => {
+        (day.transport_plan || []).forEach((leg) => {
+          transportRows.push({ day: day.day, ...leg });
+        });
+      });
+      renderList(guideTransportList, transportRows, (leg) => {
+        const fare = leg.estimated_cost_range_npr || `NPR ${leg.estimated_cost_npr}`;
+        return `<strong>Day ${leg.day}: ${leg.from} → ${leg.to}</strong><br><span style="color:#6b7280;font-size:12px;">${leg.slot} • ${leg.mode} • ${leg.duration_min} min • Fare: ${fare}</span><br><span style="color:#0f766e;font-size:12px;">${leg.pricing_tip}</span><br><span style="color:#475569;font-size:12px;">${leg.safety_tip}</span>`;
+      });
+
+      const comfort = payload.comfort_pack || {};
+      const fareTiers = payload.fare_tiers || {};
+      const comfortRows = [
+        ...(comfort.emergency_contacts || []).map((item) => `Emergency: ${item}`),
+        ...(comfort.pricing_baseline || []).map((item) => `Fair Price: ${item}`),
+        ...Object.entries(fareTiers.tiers || {}).map(([tier, data]) => {
+          const recommended = fareTiers.recommended_tier === tier ? " (Recommended)" : "";
+          return `Fare Tier${recommended}: ${tier.toUpperCase()} | Meals: ${data.meals_per_person_npr} | Transport/Day: ${data.transport_per_day_npr} | Daily Total: ${data.estimated_daily_total_npr}`;
+        }),
+        ...(comfort.safety_checklist || []).map((item) => `Safety Tip: ${item}`),
+      ];
+      renderList(guideComfortList, comfortRows, (row) => `<strong>${row}</strong>`);
+
+      const cityProfile = payload.city_profile || {};
+      const connectionRows = [
+        cityProfile.lifestyle ? `Lifestyle: ${cityProfile.lifestyle}` : "",
+        ...(cityProfile.main_activities || []).map((item) => `Main Activity: ${item}`),
+        ...(cityProfile.street_food_scene || []).map((item) => `Street Food Zone: ${item}`),
+        ...(cityProfile.local_connect_tips || []).map((item) => `Connect Tip: ${item}`),
+      ].filter(Boolean);
+      renderList(guideConnectionList, connectionRows, (row) => `<strong>${row}</strong>`);
+      renderToolkitFromGuide(payload);
+
+      setStatus(guideStatus, `${payload.city} guide ready: ${payload.best_places?.length || 0} places and ${payload.famous_foods?.length || 0} foods ✓`);
+    }
+
+    updateAuthStatus();
+    loadDestinations();
+    loadActivities();
+
+      // Trekking Elements
+      const trekkingRouteSelect = document.getElementById("trekkingRouteSelect");
+      const trekkingDifficultyFilter = document.getElementById("trekkingDifficultyFilter");
+      const trekkingMaxDaysFilter = document.getElementById("trekkingMaxDaysFilter");
+      const clearTrekkingFiltersBtn = document.getElementById("clearTrekkingFiltersBtn");
+      const refreshTrekkingBtn = document.getElementById("refreshTrekkingBtn");
+      const loadTrekkingBtn = document.getElementById("loadTrekkingBtn");
+      const downloadOfflinePackBtn = document.getElementById("downloadOfflinePackBtn");
+      const trekkingStatus = document.getElementById("trekkingStatus");
+      const trekkingCatalogMeta = document.getElementById("trekkingCatalogMeta");
+      const trekkingSummary = document.getElementById("trekkingSummary");
+      const trekkingItinerary = document.getElementById("trekkingItinerary");
+      const trekkingMapDisplay = document.getElementById("trekkingMapDisplay");
+      const trekkingRegionDetails = document.getElementById("trekkingRegionDetails");
+      let trekkingRoutesCache = [];
+
+      const difficultyRank = {
+        easy: 1,
+        moderate: 2,
+        hard: 3,
+      };
+
+      function sortRouteOptions(routes) {
+        return routes.slice().sort((a, b) => {
+          const aRank = difficultyRank[String(a.difficulty || "").toLowerCase()] || 10;
+          const bRank = difficultyRank[String(b.difficulty || "").toLowerCase()] || 10;
+          if (aRank !== bRank) return aRank - bRank;
+          return (a.duration_days || 0) - (b.duration_days || 0);
+        });
+      }
+
+      async function loadTrekkingCatalog() {
+        const params = new URLSearchParams();
+        if (trekkingDifficultyFilter?.value) params.set("difficulty", trekkingDifficultyFilter.value);
+        const maxDaysValue = Number(trekkingMaxDaysFilter?.value || 0);
+        if (maxDaysValue > 0) params.set("max_days", String(maxDaysValue));
+        const url = `/api/trips/trekking/routes/${params.toString() ? `?${params.toString()}` : ""}`;
+        const previousRoute = trekkingRouteSelect.value;
+
+        setStatus(trekkingStatus, "Loading trekking catalog...");
+        const { response, payload } = await api(url, { method: "GET" }, false);
+        if (!response.ok || !payload) {
+          trekkingRoutesCache = sortRouteOptions(fallbackTrekkingRoutes);
+          renderTrekkingRouteOptions(trekkingRoutesCache, previousRoute);
+          trekkingCatalogMeta.textContent = "Using offline route catalog fallback.";
+          return setStatus(trekkingStatus, `Loaded fallback trekking catalog (API ${response.status})`, true);
+        }
+
+        trekkingRoutesCache = sortRouteOptions(payload.routes || []);
+
+        if (trekkingRoutesCache.length === 0) {
+          const noFiltersApplied = !trekkingDifficultyFilter?.value && !params.get("max_days");
+          if (noFiltersApplied) {
+            trekkingRoutesCache = sortRouteOptions(fallbackTrekkingRoutes);
+            renderTrekkingRouteOptions(trekkingRoutesCache, previousRoute);
+            trekkingCatalogMeta.textContent = "Using default route catalog because API returned empty list.";
+            return setStatus(trekkingStatus, "Default trekking routes loaded ✓", true);
+          }
+          trekkingRouteSelect.innerHTML = '<option value="">No routes match your filters</option>';
+          trekkingCatalogMeta.textContent = "0 routes found with current filters.";
+          return setStatus(trekkingStatus, "No trekking routes matched current filters. Try Clear Filters.", true);
+        }
+
+        renderTrekkingRouteOptions(trekkingRoutesCache, previousRoute);
+
+        trekkingCatalogMeta.textContent = `${trekkingRoutesCache.length} routes loaded. Filter by difficulty and max days for faster selection.`;
+        setStatus(trekkingStatus, "Trekking catalog ready ✓");
+      }
+
+      function renderTrekkingMap(route) {
+        if (!route.custom_map_image) {
+          trekkingMapDisplay.innerHTML = "<p class='hint'>Map preview is not available for this route yet.</p>";
+          return;
+        }
+        trekkingMapDisplay.innerHTML = `
+          <img src="${route.custom_map_image}?v=trailmate-trek-map-2" alt="${route.name} route map" class="trekking-map-image" onerror="this.onerror=null;this.outerHTML='<p class=\"hint\">Route map preview temporarily unavailable. Please refresh or try again.</p>'">
+        `;
+      }
+
+      function renderTrekkingRegionInfo(route) {
+        const orderedRows = (route.ordered_info || []).map((row) => `<li>${row}</li>`).join("");
+        const activities = (route.main_activities || []).map((item) => `<span class="guide-pill">${item}</span>`).join(" ");
+        const foods = (route.region_foods || []).length
+          ? `<p><strong>Regional Foods:</strong> ${(route.region_foods || []).join(", ")}</p>`
+          : "";
+        const lifestyle = route.local_lifestyle ? `<p><strong>Local Lifestyle:</strong> ${route.local_lifestyle}</p>` : "";
+        const story = route.area_story ? `<p><strong>Area Story:</strong> ${route.area_story}</p>` : "";
+        trekkingRegionDetails.innerHTML = `
+          <div class="trekking-region-item">
+            <span class="region-badge">${route.region_label}</span>
+            <h4>${route.name}</h4>
+            <p><strong>Best For:</strong> ${route.difficulty} level trekkers</p>
+            <p><strong>Max Altitude:</strong> ${route.max_altitude}</p>
+            <p><strong>Best Season:</strong> ${route.best_season}</p>
+            ${story}
+            ${lifestyle}
+            ${foods}
+            <p><strong>Main Activities:</strong> ${activities || "Cultural trekking and scenic exploration"}</p>
+            ${orderedRows ? `<ol class="trekking-ordered-info">${orderedRows}</ol>` : "<p class='hint'>No extra region notes available.</p>"}
+          </div>
+        `;
+      }
+
+      function clearTrekkingFilters() {
+        if (trekkingDifficultyFilter) trekkingDifficultyFilter.value = "";
+        if (trekkingMaxDaysFilter) trekkingMaxDaysFilter.value = "";
+        loadTrekkingCatalog();
+      }
+
+      async function loadTrekkingRoute() {
+        const routeKey = trekkingRouteSelect.value;
+        if (!routeKey) {
+          setStatus(trekkingStatus, "Please select a trekking route");
+          trekkingSummary.innerHTML = "<p class='hint'>Information will appear here when you select a route.</p>";
+          trekkingItinerary.innerHTML = "";
+          trekkingMapDisplay.innerHTML = "<p class='hint'>Select a route to load the map preview.</p>";
+          trekkingRegionDetails.innerHTML = "<p class='hint'>Select a route to show ordered region details.</p>";
+          return;
+        }
+
+        setStatus(trekkingStatus, "Loading trekking route details...");
+        const { response, payload: route } = await api(`/api/trips/trekking/routes/${routeKey}/`, { method: "GET" }, false);
+        if (!response.ok || !route) {
+          const fallbackRoute = trekkingRoutesCache.find((item) => item.id === routeKey);
+          if (fallbackRoute) {
+            trekkingSummary.innerHTML = `
+              <div style="padding: 0;">
+                <h4 style="margin: 0 0 10px; color: var(--primary);">${fallbackRoute.name}</h4>
+                <p style="margin: 0; color: var(--text-light);">Detailed route data is temporarily unavailable. Use offline pack for essential travel info.</p>
+                <div class="trekking-highlights"><strong>Quick Info:</strong> ${fallbackRoute.duration_days} days • ${fallbackRoute.difficulty}</div>
+              </div>
+            `;
+            trekkingItinerary.innerHTML = "<p class='hint'>Try again later to load full day-wise itinerary from API.</p>";
+            trekkingMapDisplay.innerHTML = "<p class='hint'>Map preview unavailable right now. Use offline pack and saved local maps.</p>";
+            trekkingRegionDetails.innerHTML = "<p class='hint'>Region details unavailable in fallback mode.</p>";
+            return setStatus(trekkingStatus, `Loaded fallback route view (${response.status})`, true);
+          }
+          return setStatus(trekkingStatus, `Unable to load route details (${response.status})`, true);
+        }
+
+        const routeHighlights = (route.highlights || []).join(" • ") || "No highlights available yet.";
+        const routeActivities = (route.main_activities || []).join(" • ") || "Scenic trekking and local culture.";
+
+        trekkingSummary.innerHTML = `
+          <div style="padding: 0;">
+            <h4 style="margin: 0 0 10px; color: var(--primary);">${route.name}</h4>
+            <div class="trekking-day-info">
+              <div class="trekking-info-item">
+                <div class="trekking-info-label">Difficulty</div>
+                <div class="trekking-info-value">${route.difficulty}</div>
+              </div>
+              <div class="trekking-info-item">
+                <div class="trekking-info-label">Duration</div>
+                <div class="trekking-info-value">${route.duration_days} days</div>
+              </div>
+              <div class="trekking-info-item">
+                <div class="trekking-info-label">Max Altitude</div>
+                <div class="trekking-info-value">${route.max_altitude}</div>
+              </div>
+              <div class="trekking-info-item">
+                <div class="trekking-info-label">Best Season</div>
+                <div class="trekking-info-value">${route.best_season}</div>
+              </div>
+            </div>
+            <p style="margin: 12px 0 0; color: var(--text);">${route.summary}</p>
+            <div class="trekking-highlights"><strong>Highlights:</strong> ${routeHighlights}</div>
+            <div class="trekking-highlights"><strong>Main Activities:</strong> ${routeActivities}</div>
+          </div>
+        `;
+
+        const sortedItinerary = (route.day_wise_itinerary || []).slice().sort((a, b) => a.day - b.day);
+        trekkingItinerary.innerHTML = sortedItinerary.length
+          ? sortedItinerary.map((day) => `
+            <div class="trekking-day-card">
+              <div class="trekking-day-title">📍 Day ${day.day}: ${day.route}</div>
+              <div class="trekking-day-info">
+                <div class="trekking-info-item">
+                  <div class="trekking-info-label">Distance</div>
+                  <div class="trekking-info-value">${day.distance}</div>
+                </div>
+                <div class="trekking-info-item">
+                  <div class="trekking-info-label">Altitude</div>
+                  <div class="trekking-info-value">${day.altitude}</div>
+                </div>
+              </div>
+              <div style="margin-top: 8px; color: var(--text-light); font-size: 13px;">${day.highlights}</div>
+            </div>
+          `)
+          .join("")
+          : "<p class='hint'>No day-wise itinerary is available for this route yet.</p>";
+
+        renderTrekkingMap(route);
+        renderTrekkingRegionInfo(route);
+        setStatus(trekkingStatus, `${route.name} loaded ✓`);
+      }
+
+      if (clearTrekkingFiltersBtn) {
+        clearTrekkingFiltersBtn.addEventListener("click", clearTrekkingFilters);
+      }
+      if (downloadOfflinePackBtn) {
+        downloadOfflinePackBtn.addEventListener("click", async () => {
+          const routeKey = trekkingRouteSelect.value;
+          if (!routeKey) {
+            return setStatus(trekkingStatus, "Select a route first to download offline pack.", true);
+          }
+
+          setStatus(trekkingStatus, "Preparing offline trekking pack...");
+          const { response, payload } = await api(`/api/trips/trekking/routes/${routeKey}/offline/`, { method: "GET" }, false);
+          if (!response.ok || !payload) {
+            return setStatus(trekkingStatus, `Offline pack unavailable (${response.status})`, true);
+          }
+
+          const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+          const downloadUrl = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = downloadUrl;
+          link.download = `${routeKey}_offline_pack.json`;
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+          URL.revokeObjectURL(downloadUrl);
+          setStatus(trekkingStatus, `Offline pack downloaded: ${routeKey}_offline_pack.json ✓`);
+        });
+      }
+      if (refreshTrekkingBtn) {
+        refreshTrekkingBtn.addEventListener("click", loadTrekkingCatalog);
+      }
+      if (loadTrekkingBtn) {
+        loadTrekkingBtn.addEventListener("click", loadTrekkingRoute);
+      }
+      if (trekkingRouteSelect) {
+        trekkingRouteSelect.addEventListener("change", loadTrekkingRoute);
+      }
+      if (trekkingDifficultyFilter) {
+        trekkingDifficultyFilter.addEventListener("change", loadTrekkingCatalog);
+      }
+      if (trekkingMaxDaysFilter) {
+        trekkingMaxDaysFilter.addEventListener("change", loadTrekkingCatalog);
+      }
+      loadGuideCityOptions();
+      loadTrekkingCatalog();
+
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.getRegistrations()
+          .then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())))
+          .then(() => caches.keys())
+          .then((keys) => Promise.all(keys.filter((key) => key.startsWith("trailmate-offline-")).map((key) => caches.delete(key))))
+          .then(() => navigator.serviceWorker.register("/static/core/sw.js"))
+          .catch(() => {
+            // Service worker registration failure should not block app usage.
+          });
+      }
+  </script>
+</body>
+</html>
