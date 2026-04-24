@@ -23,6 +23,7 @@
       --accent-rose: #e11d48;
       --ok: #10b981;
       --err: #ef4444;
+      --header-offset: 94px;
       --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
       --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
     }
@@ -107,6 +108,7 @@
       font-size: 13px;
       font-weight: 700;
       cursor: pointer;
+      white-space: nowrap;
     }
     .top-logout-btn {
       background: rgba(239, 68, 68, 0.92);
@@ -114,7 +116,7 @@
     .wrap { 
       max-width: 1400px; 
       margin: 0 auto; 
-      padding: 32px 24px; 
+      padding: 26px 24px; 
     }
     .tabs {
       display: grid;
@@ -127,7 +129,7 @@
       background: linear-gradient(135deg, rgba(255,255,255,0.82), rgba(204,251,241,0.56));
       box-shadow: var(--shadow);
       position: sticky;
-      top: 86px;
+      top: var(--header-offset);
       z-index: 90;
       backdrop-filter: blur(12px);
     }
@@ -289,6 +291,32 @@
     .hero-side {
       display: grid;
       gap: 12px;
+    }
+    .hero-image-stack {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .hero-image-stack figure {
+      margin: 0;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .hero-image-stack img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-image-stack figcaption {
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-light);
+      background: #fff;
     }
     .hero-note {
       padding: 18px;
@@ -551,10 +579,61 @@
       color: #fff;
       border-color: transparent;
     }
+    .trust-pill.scam-low {
+      background: linear-gradient(135deg, #16a34a, #22c55e);
+      color: #fff;
+      border-color: transparent;
+    }
+    .trust-pill.scam-medium {
+      background: linear-gradient(135deg, #d97706, #f59e0b);
+      color: #fff;
+      border-color: transparent;
+    }
+    .trust-pill.scam-high {
+      background: linear-gradient(135deg, #dc2626, #ef4444);
+      color: #fff;
+      border-color: transparent;
+    }
     .trust-reasons {
       margin: 10px 0 0 18px;
       color: #475569;
       font-size: 12px;
+    }
+    .reason-head {
+      margin: 10px 0 0;
+      font-size: 12px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .expense-block {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.78);
+    }
+    .expense-title {
+      margin: 0 0 6px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .expense-list {
+      margin: 0;
+      padding-left: 16px;
+      color: #475569;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .expense-list li {
+      margin-bottom: 3px;
+    }
+    .label-row {
+      line-height: 1.5;
+      color: #334155;
+    }
+    .label-row strong {
+      color: #0f172a;
     }
     .screen-head {
       display: flex;
@@ -1033,9 +1112,16 @@
       }
     }
     @media (max-width: 768px) {
+      :root {
+        --header-offset: 176px;
+      }
       .navbar-content {
         flex-direction: column;
         gap: 12px;
+        align-items: stretch;
+      }
+      .navbar h1 {
+        font-size: 22px;
       }
       .top-auth {
         width: 100%;
@@ -1043,20 +1129,36 @@
       }
       .auth-inline {
         width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        padding: 10px;
       }
       .auth-inline input {
         width: 100%;
       }
+      .top-login-btn,
+      .top-logout-btn {
+        width: 100%;
+      }
       .tabs {
         grid-template-columns: 1fr 1fr;
-        top: 10px;
         margin-bottom: 20px;
         padding: 10px;
+      }
+      .portal-links {
+        width: 100%;
+      }
+      .portal-links a {
+        flex: 1 1 100%;
+        text-align: center;
       }
       .grid { 
         grid-template-columns: 1fr; 
       }
       .stat-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-image-stack {
         grid-template-columns: 1fr;
       }
       button {
@@ -1091,6 +1193,9 @@
       }
     }
     @media (max-width: 520px) {
+      :root {
+        --header-offset: 196px;
+      }
       .wrap {
         padding: 18px 12px;
       }
@@ -1111,17 +1216,25 @@
     }
   </style>
 </head>
+<body>
   <script>
     window.TRAILMATE_MAPS_API_KEY = "{{ google_maps_api_key|escapejs }}";
   </script>
+
+  <header class="navbar">
+    <div class="navbar-content">
+      <h1>TrailMate Tourist Portal</h1>
       <div class="top-auth">
         <div id="authChip" class="auth-status">Not authenticated</div>
         <div class="auth-inline guest-only">
           <input id="navUsername" placeholder="Username" autocomplete="username" />
           <input id="navPassword" type="password" placeholder="Password" autocomplete="current-password" />
+          <button id="navLoginBtn" type="button" class="top-login-btn">Sign In</button>
+        </div>
+        <button id="navLogoutBtn" type="button" class="top-logout-btn user-only hidden">Sign Out</button>
       </div>
     </div>
-  </div>
+  </header>
 
   <div class="wrap">
     <div class="portal-banner">
@@ -1130,7 +1243,9 @@
         <p>Login first to use planner features. Before login, this page is view-only.</p>
       </div>
       <div class="portal-links">
-        <a class="primary-link" href="#guide" data-jump="screen-guide">Main Feature: Smart Tourist Planner</a>
+        <a class="primary-link" href="#guide" data-jump="screen-guide">Open Smart Tourist Planner</a>
+        <a href="#plans" data-jump="screen-plans">Trip Planner</a>
+        <a href="#trekking" data-jump="screen-trekking">Trekking Routes</a>
       </div>
     </div>
 
@@ -1171,9 +1286,6 @@
           <span class="hero-feature-chip">Budget and Safety Support</span>
           <span class="hero-feature-chip">City Guide with Maps</span>
         </div>
-        <div class="hero-actions">
-          <button type="button" class="cta-primary" data-jump="screen-guide">Open Smart Tourist Planner</button>
-        </div>
         <div class="stat-grid">
           <div class="stat-item"><strong>4</strong><span>Major trekking regions ready</span></div>
           <div class="stat-item"><strong>Maps + Guide</strong><span>Integrated city planning support</span></div>
@@ -1181,6 +1293,16 @@
         </div>
       </div>
       <div class="hero-side">
+        <div class="hero-image-stack" aria-label="Nepal highlights">
+          <figure>
+            <img src="/static/core/photos/places/pokhara/phewa-lake.jpg" alt="Nepal scenery view" onerror="this.onerror=null;this.src='/static/core/photos/places/nature.svg';" />
+            <figcaption>Scenery</figcaption>
+          </figure>
+          <figure>
+            <img src="/static/core/maps/annapurna_base_camp_route.jpg" alt="Nepal trekking route map" onerror="this.onerror=null;this.src='/static/core/photos/places/default.svg';" />
+            <figcaption>Route Map</figcaption>
+          </figure>
+        </div>
         <div class="hero-note">
           <strong>Tourist-first experience</strong>
           Focused on what travelers need most: where to go, what to do, and how to move safely.
@@ -1208,9 +1330,6 @@
           <h3>🔐 Account Access</h3>
           <p class="hint">Sign in from the top-right bar for cleaner access from anywhere in the portal.</p>
           <div id="authStatus" class="status">Use the top-right sign in to continue</div>
-          <div class="row" style="margin-top:12px;">
-            <button type="button" class="ghost" data-jump="screen-guide">Open Smart Tourist Planner</button>
-          </div>
         </div>
         <div class="card guest-only">
           <h3>📝 Create Account</h3>
@@ -1235,7 +1354,7 @@
           <p class="hint">Welcome back, <strong id="travelerName">traveler</strong>. Your personalized tools are ready.</p>
           <div class="row" style="margin-top:14px;">
             <button type="button" data-jump="screen-plans">My Trip Plans</button>
-            <button type="button" class="ghost" data-jump="screen-guide">Open Smart Tourist Planner</button>
+            <button type="button" class="ghost" data-jump="screen-trekking">Open Trekking Routes</button>
           </div>
           <div class="row">
             <button type="button" class="ghost" data-jump="screen-items">Open Scheduler</button>
@@ -2123,14 +2242,25 @@
 
     function renderToolkitFromGuide(payload) {
       const comfort = payload?.comfort_pack || {};
+      const antiScam = payload?.anti_scam_pack || {};
+      const formatLabelRow = (row) => {
+        const pivot = row.indexOf(":");
+        if (pivot === -1) return `<span class="label-row"><strong>Note:</strong> ${row}</span>`;
+        const key = row.slice(0, pivot).trim();
+        const value = row.slice(pivot + 1).trim();
+        return `<span class="label-row"><strong>${key}:</strong> ${value}</span>`;
+      };
       const toolkitRows = [
         ...(comfort.emergency_contacts || []).map((item) => `Emergency Contact: ${item}`),
         ...(comfort.pricing_baseline || []).map((item) => `Fair Price Baseline: ${item}`),
         ...(comfort.safety_checklist || []).map((item) => `Safety Checklist: ${item}`),
+        ...(antiScam.scam_red_flags || []).map((item) => `Scam Red Flag: ${item}`),
+        ...(antiScam.safe_actions || []).map((item) => `Anti-Scam Action: ${item}`),
+        ...(antiScam.report_steps || []).map((item) => `Report Step: ${item}`),
         "Keep offline screenshots of bookings, IDs, and route maps.",
         "Carry cash backup and power bank during inter-city travel.",
       ];
-      renderList(touristToolkitList, toolkitRows, (row) => `<strong>${row}</strong>`);
+      renderList(touristToolkitList, toolkitRows, (row) => formatLabelRow(row));
     }
 
     async function loadGuideCityOptions() {
@@ -2915,6 +3045,7 @@
           <span class="guide-pill">${payload.inputs?.transport_preference || transport_preference} transport</span>
           <span class="guide-pill">Trust score: ${payload.overall_trust || 70}/100</span>
           <span class="guide-pill">${(payload.overall_trust || 70) >= 85 ? "High trust plan" : (payload.overall_trust || 70) >= 72 ? "Trusted plan" : "Review suggested"}</span>
+          <span class="guide-pill">${payload.overall_scam_alert?.badge || "Scam Alert: Medium"}</span>
         </div>
       `;
       if (payload.city_map_url) {
@@ -2928,10 +3059,7 @@
 
       renderList(guideHighlightsList, payload.top_highlights || (payload.best_places || []).slice(0, 3), (place) => {
         const tags = (place.recommended_for || []).slice(0, 2).map((tag) => `<span class="guide-pill">${tag}</span>`).join(" ");
-        const placePhoto = place.area_photo_url
-          ? `<img class="guide-photo" src="${safePlaceImage(place.area_photo_url)}" alt="${place.name} area photo" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/places/default.svg';" />`
-          : "";
-        return `<strong>${place.name}</strong><br><span style="color:#6b7280;font-size:12px;">${place.category}</span><br><span style="display:block; margin:8px 0;">${place.why_best}</span>${placePhoto}<iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapEmbedUrl(place.map_url, `${place.name} ${payload.city}`)}" title="${place.name} map"></iframe><a class="map-preview-btn" href="${place.map_url}" target="_blank" rel="noopener noreferrer">🗺️ Open in Google Maps</a><div class="guide-meta" style="margin-top:10px;">${tags}</div>`;
+        return `<strong>${place.name}</strong><br><span style="color:#6b7280;font-size:12px;">${place.category}</span><br><span style="display:block; margin:8px 0;">${place.why_best}</span><iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapEmbedUrl(place.map_url, `${place.name} ${payload.city}`)}" title="${place.name} map"></iframe><a class="map-preview-btn" href="${place.map_url}" target="_blank" rel="noopener noreferrer">🗺️ Open in Google Maps</a><div class="guide-meta" style="margin-top:10px;">${tags}</div>`;
       });
 
       const groupedCategories = (payload.best_places || []).reduce((acc, place) => {
@@ -2949,12 +3077,9 @@
         const foodLine = place.famous_food_nearby?.length ? `<br><span style="color:#6b7280;font-size:12px;">Food nearby: ${place.famous_food_nearby.join(", ")}</span>` : "";
         const priceLine = place.price_band_npr ? `<br><span style="color:#0f766e;font-size:12px;">Expected spend: ${place.price_band_npr}</span>` : "";
         const activityLine = place.main_activity ? `<br><span style="color:#1d4ed8;font-size:12px;">Main activity: ${place.main_activity}</span>` : "";
-        const areaPhoto = place.area_photo_url
-          ? `<img class="guide-photo" src="${safePlaceImage(place.area_photo_url)}" alt="${place.name} area photo" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/places/default.svg';" />`
-          : "";
         const historyLine = place.historical_formation ? `<br><span style="color:#334155;font-size:12px; display:block; margin-top:6px;"><strong>Historical formation:</strong> ${place.historical_formation}</span>` : "";
         const safetyLine = place.safety_note ? `<br><span style="color:#475569;font-size:12px;">Safety: ${place.safety_note}</span>` : "";
-        return `<strong>${place.name}</strong><br><span style="color:#6b7280;font-size:12px;">${place.category}</span><br><span style="display:block; margin:8px 0;">${place.why_best}</span>${areaPhoto}${foodLine}${priceLine}${activityLine}${historyLine}${safetyLine}<br><iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapEmbedUrl(place.map_url, `${place.name} ${payload.city}`)}" title="${place.name} map"></iframe><div class="guide-meta" style="margin-top:10px;">${tags}</div><a class="map-preview-btn" href="${place.map_url}" target="_blank" rel="noopener noreferrer">🗺️ Open in Google Maps</a>`;
+        return `<strong>${place.name}</strong><br><span style="color:#6b7280;font-size:12px;">${place.category}</span><br><span style="display:block; margin:8px 0;">${place.why_best}</span>${foodLine}${priceLine}${activityLine}${historyLine}${safetyLine}<br><iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapEmbedUrl(place.map_url, `${place.name} ${payload.city}`)}" title="${place.name} map"></iframe><div class="guide-meta" style="margin-top:10px;">${tags}</div><a class="map-preview-btn" href="${place.map_url}" target="_blank" rel="noopener noreferrer">🗺️ Open in Google Maps</a>`;
       });
 
       renderList(guideFoodsList, payload.famous_foods || [], (food) => {
@@ -2974,6 +3099,9 @@
         const trust = day.trust || {};
         const trustLevel = trust.level || "medium";
         const trustReasons = (trust.reasons || []).map((reason) => `<li>${reason}</li>`).join("");
+        const scamAlert = trust.scam_alert || {};
+        const scamLevel = scamAlert.level || "medium";
+        const scamReasons = (scamAlert.reasons || []).map((reason) => `<li>${reason}</li>`).join("");
         const mapHref = day.stops?.[0]?.map_url || payload.city_map_url || "https://www.google.com/maps/search/?api=1&query=Kathmandu+Tourist+Attractions";
         const mapFrameUrl = mapEmbedUrl(mapHref, `${payload.city} day ${day.day} itinerary`);
         dayCard.innerHTML = `
@@ -2982,11 +3110,16 @@
           <div style="color:#0f766e;font-size:12px;margin-top:6px;">Stops: ${day.stop_count || 0} • Estimated day spend: NPR ${day.day_budget_estimate_npr || 0}</div>
           <div class="trust-row">
             <span class="trust-pill ${trustLevel}">${trust.badge || "Trusted"}</span>
+            <span class="trust-pill scam-${scamLevel}">${scamAlert.badge || "Scam Alert: Medium"}</span>
             <span class="trust-pill">Safety: ${trust.safety_score || 70}/100</span>
             <span class="trust-pill">Pricing: ${trust.pricing_score || 70}/100</span>
             <span class="trust-pill">Comfort: ${trust.comfort_score || 70}/100</span>
+            <span class="trust-pill">Scam Risk: ${scamAlert.score || 45}/100</span>
           </div>
+          <p class="reason-head">Trust Reasons</p>
           <ul class="trust-reasons">${trustReasons}</ul>
+          <p class="reason-head">Scam-Safety Reasons</p>
+          <ul class="trust-reasons">${scamReasons}</ul>
           <ul style="margin:10px 0 0 18px; color:#111827;">${overview}</ul>
           <iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapFrameUrl}" title="Day ${day.day} route map"></iframe>
           <div class="itinerary-tags">
@@ -3010,17 +3143,28 @@
       });
 
       const comfort = payload.comfort_pack || {};
+      const antiScam = payload.anti_scam_pack || {};
       const fareTiers = payload.fare_tiers || {};
       const comfortRows = [
         ...(comfort.emergency_contacts || []).map((item) => `Emergency: ${item}`),
         ...(comfort.pricing_baseline || []).map((item) => `Fair Price: ${item}`),
+        ...(antiScam.verified_fare_ranges || []).map((item) => `Verified Fare: ${item}`),
+        ...(antiScam.scam_red_flags || []).map((item) => `Scam Red Flag: ${item}`),
+        ...(antiScam.safe_actions || []).map((item) => `Safe Action: ${item}`),
         ...Object.entries(fareTiers.tiers || {}).map(([tier, data]) => {
           const recommended = fareTiers.recommended_tier === tier ? " (Recommended)" : "";
           return `Fare Tier${recommended}: ${tier.toUpperCase()} | Meals: ${data.meals_per_person_npr} | Transport/Day: ${data.transport_per_day_npr} | Daily Total: ${data.estimated_daily_total_npr}`;
         }),
         ...(comfort.safety_checklist || []).map((item) => `Safety Tip: ${item}`),
+        ...(antiScam.report_steps || []).map((item) => `Scam Report: ${item}`),
       ];
-      renderList(guideComfortList, comfortRows, (row) => `<strong>${row}</strong>`);
+      renderList(guideComfortList, comfortRows, (row) => {
+        const pivot = row.indexOf(":");
+        if (pivot === -1) return `<span class="label-row"><strong>Note:</strong> ${row}</span>`;
+        const key = row.slice(0, pivot).trim();
+        const value = row.slice(pivot + 1).trim();
+        return `<span class="label-row"><strong>${key}:</strong> ${value}</span>`;
+      });
 
       const cityProfile = payload.city_profile || {};
       const connectionRows = [
@@ -3109,13 +3253,50 @@
       }
 
       function renderTrekkingMap(route) {
-        if (!route.custom_map_image) {
+        if (!route.custom_map_image && String(route.id || "") !== "annapurna_base_camp") {
           trekkingMapDisplay.innerHTML = "<p class='hint'>Map preview is not available for this route yet.</p>";
           return;
         }
+
+        const routeId = String(route.id || "").toLowerCase();
+        const exactMapOverrides = {
+          annapurna_base_camp: "/static/core/maps/annapurna_base_camp_route.jpg",
+        };
+        const mapSrc = exactMapOverrides[routeId] || `${route.custom_map_image}?v=trailmate-trek-map-3`;
+        const fallbackMapSrc = exactMapOverrides[routeId] || "/static/core/maps/poon_hill_route.jpg";
+
         trekkingMapDisplay.innerHTML = `
-          <img src="${route.custom_map_image}?v=trailmate-trek-map-2" alt="${route.name} route map" class="trekking-map-image" onerror="this.onerror=null;this.outerHTML='<p class=\"hint\">Route map preview temporarily unavailable. Please refresh or try again.</p>'">
+          <img src="${mapSrc}" alt="${route.name} route map" class="trekking-map-image" onerror="this.onerror=null;this.src='${fallbackMapSrc}';">
         `;
+      }
+
+      function estimateTrekkingDayRate(day, difficulty) {
+        const baseByDifficulty = {
+          easy: 2800,
+          moderate: 4300,
+          hard: 6200,
+        };
+        const diffKey = String(difficulty || "moderate").toLowerCase();
+        const base = baseByDifficulty[diffKey] || 4300;
+
+        const altitudeValue = Number(String(day.altitude || "").replace(/[^\d]/g, "")) || 0;
+        const altitudeFactor = altitudeValue >= 4500 ? 1700 : altitudeValue >= 3500 ? 1100 : altitudeValue >= 2500 ? 700 : 300;
+        const dayFactor = Math.max(0, Number(day.day || 1) - 1) * 120;
+
+        const low = Math.max(1800, Math.round((base + altitudeFactor + dayFactor) / 100) * 100);
+        const high = low + 1300;
+        return `NPR ${low} - ${high}`;
+      }
+
+      function extractDayActivities(day) {
+        if (Array.isArray(day.activities) && day.activities.length) {
+          return day.activities.join(", ");
+        }
+        const fromHighlights = String(day.highlights || "")
+          .split(",")
+          .map((part) => part.trim())
+          .filter(Boolean);
+        return fromHighlights.length ? fromHighlights.slice(0, 3).join(", ") : "Scenic trekking, local tea-house stay";
       }
 
       function renderTrekkingRegionInfo(route) {
@@ -3211,7 +3392,17 @@
 
         const sortedItinerary = (route.day_wise_itinerary || []).slice().sort((a, b) => a.day - b.day);
         trekkingItinerary.innerHTML = sortedItinerary.length
-          ? sortedItinerary.map((day) => `
+          ? sortedItinerary.map((day) => {
+            const dayRate = day.estimated_rate_npr || estimateTrekkingDayRate(day, route.difficulty);
+            const dayActivities = extractDayActivities(day);
+            const expenseBreakdown = day.expense_breakdown_npr || {};
+            const expenseRows = Object.entries(expenseBreakdown)
+              .map(([key, value]) => `<li>${key.replaceAll("_", " ")}: NPR ${value}</li>`)
+              .join("");
+            const activityCostRows = Array.isArray(day.activity_costs_npr)
+              ? day.activity_costs_npr.map((item) => `<li>${item.name}: NPR ${item.estimated_npr}</li>`).join("")
+              : "";
+            return `
             <div class="trekking-day-card">
               <div class="trekking-day-title">📍 Day ${day.day}: ${day.route}</div>
               <div class="trekking-day-info">
@@ -3223,10 +3414,27 @@
                   <div class="trekking-info-label">Altitude</div>
                   <div class="trekking-info-value">${day.altitude}</div>
                 </div>
+                <div class="trekking-info-item">
+                  <div class="trekking-info-label">Day Rate</div>
+                  <div class="trekking-info-value">${dayRate}</div>
+                </div>
+                <div class="trekking-info-item">
+                  <div class="trekking-info-label">Activity</div>
+                  <div class="trekking-info-value">${dayActivities}</div>
+                </div>
               </div>
               <div style="margin-top: 8px; color: var(--text-light); font-size: 13px;">${day.highlights}</div>
+              <div class="expense-block">
+                <p class="expense-title">Daily Expenses</p>
+                <ul class="expense-list">${expenseRows || "<li>Not available</li>"}</ul>
+              </div>
+              <div class="expense-block">
+                <p class="expense-title">Activity Costs</p>
+                <ul class="expense-list">${activityCostRows || "<li>Included in day rate</li>"}</ul>
+              </div>
             </div>
-          `)
+          `;
+          })
           .join("")
           : "<p class='hint'>No day-wise itinerary is available for this route yet.</p>";
 

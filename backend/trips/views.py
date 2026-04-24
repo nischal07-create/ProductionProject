@@ -18,6 +18,7 @@ import urllib.parse
 import urllib.request
 from functools import lru_cache
 import os
+import re
 
 
 class DestinationSerializer(serializers.ModelSerializer):
@@ -2577,6 +2578,39 @@ def _comfort_pack(city_name, safety_priority, pricing_priority):
     }
 
 
+def _anti_scam_pack(city_name):
+    city_fare = _city_fare_profile(city_name)
+    public_low, public_high = city_fare["public"]
+    ride_low, ride_high = city_fare["ride-share"]
+    taxi_low, taxi_high = city_fare["taxi"]
+
+    return {
+        "city": city_name,
+        "verified_fare_ranges": [
+            f"Public micro/bus typical range: NPR {public_low}-{public_high}",
+            f"Ride-share short trip normal range: NPR {ride_low}-{ride_high}",
+            f"Taxi short trip normal range: NPR {taxi_low}-{taxi_high}",
+        ],
+        "scam_red_flags": [
+            "Driver refuses meter and demands price far above local range.",
+            "Someone pushes you to switch to an unmarked vehicle or unofficial guide.",
+            "Restaurant/agent avoids printed bill or adds hidden service charges.",
+            "Street currency exchange offers rates that are too good to be true.",
+        ],
+        "safe_actions": [
+            "Confirm price before ride/food order and re-check at payment time.",
+            "Use app-based rides or hotel-booked transport at night.",
+            "Pay with small notes and avoid exposing full cash wallet.",
+            "Choose busy, well-reviewed restaurants and licensed ticket counters.",
+        ],
+        "report_steps": [
+            "Call Tourist Police 1144 for overcharging or harassment.",
+            "Note plate number/business name and keep receipt screenshot.",
+            "Share route and fare details with hotel/front desk for support.",
+        ],
+    }
+
+
 def _build_trust_metrics(stops, transport_plan, safety_priority, pricing_priority):
     safety_score = 68 + (12 if safety_priority else 0)
     pricing_score = 64 + (12 if pricing_priority else 0)
@@ -2632,6 +2666,64 @@ def _build_trust_metrics(stops, transport_plan, safety_priority, pricing_priorit
         badge = "Needs Review"
         level = "low"
 
+    scam_risk_score = 28
+    scam_reasons = []
+
+    if not pricing_priority:
+        scam_risk_score += 18
+        scam_reasons.append("Pricing-priority mode is off, so fare filtering is less strict.")
+    else:
+        scam_reasons.append("Fair-pricing mode reduces overcharge exposure.")
+
+    if not safety_priority:
+        scam_risk_score += 14
+        scam_reasons.append("Safety-priority mode is off, increasing route flexibility and risk.")
+    else:
+        scam_reasons.append("Safety-priority mode keeps routes in safer movement windows.")
+
+    taxi_legs = 0
+    evening_mobility_risk = 0
+    for leg in transport_plan:
+        mode = str(leg.get("mode", "")).strip().lower()
+        slot = str(leg.get("slot", "")).strip().lower()
+        if mode == "taxi":
+            taxi_legs += 1
+        if slot == "evening" and mode == "walking":
+            evening_mobility_risk += 10
+        elif slot == "evening" and mode in {"taxi", "ride-share"}:
+            evening_mobility_risk += 6
+
+    scam_risk_score += min(14, taxi_legs * 4)
+    scam_risk_score += min(20, evening_mobility_risk)
+
+    high_exposure_categories = {"nightlife", "shopping", "marketplace"}
+    exposure_points = 0
+    for stop in stops:
+        category = str(stop.get("category", "")).strip().lower()
+        if category in high_exposure_categories:
+            exposure_points += 4
+    scam_risk_score += min(12, exposure_points)
+
+    if avg_transport_cost > 1000:
+        scam_risk_score += 12
+        scam_reasons.append("Average transport fare is high; double-check meter and app estimate before paying.")
+    elif avg_transport_cost > 700:
+        scam_risk_score += 7
+        scam_reasons.append("Transport fares are above normal baseline; confirm fare before ride.")
+    else:
+        scam_reasons.append("Transport fares are within safer baseline range.")
+
+    scam_risk_score = max(15, min(95, int(scam_risk_score)))
+    if scam_risk_score >= 70:
+        scam_level = "high"
+        scam_badge = "Scam Alert: High"
+    elif scam_risk_score >= 45:
+        scam_level = "medium"
+        scam_badge = "Scam Alert: Medium"
+    else:
+        scam_level = "low"
+        scam_badge = "Scam Alert: Low"
+
     return {
         "safety_score": safety_score,
         "pricing_score": pricing_score,
@@ -2639,6 +2731,12 @@ def _build_trust_metrics(stops, transport_plan, safety_priority, pricing_priorit
         "badge": badge,
         "level": level,
         "reasons": reasons,
+        "scam_alert": {
+            "score": scam_risk_score,
+            "level": scam_level,
+            "badge": scam_badge,
+            "reasons": scam_reasons,
+        },
     }
 
 
@@ -2910,7 +3008,18 @@ def city_ai_guide(request, city):
         )
 
     trust_scores = [day["trust"]["comfort_score"] for day in day_wise_itinerary if day.get("trust")]
+    scam_scores = [day["trust"].get("scam_alert", {}).get("score", 45) for day in day_wise_itinerary if day.get("trust")]
     overall_trust = int(sum(trust_scores) / len(trust_scores)) if trust_scores else 70
+    overall_scam_score = int(sum(scam_scores) / len(scam_scores)) if scam_scores else 45
+    if overall_scam_score >= 70:
+        overall_scam_level = "high"
+        overall_scam_badge = "Scam Alert: High"
+    elif overall_scam_score >= 45:
+        overall_scam_level = "medium"
+        overall_scam_badge = "Scam Alert: Medium"
+    else:
+        overall_scam_level = "low"
+        overall_scam_badge = "Scam Alert: Low"
     city_profile = CITY_PROFILES.get(
         city_key,
         {
@@ -2944,8 +3053,14 @@ def city_ai_guide(request, city):
             "day_wise_itinerary": day_wise_itinerary,
             "city_profile": city_profile,
             "comfort_pack": _comfort_pack(guide["display_name"], safety_priority, pricing_priority),
+            "anti_scam_pack": _anti_scam_pack(guide["display_name"]),
             "fare_tiers": _fare_tiers(guide["display_name"], budget_level),
             "overall_trust": overall_trust,
+            "overall_scam_alert": {
+                "score": overall_scam_score,
+                "level": overall_scam_level,
+                "badge": overall_scam_badge,
+            },
             "city_map_url": guide["map_url"],
             "next_expansion": ["Dolpa", "Pathibhara", "Bardia", "Khaptad"],
         }
@@ -3026,6 +3141,135 @@ def trekking_routes_list(request):
     )
 
 
+def _parse_altitude_meters(altitude_text):
+    text = str(altitude_text or "")
+    matches = re.findall(r"\d[\d,]*", text)
+    if not matches:
+        return 0
+    values = [int(item.replace(",", "")) for item in matches]
+    return max(values) if values else 0
+
+
+def _derive_trek_activities(day):
+    highlights = str(day.get("highlights", ""))
+    parts = [item.strip() for item in highlights.split(",") if item.strip()]
+    if parts:
+        return parts[:4]
+    route_text = str(day.get("route", ""))
+    if route_text:
+        return ["Scenic trekking", route_text]
+    return ["Scenic trekking", "Tea-house stay"]
+
+
+TREK_ROUTE_EXPENSE_PROFILES = {
+    "poon_hill": {"meals": 1500, "snacks": 400, "porter": 600, "accommodation": 1200, "guide": 700, "misc": 250, "transport": 1200, "ticket": 220, "activity": 550},
+    "annapurna_base_camp": {"meals": 2000, "snacks": 650, "porter": 1200, "accommodation": 1900, "guide": 1300, "misc": 380, "transport": 1600, "ticket": 650, "activity": 1050},
+    "langtang_valley": {"meals": 1850, "snacks": 620, "porter": 1100, "accommodation": 1750, "guide": 1250, "misc": 350, "transport": 1900, "ticket": 550, "activity": 920},
+    "everest_base_camp": {"meals": 2600, "snacks": 900, "porter": 1900, "accommodation": 2800, "guide": 1850, "misc": 600, "transport": 14500, "ticket": 1100, "activity": 1450},
+    "mardi_himal": {"meals": 1950, "snacks": 650, "porter": 1150, "accommodation": 1850, "guide": 1300, "misc": 360, "transport": 1500, "ticket": 600, "activity": 980},
+    "upper_mustang": {"meals": 2550, "snacks": 900, "porter": 1900, "accommodation": 3000, "guide": 2200, "misc": 700, "transport": 3200, "ticket": 2400, "activity": 1650},
+    "gokyo_lakes": {"meals": 2450, "snacks": 850, "porter": 1750, "accommodation": 2600, "guide": 1800, "misc": 560, "transport": 12500, "ticket": 950, "activity": 1400},
+    "manaslu_circuit": {"meals": 2350, "snacks": 820, "porter": 1700, "accommodation": 2500, "guide": 1900, "misc": 540, "transport": 2600, "ticket": 1800, "activity": 1350},
+}
+
+
+def _build_day_expense_profile(day, difficulty, route_id=""):
+    difficulty_key = str(difficulty or "Moderate").strip().lower()
+    difficulty_base = {
+        "easy": {"meals": 1600, "snacks": 450, "porter": 700, "accommodation": 1200, "guide": 800, "misc": 250},
+        "moderate": {"meals": 1900, "snacks": 600, "porter": 1100, "accommodation": 1700, "guide": 1200, "misc": 350},
+        "hard": {"meals": 2300, "snacks": 800, "porter": 1600, "accommodation": 2500, "guide": 1700, "misc": 500},
+    }.get(difficulty_key, {"meals": 1900, "snacks": 600, "porter": 1100, "accommodation": 1700, "guide": 1200, "misc": 350})
+
+    route_profile = TREK_ROUTE_EXPENSE_PROFILES.get(str(route_id or "").strip().lower(), {})
+    base = {
+        "meals": route_profile.get("meals", difficulty_base["meals"]),
+        "snacks": route_profile.get("snacks", difficulty_base["snacks"]),
+        "porter": route_profile.get("porter", difficulty_base["porter"]),
+        "accommodation": route_profile.get("accommodation", difficulty_base["accommodation"]),
+        "guide": route_profile.get("guide", difficulty_base["guide"]),
+        "misc": route_profile.get("misc", difficulty_base["misc"]),
+    }
+
+    route_text = str(day.get("route", "")).lower()
+    highlights_text = str(day.get("highlights", "")).lower()
+    altitude_value = _parse_altitude_meters(day.get("altitude", ""))
+
+    altitude_bonus = 0
+    if altitude_value >= 4500:
+        altitude_bonus = 1300
+    elif altitude_value >= 3500:
+        altitude_bonus = 800
+    elif altitude_value >= 2500:
+        altitude_bonus = 450
+
+    transport_cost = route_profile.get("transport", 350)
+    if "flight" in route_text:
+        transport_cost = max(transport_cost, 13000)
+    elif any(token in route_text for token in ["pokhara", "kathmandu", "nayapul", "return"]):
+        transport_cost = max(transport_cost, 1400)
+
+    ticketing_cost = route_profile.get("ticket", 250)
+    if any(token in highlights_text for token in ["base camp", "viewpoint", "monastery", "hot spring", "permit"]):
+        ticketing_cost = max(ticketing_cost, 700)
+
+    activity_cost = route_profile.get("activity", 600)
+    if any(token in highlights_text for token in ["sunrise", "base camp", "acclimatization", "glacier", "summit"]):
+        activity_cost = max(activity_cost, 1200)
+
+    if any(token in route_text for token in ["acclimatization", "rest"]):
+        transport_cost = int(transport_cost * 0.4)
+        porter_discount = int(base["porter"] * 0.3)
+        base["porter"] = max(350, base["porter"] - porter_discount)
+        activity_cost = int(activity_cost * 0.85)
+
+    activities = _derive_trek_activities(day)
+    per_activity = max(250, int(activity_cost / max(1, len(activities))))
+
+    breakdown = {
+        "breakfast_lunch_dinner": base["meals"] + int(altitude_bonus * 0.2),
+        "snacks_and_hot_drinks": base["snacks"] + int(altitude_bonus * 0.1),
+        "ticketing_and_permits": ticketing_cost,
+        "porter": base["porter"],
+        "guide": base["guide"],
+        "accommodation": base["accommodation"] + int(altitude_bonus * 0.4),
+        "transport": transport_cost,
+        "activities": activity_cost,
+        "miscellaneous": base["misc"] + int(altitude_bonus * 0.2),
+    }
+
+    daily_total = sum(breakdown.values())
+    range_low = int(round(daily_total * 0.9 / 100.0) * 100)
+    range_high = int(round(daily_total * 1.1 / 100.0) * 100)
+
+    return {
+        "activities": activities,
+        "activity_costs_npr": [
+            {"name": item, "estimated_npr": per_activity}
+            for item in activities
+        ],
+        "expense_breakdown_npr": breakdown,
+        "estimated_rate_npr": f"NPR {range_low} - {range_high}",
+        "estimated_rate_total_npr": daily_total,
+    }
+
+
+def _enrich_trekking_itinerary(route):
+    difficulty = route.get("difficulty", "Moderate")
+    route_id = route.get("id", "")
+    enriched_days = []
+    for day in route.get("day_wise_itinerary", []):
+        day_payload = dict(day)
+        generated = _build_day_expense_profile(day_payload, difficulty, route_id)
+        day_payload["activities"] = day_payload.get("activities") or generated["activities"]
+        day_payload["activity_costs_npr"] = day_payload.get("activity_costs_npr") or generated["activity_costs_npr"]
+        day_payload["expense_breakdown_npr"] = day_payload.get("expense_breakdown_npr") or generated["expense_breakdown_npr"]
+        day_payload["estimated_rate_npr"] = day_payload.get("estimated_rate_npr") or generated["estimated_rate_npr"]
+        day_payload["estimated_rate_total_npr"] = day_payload.get("estimated_rate_total_npr") or generated["estimated_rate_total_npr"]
+        enriched_days.append(day_payload)
+    return enriched_days
+
+
 @api_view(["GET"])
 @permission_classes([AllowAny])
 def trekking_route_detail(request, route_id):
@@ -3040,6 +3284,8 @@ def trekking_route_detail(request, route_id):
             },
             status=404,
         )
+
+    enriched_itinerary = _enrich_trekking_itinerary(route)
 
     return Response(
         {
@@ -3061,7 +3307,7 @@ def trekking_route_detail(request, route_id):
             "region_foods": route.get("region_foods", []),
             "area_story": route.get("area_story", route.get("summary")),
             "custom_map_image": f"/api/trips/media/trek/{normalized_route_id}.svg",
-            "day_wise_itinerary": route.get("day_wise_itinerary", []),
+            "day_wise_itinerary": enriched_itinerary,
         }
     )
 
@@ -3095,6 +3341,8 @@ def trekking_offline_pack(request, route_id):
         "Ambulance: 102",
     ]
 
+    enriched_itinerary = _enrich_trekking_itinerary(route)
+
     return Response(
         {
             "id": route.get("id"),
@@ -3113,7 +3361,7 @@ def trekking_offline_pack(request, route_id):
             ),
             "region_foods": route.get("region_foods", []),
             "area_story": route.get("area_story", route.get("summary")),
-            "day_wise_itinerary": route.get("day_wise_itinerary", []),
+            "day_wise_itinerary": enriched_itinerary,
             "offline_checklist": checklist,
             "emergency_contacts": rescue_contacts,
             "recommended_downloads": [

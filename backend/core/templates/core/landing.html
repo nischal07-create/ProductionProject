@@ -197,12 +197,13 @@
       overflow: hidden;
       position: relative;
       border: 1px solid var(--line);
-      min-height: 140px;
+      min-height: 170px;
+      background: #e5e7eb;
     }
 
     .image-grid img {
       width: 100%;
-      height: 100%;
+      height: 190px;
       object-fit: cover;
       display: block;
     }
@@ -266,11 +267,6 @@
       display: none;
     }
 
-    .feature-board.feature-board-side {
-      display: block;
-      margin: 0;
-    }
-
     .feature-board.active {
       display: block;
     }
@@ -318,6 +314,19 @@
       margin-top: 10px;
       display: grid;
       gap: 12px;
+    }
+
+    .login-stack.reveal {
+      animation: loginFocus 0.9s ease;
+    }
+
+    @keyframes loginFocus {
+      0% {
+        box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.28);
+      }
+      100% {
+        box-shadow: 0 0 0 12px rgba(15, 118, 110, 0);
+      }
     }
 
     .login-card {
@@ -418,12 +427,7 @@
           <p>Tourist portal for planning clear, practical trips across Nepal</p>
         </div>
       </div>
-      <div class="pill">Tourist View Only | Updated v2</div>
     </header>
-
-    <div class="update-banner">
-      Live Update: first page now has separate Tourist and Admin login panels, with feature access locked until tourist login.
-    </div>
 
     <main class="hero">
       <section class="hero-panel">
@@ -434,18 +438,26 @@
         </p>
         <div class="cta-row">
           <button class="primary-action" type="button" id="showFeaturesBtn">View Feature Highlights</button>
-          <a class="secondary-action" href="#login-section">Go To Login Panels</a>
+          <a class="secondary-action" href="#login-section" id="goLoginBtn">Go To Login Panels</a>
         </div>
         <div class="hero-note">Features are separated clearly and unlocked after login.</div>
 
+        <div class="feature-board" id="featureBoard">
+          <h4>Tourist Portal Highlights</h4>
+          <p>
+            Smart city guide, day-wise itinerary, trekking route details, map-based planning,
+            and budget plus safety suggestions in one practical portal.
+          </p>
+        </div>
+
         <div class="image-grid">
           <figure>
-            <img src="/static/core/photos/places/kathmandu/swayambhunath-stupa-monkey-temple.jpg" alt="Kathmandu heritage" />
-            <figcaption>Kathmandu Heritage</figcaption>
+            <img src="/static/core/photos/places/pokhara/phewa-lake.jpg" alt="Nepal scenery view" onerror="this.onerror=null;this.src='/static/core/photos/places/nature.svg';" />
+            <figcaption>Scenery Preview</figcaption>
           </figure>
           <figure>
-            <img src="/static/core/photos/places/pokhara/phewa-lake.jpg" alt="Nepal mountain trail" />
-            <figcaption>Mountain Trails</figcaption>
+            <img src="/static/core/maps/annapurna_base_camp_route.jpg" alt="Nepal trekking route map" onerror="this.onerror=null;this.src='/static/core/photos/places/default.svg';" />
+            <figcaption>Route Map Preview</figcaption>
           </figure>
         </div>
 
@@ -467,13 +479,6 @@
 
       <aside class="aside">
         <h3>What Tourists Need</h3>
-        <div class="feature-board feature-board-side" id="featureBoard">
-          <h4>Tourist Portal Highlights</h4>
-          <p>
-            Smart city guide, day-wise itinerary, trekking route details, map-based planning,
-            and budget plus safety suggestions in one practical portal.
-          </p>
-        </div>
         <div class="metric">
           <strong>4+ Trek Regions</strong>
           <span>Popular route plans with day breakdown and map preview.</span>
@@ -482,11 +487,6 @@
           <strong>City Guide Mode</strong>
           <span>Personalized recommendations for Kathmandu, Pokhara, Chitwan, and Lumbini.</span>
         </div>
-        <div class="metric">
-          <strong>Mobile Friendly</strong>
-          <span>Readable layout for both desktop and phone users.</span>
-        </div>
-
         <div class="login-stack" id="login-section">
           <div class="login-card">
             <h4>Tourist Login</h4>
@@ -531,7 +531,9 @@
     const usernameKey = "trailmate_username";
 
     const featureBtn = document.getElementById("showFeaturesBtn");
+    const goLoginBtn = document.getElementById("goLoginBtn");
     const featureBoard = document.getElementById("featureBoard");
+    const loginSection = document.getElementById("login-section");
     const touristLoginBtn = document.getElementById("touristLoginBtn");
     const touristStatus = document.getElementById("touristStatus");
     const signupBtn = document.getElementById("signupBtn");
@@ -542,12 +544,24 @@
       el.className = `status ${isError ? "error" : "ok"}`;
     };
 
-    featureBtn.addEventListener("click", () => {
-      featureBoard.classList.toggle("active");
-      featureBtn.textContent = featureBoard.classList.contains("active")
-        ? "Hide Feature Highlights"
-        : "View Feature Highlights";
-    });
+    if (featureBtn && featureBoard) {
+      featureBtn.addEventListener("click", () => {
+        featureBoard.classList.toggle("active");
+        featureBtn.textContent = featureBoard.classList.contains("active")
+          ? "Hide Feature Highlights"
+          : "View Feature Highlights";
+      });
+    }
+
+    if (goLoginBtn && loginSection) {
+      goLoginBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        loginSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        loginSection.classList.remove("reveal");
+        void loginSection.offsetWidth;
+        loginSection.classList.add("reveal");
+      });
+    }
 
     touristLoginBtn.addEventListener("click", async () => {
       const username = document.getElementById("touristUsername").value.trim();
