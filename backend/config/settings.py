@@ -148,3 +148,25 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.IsAuthenticated",
     ),
 }
+
+# Email / SMTP configuration (use env vars). Defaults to console backend for local development.
+EMAIL_BACKEND = os.getenv("DJANGO_EMAIL_BACKEND", "django.core.mail.backends.console.EmailBackend")
+EMAIL_HOST = os.getenv("EMAIL_HOST", "smtp.example.com")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT", "587"))
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "True").lower() in ("1", "true", "yes")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "noreply@trailmate.local")
+
+# ADMINS: optional environment variable in format "Name:email,Name2:email2"
+_ADMINS = os.getenv("ADMINS", "").strip()
+if _ADMINS:
+    ADMINS = []
+    for pair in _ADMINS.split(","):
+        if ":" in pair:
+            name, email = pair.split(":", 1)
+            ADMINS.append((name.strip(), email.strip()))
+        else:
+            ADMINS.append(("Admin", pair.strip()))
+else:
+    ADMINS = []
