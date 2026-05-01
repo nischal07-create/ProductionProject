@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrailMate Operator Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="/static/core/favicon.svg" />
+  <style>
+    :root {
+      --bg: #f7fafc;
+      --surface: rgba(255,255,255,0.96);
+      --line: rgba(15,23,42,0.14);
+      --text: #0f172a;
+      --muted: #475569;
+      --primary: #0f766e;
+      --accent: #ea580c;
+      --warn: #b45309;
+      --good: #15803d;
+      --shadow: 0 20px 40px rgba(15,23,42,0.12);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Poppins", "Trebuchet MS", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(15,118,110,0.18), transparent 32%),
+        radial-gradient(circle at 100% 0%, rgba(234,88,12,0.14), transparent 30%),
+        linear-gradient(180deg, #f8fafc 0%, #fff7ed 100%);
+    }
+
+    .shell {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .topbar, .panel, .enquiry-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 18px;
+      margin-bottom: 20px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: -0.4px;
+    }
+
+    .brand p, .muted {
+      margin: 4px 0 0;
+      color: var(--muted);
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #ecfeff;
+      color: var(--primary);
+      border: 1px solid rgba(15,118,110,0.22);
+      font-weight: 700;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      padding: 18px;
+    }
+
+    .stats {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .stat {
+      padding: 14px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(15,118,110,0.08), rgba(234,88,12,0.05));
+      border: 1px solid rgba(15,23,42,0.08);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-weight: 700;
+    }
+
+    .primary {
+      color: white;
+      background: linear-gradient(135deg, var(--primary), #14b8a6);
+    }
+
+    .secondary {
+      color: var(--text);
+      background: white;
+      border: 1px solid var(--line);
+    }
+
+    .enquiry-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .enquiry-card {
+      padding: 16px;
+    }
+
+    .enquiry-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .enquiry-head h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .status {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .status.new { background: #fef3c7; color: #92400e; }
+    .status.contacted { background: #dbeafe; color: #1d4ed8; }
+    .status.booked { background: #dcfce7; color: #166534; }
+    .status.closed { background: #e2e8f0; color: #475569; }
+
+    .meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+
+    .meta span {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #f8fafc;
+      border: 1px solid rgba(15,23,42,0.08);
+      font-size: 12px;
+    }
+
+    .message {
+      background: #f8fafc;
+      border: 1px solid rgba(15,23,42,0.08);
+      border-radius: 12px;
+      padding: 12px;
+      white-space: pre-wrap;
+      color: #334155;
+    }
+
+    .empty {
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px dashed rgba(15,118,110,0.3);
+      color: var(--muted);
+      background: rgba(255,255,255,0.7);
+    }
+
+    .error {
+      color: #991b1b;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      padding: 12px 14px;
+      border-radius: 12px;
+      margin-bottom: 14px;
+    }
+
+    @media (max-width: 960px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <div class="brand">
+        <h1>TrailMate Operator Dashboard</h1>
+        <p>Enquiries submitted by tourists appear here as new requests.</p>
+      </div>
+      <div class="pill">Operator View</div>
+    </div>
+
+    <div class="grid">
+      <aside class="panel">
+        <h2 style="margin:0 0 8px; font-size: 20px;">Inquiry Flow</h2>
+        <p class="muted">When a tourist sends an enquiry, it is saved in the database, emailed to admins, and marked as <strong>new</strong> on this dashboard.</p>
+        <div class="stats">
+          <div class="stat"><strong id="totalCount">0</strong><span class="muted">Total enquiries</span></div>
+          <div class="stat"><strong id="newCount">0</strong><span class="muted">New enquiries</span></div>
+          <div class="stat"><strong id="contactedCount">0</strong><span class="muted">Contacted / booked / closed</span></div>
+        </div>
+      </aside>
+
+      <section class="panel">
+        <div class="toolbar">
+          <div>
+            <h2 style="margin:0; font-size: 22px;">Recent enquiries</h2>
+            <p class="muted">Staff authenticated in Django admin can review this list with the existing enquiry API.</p>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button type="button" class="primary" id="refreshBtn">Refresh list</button>
+            <a href="/admin/trips/enquiry/" class="secondary" style="display:inline-flex; align-items:center; text-decoration:none; padding:12px 16px;">Open admin</a>
+          </div>
+        </div>
+
+        <div id="statusMessage" class="muted" style="margin-bottom: 14px;">Loading operator inbox...</div>
+        <div id="errorBox" style="display:none;"></div>
+        <div id="enquiryList" class="enquiry-list"></div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const enquiryList = document.getElementById('enquiryList');
+    const statusMessage = document.getElementById('statusMessage');
+    const errorBox = document.getElementById('errorBox');
+    const totalCount = document.getElementById('totalCount');
+    const newCount = document.getElementById('newCount');
+    const contactedCount = document.getElementById('contactedCount');
+
+    function escapeHtml(value) {
+      return String(value || '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function formatDate(value) {
+      if (!value) return 'Unknown time';
+      const date = new Date(value);
+      return Number.isNaN(date.getTime()) ? value : date.toLocaleString();
+    }
+
+    function renderEnquiries(items) {
+      totalCount.textContent = items.length;
+      newCount.textContent = items.filter((item) => item.status === 'new').length;
+      contactedCount.textContent = items.filter((item) => item.status !== 'new').length;
+
+      if (!items.length) {
+        enquiryList.innerHTML = '<div class="empty">No enquiries yet. The next tourist submission will appear here.</div>';
+        return;
+      }
+
+      enquiryList.innerHTML = items.map((item) => `
+        <article class="enquiry-card">
+          <div class="enquiry-head">
+            <div>
+              <h3>${escapeHtml(item.activity_name || 'General inquiry')}</h3>
+              <div class="muted">${escapeHtml(item.name)} • ${escapeHtml(item.email)}</div>
+            </div>
+            <span class="status ${escapeHtml(item.status || 'new')}">${escapeHtml(item.status || 'new')}</span>
+          </div>
+          <div class="meta">
+            <span>City: ${escapeHtml(item.city || '—')}</span>
+            <span>Received: ${escapeHtml(formatDate(item.created_at))}</span>
+            <span>Updated: ${escapeHtml(formatDate(item.updated_at))}</span>
+          </div>
+          <div class="message">${escapeHtml(item.message || 'No message provided.')}</div>
+          ${item.operator_notes ? `<div class="message" style="margin-top:10px; background:#fff7ed;">Operator notes: ${escapeHtml(item.operator_notes)}</div>` : ''}
+        </article>
+      `).join('');
+    }
+
+    async function loadEnquiries() {
+      errorBox.style.display = 'none';
+      statusMessage.textContent = 'Loading operator inbox...';
+
+      try {
+        const resp = await fetch('/api/trips/enquiries/list/', { credentials: 'same-origin' });
+        if (!resp.ok) {
+          if (resp.status === 403 || resp.status === 401) {
+            enquiryList.innerHTML = '<div class="empty">Access denied. Sign in with a Django admin/staff account to view enquiries.</div>';
+            statusMessage.textContent = 'Operator inbox is locked until staff login is complete.';
+            totalCount.textContent = '0';
+            newCount.textContent = '0';
+            contactedCount.textContent = '0';
+            return;
+          }
+          throw new Error(`Failed to load enquiries (${resp.status})`);
+        }
+
+        const items = await resp.json();
+        renderEnquiries(items);
+        statusMessage.textContent = `Loaded ${items.length} enquiry${items.length === 1 ? '' : 'ies'} from the tourist portal.`;
+      } catch (error) {
+        errorBox.style.display = 'block';
+        errorBox.className = 'error';
+        errorBox.textContent = error.message || 'Unable to load enquiries.';
+        enquiryList.innerHTML = '<div class="empty">No operator data loaded yet.</div>';
+        statusMessage.textContent = 'Unable to refresh operator inbox.';
+      }
+    }
+
+    document.getElementById('refreshBtn').addEventListener('click', loadEnquiries);
+    loadEnquiries();
+  </script>
+</body>
+</html>
