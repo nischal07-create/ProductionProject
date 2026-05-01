@@ -492,6 +492,94 @@
       background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(240,253,250,0.9));
       border-left-color: var(--accent-sky) !important;
     }
+    .activity-photo-hero {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px;
+      border: 1px solid rgba(148,163,184,0.28);
+      background: #f8fafc;
+      margin: 10px 0 8px;
+    }
+    .activity-photo-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin: 8px 0 10px;
+    }
+    .activity-photo-strip img {
+      width: 100%;
+      height: 72px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid rgba(148,163,184,0.24);
+      background: #f8fafc;
+      display: block;
+    }
+    .activity-photo-strip.tight img {
+      height: 60px;
+    }
+    /* Lightbox styles */
+    .lightbox-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2,6,23,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 6000;
+      padding: 20px;
+    }
+    .lightbox-backdrop.active { display: flex; }
+    .lightbox-card {
+      max-width: 1100px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox-img {
+      max-height: 78vh;
+      max-width: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+      background: #111;
+    }
+    .lightbox-thumbs {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      overflow-x: auto;
+      padding: 6px 4px;
+    }
+    .lightbox-thumbs img {
+      width: 84px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+    .lightbox-thumbs img.active { border-color: #10b981; }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 30px;
+      background: rgba(0,0,0,0.3);
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
     .activity-summary-line {
       font-size: 12px;
       color: #475569;
@@ -1296,6 +1384,7 @@
           <input id="navUsername" placeholder="Username" autocomplete="username" />
           <input id="navPassword" type="password" placeholder="Password" autocomplete="current-password" />
           <button id="navLoginBtn" type="button" class="top-login-btn">Sign In</button>
+          <a href="/forgot-password/" style="color:#ecfeff; font-size:12px; font-weight:700; text-decoration:none; white-space:nowrap;">Forgot password?</a>
         </div>
         <button id="navLogoutBtn" type="button" class="top-logout-btn user-only hidden">Sign Out</button>
       </div>
@@ -1306,7 +1395,6 @@
     <div class="portal-banner">
       <div>
         <h2>Tourist Portal</h2>
-        <p>Login first to use planner features. Before login, this page is view-only.</p>
       </div>
       <div class="portal-links">
         <a class="primary-link" href="#guide" data-jump="screen-guide">Open Smart Tourist Planner</a>
@@ -2785,7 +2873,14 @@
       const { response, payload } = await api("/api/trips/activities/", { method: "GET" }, false);
       if (!response.ok) return setStatus(catalogStatus, `Error loading activities (${response.status})`, true);
       activities = payload;
-      renderList(activitiesList, payload, (a) => `<strong>${a.name}</strong>`);
+      renderList(activitiesList, payload, (a) => {
+        const photos = Array.isArray(a.photo_urls) ? a.photo_urls.filter(Boolean) : [];
+        const heroPhoto = photos[0] || "/static/core/photos/places/kathmandu/kathmandu-durbar-square.jpg";
+        const stripPhotos = photos.slice(1, 4).map((photo) => `<img src="${photo}" alt="${a.name} photo" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/places/kathmandu/kathmandu-durbar-square.jpg';" />`).join("");
+        const photoStrip = stripPhotos ? `<div class="activity-photo-strip tight">${stripPhotos}</div>` : "";
+        const photoCount = photos.length ? `<div class="activity-summary-line"><strong>Photos:</strong> ${photos.length} view${photos.length === 1 ? "" : "s"}</div>` : "";
+        return `<strong>${a.name}</strong>${photoCount}<img class="activity-photo-hero" src="${heroPhoto}" alt="${a.name} main photo" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/places/kathmandu/kathmandu-durbar-square.jpg';" />${photoStrip}`;
+      });
       syncActivitySelect();
       seedDemoGuestPlan();
       setStatus(catalogStatus, `Loaded ${payload.length} activities ✓`);
@@ -3326,6 +3421,11 @@
       populateGuideRouteDestinations(payload.city, payload.best_places || [], payload.famous_foods || []);
 
       renderList(guideActivitiesList, payload.activities || [], (activity) => {
+        const photos = Array.isArray(activity.photo_urls) ? activity.photo_urls.filter(Boolean) : [];
+        const heroPhoto = photos[0] || "/static/core/photos/places/kathmandu/kathmandu-durbar-square.jpg";
+        const stripPhotos = photos.slice(1, 4).map((photo) => `<img src="${photo}" alt="${activity.name} photo" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/places/kathmandu/kathmandu-durbar-square.jpg';" />`).join("");
+        const photoStrip = stripPhotos ? `<div class="activity-photo-strip">${stripPhotos}</div>` : "";
+        const photoCount = photos.length ? `<div class="activity-summary-line"><strong>Photos:</strong> ${photos.length}</div>` : "";
         const badges = [
           activity.type ? `<span class="guide-pill">${activity.type}</span>` : "",
           activity.family_friendly ? `<span class="guide-pill">Family friendly</span>` : "",
@@ -3347,7 +3447,7 @@
         const safety = activity.safety_note ? `<br><span class="activity-summary-line"><strong>Safety:</strong> ${activity.safety_note}</span>` : "";
         const flightDetails = activity.flight_altitude_m ? `<div class="activity-summary-line"><strong>Flight:</strong> ~${activity.flight_altitude_m} m • ${activity.flight_duration_min || (activity.duration_hours ? activity.duration_hours*60 : 60)} min</div>` : "";
         const activityDataB64 = btoa(unescape(encodeURIComponent(JSON.stringify(activity))));
-        return `<div class="activity-card"><strong>${activity.name}</strong><br><span style="color:#0f766e;font-size:12px;">${activity.type || "Experience"}</span><br><span class="activity-summary-line">${details}</span><br><span style="display:block; margin:8px 0; color:#334155;">${activity.description || "A curated local experience."}</span><div class="activity-summary-note">${note}</div>${booking}${operator}${included}${lead}${flightDetails}${safety}<iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapEmbedUrl(activity.map_url, `${activity.name} ${payload.city}`)}" title="${activity.name} map"></iframe><div class="guide-meta" style="margin-top:10px;">${badges}</div><div class="guide-meta" style="margin-top:8px;">${tags}</div><div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;"><a class="map-preview-btn" href="${activity.map_url}" target="_blank" rel="noopener noreferrer">🎯 View activity location</a><button type="button" class="btn-small-secondary booking-btn" data-activity="${activityDataB64}">✉️ Contact operator</button></div></div>`;
+        return `<div class="activity-card"><strong>${activity.name}</strong><br><span style="color:#0f766e;font-size:12px;">${activity.type || "Experience"}</span><br><span class="activity-summary-line">${details}</span>${photoCount}<img class="activity-photo-hero" src="${heroPhoto}" alt="${activity.name} main photo" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/places/kathmandu/kathmandu-durbar-square.jpg';" />${photoStrip}<br><span style="display:block; margin:8px 0; color:#334155;">${activity.description || "A curated local experience."}</span><div class="activity-summary-note">${note}</div>${booking}${operator}${included}${lead}${flightDetails}${safety}<iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapEmbedUrl(activity.map_url, `${activity.name} ${payload.city}`)}" title="${activity.name} map"></iframe><div class="guide-meta" style="margin-top:10px;">${badges}</div><div class="guide-meta" style="margin-top:8px;">${tags}</div><div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;"><a class="map-preview-btn" href="${activity.map_url}" target="_blank" rel="noopener noreferrer">🎯 View activity location</a><button type="button" class="btn-small-secondary booking-btn" data-activity="${activityDataB64}">✉️ Contact operator</button></div></div>`;
       });
 
       renderList(guideHighlightsList, payload.top_highlights || (payload.best_places || []).slice(0, 3), (place) => {
@@ -3868,7 +3968,7 @@
             body: JSON.stringify(payload),
           });
           if (resp.ok) {
-            setStatus(document.body, 'Enquiry sent ✓ We will follow up by email.', true);
+            setStatus(document.body, 'Enquiry sent ✓ The operator dashboard has a new request and we will follow up by email.', true);
             closeBookingModal();
             return;
           }
@@ -3897,6 +3997,119 @@
             // Service worker registration failure should not block app usage.
           });
       }
+          // Lightweight image lightbox: opens hero or thumbnail images in a modal
+          (function () {
+            const lightboxBackdrop = document.createElement('div');
+            lightboxBackdrop.className = 'lightbox-backdrop';
+            lightboxBackdrop.id = 'trailmateLightbox';
+            lightboxBackdrop.innerHTML = `
+              <div class="lightbox-card" role="dialog" aria-modal="true">
+                <div style="position:relative; width:100%; display:flex; align-items:center; justify-content:center;">
+                  <div class="lightbox-nav lightbox-prev" data-action="prev" aria-hidden="true">◀</div>
+                  <img class="lightbox-img" src="" alt="" />
+                  <div class="lightbox-nav lightbox-next" data-action="next" aria-hidden="true">▶</div>
+                </div>
+                <div class="lightbox-thumbs" aria-hidden="false"></div>
+              </div>
+            `;
+            document.body.appendChild(lightboxBackdrop);
+
+            const lbImg = lightboxBackdrop.querySelector('.lightbox-img');
+            const lbThumbs = lightboxBackdrop.querySelector('.lightbox-thumbs');
+            let currentGallery = [];
+            let currentIndex = 0;
+
+            function openLightbox(gallery, index) {
+              currentGallery = Array.isArray(gallery) ? gallery.filter(Boolean) : [];
+              currentIndex = Math.max(0, Math.min(index || 0, currentGallery.length - 1));
+              if (currentGallery.length === 0) return;
+              lbImg.src = currentGallery[currentIndex];
+              lbImg.alt = '';
+              lbThumbs.innerHTML = '';
+              currentGallery.forEach((src, i) => {
+                const t = document.createElement('img');
+                t.src = src;
+                t.loading = 'lazy';
+                if (i === currentIndex) t.classList.add('active');
+                t.addEventListener('click', () => {
+                  currentIndex = i;
+                  updateLightbox();
+                });
+                lbThumbs.appendChild(t);
+              });
+              lightboxBackdrop.classList.add('active');
+              document.body.style.overflow = 'hidden';
+            }
+
+            function updateLightbox() {
+              if (!currentGallery.length) return closeLightbox();
+              lbImg.src = currentGallery[currentIndex];
+              Array.from(lbThumbs.children).forEach((t, i) => t.classList.toggle('active', i === currentIndex));
+            }
+
+            function closeLightbox() {
+              lightboxBackdrop.classList.remove('active');
+              document.body.style.overflow = '';
+              lbImg.src = '';
+              lbThumbs.innerHTML = '';
+              currentGallery = [];
+              currentIndex = 0;
+            }
+
+            lightboxBackdrop.addEventListener('click', (ev) => {
+              if (ev.target === lightboxBackdrop) closeLightbox();
+            });
+
+            lightboxBackdrop.addEventListener('click', (ev) => {
+              const nav = ev.target.closest('.lightbox-nav');
+              if (!nav) return;
+              const action = nav.getAttribute('data-action');
+              if (action === 'prev') {
+                currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+                updateLightbox();
+              } else if (action === 'next') {
+                currentIndex = (currentIndex + 1) % currentGallery.length;
+                updateLightbox();
+              }
+            });
+
+            document.addEventListener('keydown', (ev) => {
+              if (!lightboxBackdrop.classList.contains('active')) return;
+              if (ev.key === 'Escape') return closeLightbox();
+              if (ev.key === 'ArrowLeft') {
+                currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+                updateLightbox();
+              }
+              if (ev.key === 'ArrowRight') {
+                currentIndex = (currentIndex + 1) % currentGallery.length;
+                updateLightbox();
+              }
+            });
+
+            // Delegate clicks for hero images and thumbnails
+            document.addEventListener('click', (ev) => {
+              const hero = ev.target.closest && ev.target.closest('.activity-photo-hero');
+              const thumb = ev.target.closest && ev.target.closest('.activity-photo-strip img');
+              if (!hero && !thumb) return;
+
+              // Find enclosing activity element to extract all photo URLs rendered
+              const li = (hero || thumb).closest && (hero || thumb).closest('li');
+              if (!li) return;
+              // Collect images within this li (hero + strip)
+              const imgs = Array.from(li.querySelectorAll('.activity-photo-hero, .activity-photo-strip img'))
+                .map((i) => i.getAttribute('src'))
+                .filter(Boolean);
+              let index = 0;
+              if (hero) {
+                index = 0;
+              } else if (thumb) {
+                const allThumbs = Array.from(li.querySelectorAll('.activity-photo-strip img'));
+                index = 1 + allThumbs.indexOf(thumb); // thumbs follow hero in our gallery order
+                if (index < 0) index = 0;
+              }
+              openLightbox(imgs, index);
+            });
+          })();
   </script>
 </body>
 </html>
