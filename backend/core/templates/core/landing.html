@@ -282,9 +282,9 @@
 
     .login-card {
       border: 1px solid var(--line);
-      border-radius: 14px;
+      border-radius: 18px;
       background: #fff;
-      padding: 14px;
+      padding: 16px;
     }
 
     .login-card h4 {
@@ -309,6 +309,41 @@
       padding: 10px;
       font: inherit;
     }
+
+    .google-login-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(214,245,230,0.84));
+      padding: 18px;
+      box-shadow: 0 12px 24px rgba(15,23,42,0.08);
+    }
+
+    .google-login-card h4 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .google-login-card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Google CTA styling */
+    .google-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 14px;
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--line);
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 8px 18px rgba(15,23,42,0.06);
+    }
+    .google-cta img { display: inline-block; width:20px; height:20px; }
 
     .submit-btn,
     .admin-btn {
@@ -441,22 +476,33 @@
         </div>
 
         <div class="login-stack" id="login-section">
+          <div class="google-login-card">
+            <h4>Continue with Google</h4>
+            <p>Fast sign-in with your Google account for instant access.</p>
+            <a class="google-cta" href="/accounts/google/login/" aria-label="Sign in with Google">
+              <img src="/static/core/google-icon.svg" alt="Google" onerror="this.style.display='none'" />
+              Sign in with Google
+            </a>
+            <div class="status">Use Google to skip password sign-in.</div>
+          </div>
+
           <div class="login-card">
-            <h4>Tourist Login</h4>
-            <p>Sign in to open the planner.</p>
+            <h4>Local sign in</h4>
+            <p>Use a username and password if you do not want to use Google.</p>
             <div class="field">
-              <input id="touristUsername" type="text" placeholder="Tourist username" autocomplete="username" />
+              <input id="touristUsername" type="text" placeholder="Username" autocomplete="username" />
             </div>
             <div class="field">
               <input id="touristPassword" type="password" placeholder="Password" autocomplete="current-password" />
             </div>
-            <button class="submit-btn" id="touristLoginBtn" type="button">Login As Tourist</button>
-            <div class="status" id="touristStatus">Not logged in.</div>
+            <button class="submit-btn" id="touristLoginBtn" type="button">Login</button>
+            <div class="status" id="touristLoginStatus">Not logged in.</div>
+            <div class="status" id="touristStatus">Use local sign in to continue.</div>
           </div>
 
           <div class="login-card">
-            <h4>Tourist Sign Up</h4>
-            <p>Create an account first if you are a new tourist user.</p>
+            <h4>Create account</h4>
+            <p>New users can register before signing in locally.</p>
             <div class="field">
               <input id="signupUsername" type="text" placeholder="Choose username" autocomplete="username" />
             </div>
@@ -466,7 +512,7 @@
             <div class="field">
               <input id="signupPasswordConfirm" type="password" placeholder="Confirm password" autocomplete="new-password" />
             </div>
-            <button class="submit-btn" id="signupBtn" type="button">Create Tourist Account</button>
+            <button class="submit-btn" id="signupBtn" type="button">Create Account</button>
             <div class="status" id="signupStatus">No account created yet.</div>
           </div>
 
@@ -484,23 +530,24 @@
     const usernameKey = "trailmate_username";
 
     const touristLoginBtn = document.getElementById("touristLoginBtn");
-    const touristStatus = document.getElementById("touristStatus");
+    const touristLoginStatus = document.getElementById("touristLoginStatus");
     const signupBtn = document.getElementById("signupBtn");
     const signupStatus = document.getElementById("signupStatus");
 
     const setStatus = (el, message, isError = false) => {
+      if (!el) return;
       el.textContent = message;
       el.className = `status ${isError ? "error" : "ok"}`;
     };
 
-    touristLoginBtn.addEventListener("click", async () => {
+    touristLoginBtn?.addEventListener("click", async () => {
       const username = document.getElementById("touristUsername").value.trim();
       const password = document.getElementById("touristPassword").value;
       if (!username || !password) {
-        setStatus(touristStatus, "Please enter username and password.", true);
+        setStatus(touristLoginStatus, "Please enter username and password.", true);
         return;
       }
-      setStatus(touristStatus, "Logging in...");
+      setStatus(touristLoginStatus, "Logging in...");
       try {
         const response = await fetch("/api/auth/token/", {
           method: "POST",
@@ -509,19 +556,19 @@
         });
         const data = await response.json();
         if (!response.ok || !data.access) {
-          setStatus(touristStatus, "Login failed. Check credentials.", true);
+          setStatus(touristLoginStatus, "Login failed. Check credentials.", true);
           return;
         }
         localStorage.setItem(tokenKey, data.access);
         localStorage.setItem(usernameKey, username);
-        setStatus(touristStatus, "Login successful. Opening planner...");
+        setStatus(touristLoginStatus, "Login successful. Opening planner...");
         window.location.href = "/app/";
       } catch (error) {
-        setStatus(touristStatus, "Login error. Please try again.", true);
+        setStatus(touristLoginStatus, "Login error. Please try again.", true);
       }
     });
 
-    signupBtn.addEventListener("click", async () => {
+    signupBtn?.addEventListener("click", async () => {
       const username = document.getElementById("signupUsername").value.trim();
       const password = document.getElementById("signupPassword").value;
       const passwordConfirm = document.getElementById("signupPasswordConfirm").value;
@@ -543,7 +590,7 @@
           setStatus(signupStatus, data.error || "Signup failed.", true);
           return;
         }
-        setStatus(signupStatus, "Account created. Now login as tourist.");
+        setStatus(signupStatus, "Account created. Now login with username and password.");
         document.getElementById("touristUsername").value = username;
         document.getElementById("signupPassword").value = "";
         document.getElementById("signupPasswordConfirm").value = "";

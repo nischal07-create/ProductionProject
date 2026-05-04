@@ -50,6 +50,37 @@
       top: 0;
       z-index: 100;
     }
+    .google-login-strip {
+      position: sticky;
+      top: 76px;
+      z-index: 99;
+      margin: 0;
+      padding: 12px 24px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(21, 90, 68, 0.15);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+    .google-login-strip-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .google-login-strip h2 {
+      margin: 0;
+      font-size: 16px;
+      color: var(--text);
+      letter-spacing: -0.2px;
+    }
+    .google-login-strip p {
+      margin: 2px 0 0;
+      color: var(--text-light);
+      font-size: 12px;
+    }
     .navbar-content {
       max-width: 1400px;
       margin: 0 auto;
@@ -115,20 +146,40 @@
     .top-logout-btn {
       background: rgba(239, 68, 68, 0.92);
     }
+    .google-login-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: #ffffff;
+      color: #0f172a;
+      border: 1px solid rgba(15, 23, 42, 0.14);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 10px 18px rgba(15, 23, 42, 0.08);
+    }
+    .google-login-btn {
+      background: #f8fafc;
+      transform: translateY(-1px);
+    }
     .wrap { 
       max-width: 1400px; 
       margin: 0 auto; 
       padding: 30px 24px; 
-    }
-    .tabs {
-      display: grid;
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+      color: #ffffff;
+      border: 1px solid transparent;
       grid-template-columns: repeat(6, minmax(120px, 1fr));
       gap: 10px;
       margin-bottom: 32px;
-      padding: 14px;
+      box-shadow: 0 18px 28px rgba(20, 184, 166, 0.28);
       border: 1px solid var(--border);
       border-radius: 22px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.82), rgba(204,251,241,0.56));
+      transform: translateY(-2px);
       box-shadow: var(--shadow);
       position: sticky;
       top: var(--header-offset);
@@ -157,6 +208,32 @@
       margin: 4px 0 0;
       color: var(--text-light);
       font-size: 13px;
+    }
+    .google-signin-banner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 14px;
+      margin: 16px 0 22px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(21, 90, 68, 0.18);
+      background: linear-gradient(135deg, rgba(255,255,255,0.94), rgba(214,245,230,0.78));
+      box-shadow: var(--shadow-lg);
+    }
+    .google-signin-banner h3 {
+      margin: 0 0 4px;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+    }
+    .google-signin-banner p {
+      margin: 0;
+      color: var(--text-light);
+      font-size: 13px;
+    }
+    .google-signin-banner .google-login-btn {
+      margin-top: 0;
+      min-width: 210px;
     }
     .portal-links {
       display: flex;
@@ -270,6 +347,98 @@
     .hero-actions .cta-secondary:hover {
       background: #f8fafc;
       transform: translateY(-2px);
+    }
+    .hero-actions .google-login-cta {
+      background: #ffffff;
+      color: #0f172a;
+      border: 1px solid rgba(15, 23, 42, 0.14);
+      box-shadow: 0 12px 22px rgba(15, 23, 42, 0.08);
+    }
+    .hero-actions .google-login-cta:hover {
+      background: #f8fafc;
+    }
+    .google-login-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(214,245,230,0.92));
+      border: 1px solid rgba(21, 90, 68, 0.16);
+      border-left: 7px solid var(--primary);
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+      margin-bottom: 16px;
+    }
+    .google-login-card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+    .google-login-card p {
+      margin: 0 0 14px;
+      color: var(--text-light);
+      font-size: 13px;
+    }
+    .google-login-card .google-login-cta {
+      width: 100%;
+      min-height: 50px;
+      padding: 12px 20px;
+      margin: 12px 0;
+      border-radius: 12px;
+      border: 1px solid rgba(31, 111, 84, 0.3);
+      background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(240,253,250,0.95));
+      color: #0f766e;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(15, 23, 42, 0.1);
+    }
+    .google-login-card .google-login-cta:hover {
+      border-color: rgba(20, 184, 166, 0.5);
+      background: linear-gradient(135deg, rgba(255,255,255,1), rgba(230,250,248,1));
+      transform: translateY(-2px);
+      box-shadow: 0 10px 18px rgba(20, 184, 166, 0.2);
+    }
+    .google-login-card .google-login-cta:active {
+      transform: translateY(0);
+    }
+    .guest-only .login-intro {
+      margin: 0 0 12px;
+      color: var(--text-light);
+      font-size: 13px;
+    }
+    .traveler-card {
+      background: linear-gradient(135deg, rgba(20,184,166,0.14), rgba(255,255,255,0.96));
+      border: 1px solid rgba(20,184,166,0.28);
+      border-left: 7px solid var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+    .traveler-card::before {
+      content: "Signed in";
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(31,111,84,0.1);
+      color: var(--primary-dark);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+    .traveler-card h3 {
+      padding-right: 86px;
+    }
+    .traveler-card .status.ok {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(16,185,129,0.12);
+      border: 1px solid rgba(16,185,129,0.2);
+      color: #065f46;
+      font-weight: 700;
     }
     .stat-grid {
       display: grid;
@@ -849,7 +1018,7 @@
     }
     .grid { 
       display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
       gap: 24px;
     }
     .card { 
@@ -864,6 +1033,10 @@
       box-shadow: var(--shadow-lg);
       border-color: var(--primary-light);
     }
+    .card.guest-only {
+      background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(236,253,245,0.92));
+      border: 1px solid rgba(20,184,166,0.16);
+    }
     .card h3 { 
       margin-top: 0;
       margin-bottom: 16px;
@@ -875,9 +1048,25 @@
     .hidden {
       display: none !important;
     }
+    .account-section-header {
+      margin-bottom: 32px;
+      padding: 20px 24px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(31,111,84,0.08), rgba(255,255,255,0.96));
+      border: 1px solid rgba(31,111,84,0.14);
+    }
+    .account-section-header h2 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+    .account-section-header p {
+      margin: 0;
+      color: var(--text-light);
+      font-size: 13px;
+    }
     .traveler-card {
-      background: linear-gradient(135deg, rgba(20,184,166,0.11), rgba(255,255,255,0.95));
-      border: 1px solid rgba(20,184,166,0.24);
+      background: linear-gradient(135deg, rgba(20,184,166,0.14), rgba(255,255,255,0.96));
+      border: 1px solid rgba(20,184,166,0.28);
     }
     .row { 
       display: flex; 
@@ -1428,6 +1617,8 @@
     </div>
   </header>
 
+  <!-- Single, prominent Google sign-in button moved into hero-actions below -->
+
   <div class="wrap">
     <div class="portal-banner">
       <div>
@@ -1444,6 +1635,9 @@
           TrailMate helps tourists build day-wise plans, discover trusted places, and navigate routes with confidence.
           The flow is kept simple so you can decide faster and travel better.
         </p>
+        <div class="hero-actions">
+          <a href="#screen-dashboard" class="cta-secondary">Explore the dashboard</a>
+        </div>
       </div>
       <div class="hero-side">
         <div class="hero-image-stack" aria-label="Nepal highlights">
@@ -1490,16 +1684,41 @@
     </div>
 
     <section id="screen-dashboard" class="screen active">
-      <h2>Account</h2>
+      <div class="account-section-header guest-only">
+        <h2>Sign in to continue</h2>
+        <p>Choose how you'd like to access the planner.</p>
+      </div>
+      <div class="account-section-header user-only hidden">
+        <h2>Your account</h2>
+        <p>Manage your profile and access your plans.</p>
+      </div>
       <div class="grid">
+        <div class="card guest-only google-login-card">
+          <h3>Continue with Google</h3>
+          <p class="hint">Fast login for users who want one-click access.</p>
+          <a href="/accounts/google/login/" class="google-login-cta" aria-label="Sign in with Google">
+            <img src="/static/core/google-icon.svg" alt="Google" onerror="this.style.display='none'" style="width:20px;height:20px;" />
+            Continue with Google
+          </a>
+          <div id="authStatus" class="status">Choose Google or username/password sign in.</div>
+        </div>
         <div class="card guest-only">
-          <h3>Account access</h3>
-          <p class="hint">Sign in from the top-right bar for cleaner access from anywhere in the portal.</p>
-          <div id="authStatus" class="status">Use the top-right sign in to continue</div>
+          <h3>Sign in with username</h3>
+          <p class="hint">For users who want to sign in without Google.</p>
+          <p class="login-intro">Enter your local account details to unlock the planner without Google.</p>
+          <div class="form-group">
+            <label>Username</label>
+            <input id="navUsername" placeholder="Enter your username" autocomplete="username" />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input id="navPassword" type="password" placeholder="Enter your password" autocomplete="current-password" />
+          </div>
+          <button id="navLoginBtn" type="button">Sign In</button>
         </div>
         <div class="card guest-only">
           <h3>Create account</h3>
-          <p class="hint">New to TrailMate? Sign up to start planning.</p>
+          <p class="hint">New users can create a local account first, then sign in.</p>
           <div class="form-group">
             <label>Username</label>
             <input id="regUsername" placeholder="Choose a username (3+ chars)" />
@@ -1518,6 +1737,7 @@
         <div id="travelerPanel" class="card traveler-card user-only hidden">
           <h3>Traveler panel</h3>
           <p class="hint">Welcome back, <strong id="travelerName">traveler</strong>. Your personalized tools are ready.</p>
+          <div class="login-intro">Signed-in mode is active. Local plans, activities, and saved trips are available below.</div>
           <div class="row" style="margin-top:14px;">
             <button type="button" data-jump="screen-plans">My Trip Plans</button>
           </div>
@@ -2856,7 +3076,12 @@
       }
     };
 
-    const updateAuthStatus = () => {
+    function getCookie(name) {
+      const v = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+      return v ? decodeURIComponent(v.pop()) : null;
+    }
+
+    const updateAuthStatus = async () => {
       const token = getToken();
       if (token) {
         const username = getAuthUsername() || "traveler";
@@ -2867,15 +3092,37 @@
         guestOnlyEls.forEach((el) => el.classList.add("hidden"));
         userOnlyEls.forEach((el) => el.classList.remove("hidden"));
         featureLockedNotice?.classList.remove("active");
-      } else {
-        authStatus.className = "status";
-        authStatus.textContent = "Ready to log in";
-        authChip.textContent = "Not authenticated";
-        authChip.classList.remove("authenticated");
-        guestOnlyEls.forEach((el) => el.classList.remove("hidden"));
-        userOnlyEls.forEach((el) => el.classList.add("hidden"));
-        featureLockedNotice?.classList.add("active");
+        return;
       }
+
+      // No JWT token in localStorage — check server-side session (useful for django-allauth logins)
+      try {
+        const res = await fetch('/api/auth/session/');
+        if (res.ok) {
+          const json = await res.json();
+          if (json.authenticated) {
+            const username = json.username || 'traveler';
+            setStatus(authStatus, `You are logged in as ${username} ✓`);
+            authChip.textContent = "✓ Authenticated";
+            authChip.classList.add("authenticated");
+            travelerName.textContent = username;
+            guestOnlyEls.forEach((el) => el.classList.add("hidden"));
+            userOnlyEls.forEach((el) => el.classList.remove("hidden"));
+            featureLockedNotice?.classList.remove("active");
+            return;
+          }
+        }
+      } catch (e) {
+        console.warn('session check failed', e);
+      }
+
+      authStatus.className = "status";
+      authStatus.textContent = "Ready to log in";
+      authChip.textContent = "Not authenticated";
+      authChip.classList.remove("authenticated");
+      guestOnlyEls.forEach((el) => el.classList.remove("hidden"));
+      userOnlyEls.forEach((el) => el.classList.add("hidden"));
+      featureLockedNotice?.classList.add("active");
     };
 
     const register = async () => {
@@ -3348,7 +3595,22 @@
 
     document.getElementById("registerBtn").addEventListener("click", register);
 
-    const logoutUser = () => {
+    const logoutUser = async () => {
+      // Attempt server-side logout (clears Django session set by allauth)
+      try {
+        const csrftoken = getCookie('csrftoken');
+        await fetch('/accounts/logout/', {
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': csrftoken,
+            'Accept': 'text/html,application/json'
+          },
+        });
+      } catch (e) {
+        console.warn('Server logout failed', e);
+      }
+
+      // Clear local JWT state and update UI
       clearToken();
       clearAuthUsername();
       updateAuthStatus();

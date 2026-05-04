@@ -1,0 +1,36 @@
+id,name,destination,cost_estimate,duration_hours,tags,description
+35,Heritage Town Walk & Newari Feast,Bandipur,900.0,3.0,"heritage, food, walking",Guided town walk with a traditional Newari meal.
+34,Rara Lake day hike & picnic,Rara,1200.0,4.0,"nature, hiking, viewpoint",Scenic lake walk with picnic and photography stops.
+33,Muktinath Pilgrimage Day Trip,Mustang,2500.0,6.0,"spiritual, pilgrimage, guided",Guided visit to the sacred Muktinath site (seasonal).
+32,Lower Mustang Cultural Day Tour,Mustang,2000.0,5.0,"culture, trekking, heritage","Village visits, ancient gompas and local hospitality."
+31,Gorkha Durbar Fort Visit & Short Hike,Gorkha,700.0,3.0,"history, hiking, viewpoint",Historical fort visit with short walk and scenic views.
+30,Janaki Temple Pilgrimage & Cultural Tour,Janakpur,600.0,2.0,"spiritual, culture, heritage","Explore the temple, local crafts and Mithila painting demonstrations."
+29,Viewpoint Sunrise Hike,Ilam,800.0,3.0,"hiking, viewpoint, sunrise",Short early-morning hike to panoramic viewpoints over hills and tea terraces.
+28,Tea Estate Walk & Tasting,Ilam,700.0,2.0,"nature, food, walking",Walk through rolling tea gardens and sample estate teas.
+27,Pilgrim Guided Walk with Local Guide,Lumbini,1200.0,3.0,"history, guided, culture",Learn about Buddhist history with a certified local guide.
+26,Bicycle Tour of Sacred Sites,Lumbini,800.0,3.0,"bike, culture, heritage","Easy cycling tour covering ruins, monasteries and museum sites."
+25,Monastic Circuit & Meditation Session,Lumbini,500.0,2.0,"spiritual, heritage, meditation","Visit Maya Devi Temple, monastery circuit and join a guided meditation."
+24,Canoe Ride on Rapti River,Chitwan,1500.0,2.0,"water, wildlife, boat",Guided canoe trip with birdwatching and riverbank wildlife viewing.
+23,Tharu Cultural Village & Dance Show,Chitwan,900.0,2.0,"culture, heritage, food",Evening cultural performance and village visit with Tharu hosts.
+22,Jungle Safari (Chitwan National Park),Chitwan,2000.0,4.0,"wildlife, safari, nature, family","Half-day jeep or open-vehicle safari to spot rhinos, deer and birds."
+21,Caving & Gupteshwor Exploration,Pokhara,1000.0,1.0,"caving,adventure,nature,conservation",Guided exploration of Gupteshwor and nearby caves with responsible lighting and conservation-aware practices.
+20,Mountain Biking Trails Around Begnas & Phewa,Pokhara,3500.0,5.0,"biking,offroad,adventure,nature",Guided single-day mountain-biking on designated trails around Pokhara's lakes and foothills.
+19,Lake Boat Rental & Sunset Cruise,Pokhara,2500.0,1.5,"boat,relax,photography,romantic",Private or shared boat rentals on Phewa Lake with options for sunset photography and gentle paddling.
+18,Motorbike Rental & Off-Road Annapurna Foothills Tour,Pokhara,3500.0,6.0,"motorbike,rental,offroad,tour",Daily motorbike rentals and guided off-road loops on maintained trails; safety gear and local license required.
+17,Seasonal Skydiving Festival (Tandem),Pokhara,300.0,1.0,"skydiving,seasonal,tandem,adrenaline",Occasional tandem skydiving drop zones for certified operators during good-weather festival windows; book well in advance.
+16,Zipline & Canopy Adventure,Pokhara,3500.0,2.0,"zipline,adrenaline,forest,seasonal",High-elevation zipline runs above forested valleys; seasonal weather restrictions apply.
+15,Seti/Trishuli Day White-Water Rafting,Pokhara,2500.0,6.0,"rafting,water,adventure,river",Full-day or half-day rafting options on nearby rivers; choose grade and operator according to experience and safety briefings.
+14,Kusma (Khimti) Bungee & Canyon Swing,Pokhara,3500.0,1.5,"bungee,adrenaline,seasonal,thrill",Nearby bungee jump and canyon swings for adrenaline seekers; operator safety certifications recommended.
+13,Seasonal Hot Air Balloon (Lake & Mountain Views),Pokhara,8000.0,1.0,"hotairballoon,seasonal,scenic,photography",Occasional hot-air balloon operations over the Pokhara valley in clear-season windows; book early and follow safety briefings.
+12,Tandem Paragliding from Sarangkot,Pokhara,8000.0,1.0,"paragliding,adrenaline,sky,seasonal",World-famous tandem paragliding flights (weather dependent) with certified pilots; ideal for sunrise flights.
+11,Responsible Volunteer Half-Day Experience,Kathmandu,1000.0,4.0,"volunteer,community,responsible,learning","Half-day volunteering with a registered local NGO (education, clean-up projects) — pre-book and check requirements."
+10,Evening Cultural Dance Show & Workshop,Kathmandu,700.0,2.0,"culture,dance,performance,workshop",Attend a short traditional dance performance followed by a participatory workshop run by local performers.
+9,Photography & Conservation Walk,Kathmandu,1000.0,2.5,"photography,nature,conservation,walking",Guided nature photography walk focusing on respectful wildlife and habitat viewing practices.
+8,Chandragiri Cable Car + Short Hike,Kathmandu,1000.0,3.0,"cablecar,hike,viewpoint,nature",Cable car ride with a short ridge walk and picnic; seasonal winds may affect operations.
+7,Culinary Street Food Responsible Tour,Kathmandu,900.0,2.5,"food,tour,streetfood,culinary",Small-group evening tour sampling local specialties with hygiene-conscious vendors and allergy-aware guidance.
+6,Guided Rock Climbing Intro (Local Crags),Kathmandu,3500.0,4.0,"climbing,adventure,skills,safety",Introductory climbing session with certified guides on accessible crags near the valley. Safety gear provided.
+5,Thamel Bike Rental & Self-Guided City Loop,Kathmandu,2500.0,6.0,"rental,bike,self-guided,urban",Short-term bike rental for self-guided exploration on mixed city roads; includes helmet and basic safety briefing.
+4,Rooftop Yoga & Sunrise Session,Kathmandu,900.0,1.0,"wellness,yoga,sunrise,relax",Early-morning yoga overlooking the valley and distant Himalaya (seasonal clear-sky mornings). Responsible instructor-led class.
+3,City Mountain Biking (Nagarjun Trails),Kathmandu,3500.0,4.0,"biking,offroad,adventure,outdoors",Half-day guided mountain-bike trip on safe marked trails around Nagarjun and Shivapuri ridgelines. Helmet recommended.
+2,Heritage Walking & Responsible Cultural Workshop,Kathmandu,700.0,3.0,"culture,walking,workshop,community","Guided walking tour of old city with a short hands-on cultural workshop led by local artisans. Low-impact, community-led."
+1,Heritage Walk,Kathmandu,700.0,3.0,"culture,history,city",Guided walk through Durbar Square
