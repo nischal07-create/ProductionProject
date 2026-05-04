@@ -20,6 +20,7 @@ class Activity(models.Model):
     duration_hours = models.DecimalField(max_digits=4, decimal_places=1, default=1.0)
     indoor = models.BooleanField(default=False)
     family_friendly = models.BooleanField(default=True)
+    photo_urls = models.JSONField(default=list, blank=True)  # List of photo URLs for the activity
 
     def __str__(self):
         return f"{self.name} ({self.destination.name})"
@@ -61,3 +62,34 @@ class TripPlanActivity(models.Model):
 
     def __str__(self):
         return f"{self.trip_plan.title} - Day {self.day_number} #{self.order}"
+
+
+class Enquiry(models.Model):
+    STATUS_NEW = "new"
+    STATUS_CONTACTED = "contacted"
+    STATUS_BOOKED = "booked"
+    STATUS_CLOSED = "closed"
+
+    STATUS_CHOICES = [
+        (STATUS_NEW, "New"),
+        (STATUS_CONTACTED, "Contacted"),
+        (STATUS_BOOKED, "Booked"),
+        (STATUS_CLOSED, "Closed"),
+    ]
+
+    name = models.CharField(max_length=160)
+    email = models.EmailField()
+    city = models.CharField(max_length=120, blank=True)
+    activity_name = models.CharField(max_length=200, blank=True)
+    activity_id = models.PositiveIntegerField(null=True, blank=True)
+    message = models.TextField(blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=STATUS_NEW)
+    operator_notes = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"Enquiry: {self.activity_name or 'general'} by {self.name} <{self.email}>"

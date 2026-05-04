@@ -9,6 +9,8 @@ TREKKING_ROUTES = {
         "best_season": "Sep-Nov, Jan-May",
         "custom_map_image": "/api/trips/media/trek/poon_hill.svg",
         "summary": "A short and scenic trek with sunrise views and rhododendron forests.",
+            "price_usd": 599,
+            "price_npr": 78870,
         "highlights": [
             "Sunrise from Poon Hill",
             "Ghorepani tea houses",
@@ -55,6 +57,8 @@ TREKKING_ROUTES = {
         "best_season": "Sep-Nov, Mar-May",
         "custom_map_image": "/api/trips/media/trek/annapurna_base_camp.svg",
         "summary": "Diverse landscapes from subtropical forest to alpine sanctuary.",
+        "price_usd": 1199,
+        "price_npr": 157740,
         "highlights": [
             "Annapurna Base Camp",
             "Modi Khola valley",
@@ -129,6 +133,8 @@ TREKKING_ROUTES = {
         "best_season": "All year (best Sep-May)",
         "custom_map_image": "/api/trips/media/trek/langtang_valley.svg",
         "summary": "Close-to-Kathmandu trek with Tamang culture and alpine scenery.",
+        "price_usd": 899,
+        "price_npr": 118410,
         "highlights": [
             "Tamang villages",
             "Langtang Lirung views",
@@ -189,6 +195,8 @@ TREKKING_ROUTES = {
         "best_season": "Sep-May",
         "custom_map_image": "/api/trips/media/trek/everest_base_camp.svg",
         "summary": "World-famous expedition route with Sherpa culture and iconic Himalayan terrain.",
+        "price_usd": 1599,
+        "price_npr": 210570,
         "highlights": [
             "Everest Base Camp",
             "Khumbu valley",
@@ -312,6 +320,8 @@ TREKKING_ROUTES = {
         "best_season": "Sep-Nov, Mar-May",
         "custom_map_image": "/api/trips/media/trek/manaslu_circuit.svg",
         "summary": "Remote high-mountain circuit with rich Tibetan-influenced villages and dramatic mountain passes.",
+        "price_usd": 1299,
+        "price_npr": 170910,
         "area_story": "The route follows old salt-trade corridors where Gurung and Tibetan-influenced communities still preserve monastery rituals and seasonal pastoral life.",
         "local_lifestyle": "Villages run on tea-house hospitality, barley farming, yak herding, and prayer-centered community life.",
         "main_activities": [
@@ -430,6 +440,8 @@ TREKKING_ROUTES = {
         "best_season": "Sep-Nov, Mar-May",
         "custom_map_image": "/api/trips/media/trek/mardi_himal.svg",
         "summary": "A compact ridge trek with dramatic Machhapuchhre views and forest camps.",
+        "price_usd": 799,
+        "price_npr": 105270,
         "area_story": "Once a shepherd trail, Mardi Himal route now connects trekkers with Gurung hillside settlements and newly developed community lodges.",
         "local_lifestyle": "Life follows mountain farming, lodge work, and seasonal trekking economy around Kande-Siding corridor.",
         "main_activities": [
@@ -469,6 +481,8 @@ TREKKING_ROUTES = {
         "best_season": "May-Oct",
         "custom_map_image": "/api/trips/media/trek/upper_mustang.svg",
         "summary": "Rain-shadow desert trek through walled villages, caves, and ancient Tibetan-Buddhist culture.",
+        "price_usd": 1399,
+        "price_npr": 184140,
         "area_story": "Known as the former Kingdom of Lo, this route preserves mud-walled settlements, sky caves, and ceremonial monastic traditions.",
         "local_lifestyle": "Communities rely on barley fields, yak and horse caravans, monastery calendars, and artisan crafts.",
         "main_activities": [
@@ -513,6 +527,8 @@ TREKKING_ROUTES = {
         "best_season": "Sep-Nov, Mar-May",
         "custom_map_image": "/api/trips/media/trek/gokyo_lakes.svg",
         "summary": "High-altitude Sherpa route to turquoise glacial lakes and Gokyo Ri viewpoint.",
+        "price_usd": 1699,
+        "price_npr": 223770,
         "area_story": "The route links Sherpa trading villages, glacier corridors, and sacred high lakes respected by local communities.",
         "local_lifestyle": "Sherpa settlements blend mountaineering economy, yak pasture cycles, and monastery-centered social life.",
         "main_activities": [
