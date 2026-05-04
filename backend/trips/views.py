@@ -40,6 +40,7 @@ class ActivitySerializer(serializers.ModelSerializer):
             "duration_hours",
             "indoor",
             "family_friendly",
+            "photo_urls",
         ]
 
 
@@ -1625,6 +1626,139 @@ def _normalize_list(value):
     return [str(item).strip().lower() for item in value if str(item).strip()]
 
 
+def _activity_type_label(activity):
+    text = " ".join(
+        [
+            str(activity.name or ""),
+            str(activity.description or ""),
+            str(activity.tags or ""),
+        ]
+    ).lower()
+
+    if any(keyword in text for keyword in ["paragliding", "skydiving", "hot air balloon", "hot-air balloon"]):
+        return "Air Adventure"
+    if any(keyword in text for keyword in ["bungee", "zipline", "rock climbing", "climbing", "off-road", "offroad"]):
+        return "Extreme Adventure"
+    if any(keyword in text for keyword in ["rafting", "canoe", "kayak", "river"]):
+        return "Water Adventure"
+    if any(keyword in text for keyword in ["bike", "biking", "motorbike", "cycling"]):
+        return "Ride & Trail"
+    if any(keyword in text for keyword in ["yoga", "wellness", "sunrise", "meditation"]):
+        return "Wellness"
+    if any(keyword in text for keyword in ["food", "culinary", "street food", "food tour"]):
+        return "Food Experience"
+    if any(keyword in text for keyword in ["heritage", "culture", "dance", "craft"]):
+        return "Cultural Experience"
+    return "Local Experience"
+
+
+def _serialize_city_activities(city_key, interests=None, focus_activities=None):
+    guide = CITY_GUIDES.get(city_key)
+    if not guide:
+        return []
+
+    city_name = guide.get("display_name", city_key.title())
+    queryset = Activity.objects.filter(destination__name__iexact=city_name).select_related("destination")
+
+    interest_terms = set(_normalize_list(interests)) | set(_normalize_list(focus_activities))
+    serialized = []
+
+    for activity in queryset:
+        tags = [tag.strip() for tag in (activity.tags or "").split(",") if tag.strip()]
+        activity_terms = set(tag.lower() for tag in tags)
+        search_blob = f"{activity.name} {activity.description} {activity.tags}".lower()
+        score = len(interest_terms.intersection(activity_terms)) * 3
+        if any(term in search_blob for term in interest_terms):
+            score += 2
+        if any(term in activity_terms for term in {"adventure", "seasonal"}):
+            score += 1
+
+        if any(term in activity_terms for term in {"paragliding", "skydiving", "bungee", "zipline", "rafting", "offroad", "bike", "climbing"}):
+            best_time = "Best in clear weather"
+        elif any(term in activity_terms for term in {"sunrise", "lake", "heritage", "culture"}):
+            best_time = "Best in the morning or early afternoon"
+        else:
+            best_time = "Best for a flexible half-day plan"
+
+        if "seasonal" in search_blob:
+            recommendation_note = "Seasonal experience - check weather and booking window before travel."
+        elif activity.family_friendly:
+            recommendation_note = "Family-friendly and easy to slot into a city day plan."
+        else:
+            recommendation_note = "Plan this as a focused activity block with enough buffer time."
+
+        serialized.append(
+            {
+                "name": activity.name,
+                "type": _activity_type_label(activity),
+                "description": activity.description,
+                "destination": city_name,
+                "photo_url": _activity_photo_url(activity, city_key),
+                "cost_estimate": float(activity.cost_estimate),
+                "duration_hours": float(activity.duration_hours),
+                "indoor": activity.indoor,
+                "family_friendly": activity.family_friendly,
+                "tags": tags,
+                "seasonal": any(word in search_blob for word in ["seasonal", "weather dependent", "weather-dependent", "best season"]),
+                "adventure_level": "High" if any(word in search_blob for word in ["bungee", "skydiving", "paragliding", "zipline", "rafting", "off-road", "offroad"]) else ("Medium" if "adventure" in activity_terms else "Low"),
+                "best_time": best_time,
+                "recommendation_note": recommendation_note,
+                "safety_note": "Check weather, operator certification, and safety gear before booking.",
+                "map_url": f"https://www.google.com/maps/search/?api=1&query={quote_plus(activity.name + ' ' + city_name)}",
+                "match_score": score,
+                # Fare and booking details
+                "exact_fare_npr": (int(round(float(activity.cost_estimate))) if activity.cost_estimate and float(activity.cost_estimate) > 0 else None),
+                "estimated_fare_npr": (int(round(float(activity.cost_estimate))) if activity.cost_estimate and float(activity.cost_estimate) > 0 else None),
+                "estimated_fare_range": (None if activity.cost_estimate and float(activity.cost_estimate) > 0 else _category_price_band(None)),
+                "booking_tip": None,
+                "operator_suggestion": None,
+                "included_items": [],
+                "booking_lead_time_days": None,
+            }
+        )
+
+    ordered = sorted(serialized, key=lambda item: (-item["match_score"], item["name"]))
+    for item in ordered:
+        item.pop("match_score", None)
+        # enrich booking advice and inferred safety/booking fields
+        typ = (item.get("type") or "").lower()
+        tags_lc = " ".join([t.lower() for t in (item.get("tags") or [])])
+        # default operator suggestion
+        item["operator_suggestion"] = "Contact local licensed operators; confirm price and safety certification."
+        # booking lead time defaults
+        if "air" in typ or "paragliding" in tags_lc or "hotair" in tags_lc or "hot air" in (item.get("name") or "").lower():
+            item["booking_tip"] = "Weather-dependent. Book at least 3-7 days in advance and confirm fly windows."
+            item["included_items"] = ["Safety briefing", "Pilot and crew", "Passenger harnesses"]
+            item["booking_lead_time_days"] = 7
+            # hot-air-balloon specifics where relevant
+            if "hotair" in tags_lc or "hot air" in (item.get("name") or "").lower():
+                item["flight_altitude_m"] = 300
+                item["flight_duration_min"] = int(item.get("duration_hours", 1) * 60)
+                item["safety_briefing_included"] = True
+        elif "paragliding" in tags_lc or "skydiving" in tags_lc:
+            item["booking_tip"] = "Book with certified pilots; morning slots are preferred for thermal stability."
+            item["included_items"] = ["Helmet", "Harness", "Pilot insurance info"]
+            item["booking_lead_time_days"] = 3
+        elif "rafting" in tags_lc or "river" in tags_lc:
+            item["booking_tip"] = "Operator provides lifejackets; confirm class of river and experience level."
+            item["included_items"] = ["Lifejacket", "Guide", "Safety briefing"]
+            item["booking_lead_time_days"] = 1
+        elif "food" in tags_lc or "culinary" in tags_lc:
+            item["booking_tip"] = "Inform operator of allergies; small-group tours are common."
+            item["included_items"] = ["Tasting portions", "Local guide"]
+            item["booking_lead_time_days"] = 0
+        else:
+            item["booking_tip"] = item.get("recommendation_note") or "Book locally or via trusted operator; check seasonal availability."
+            item["booking_lead_time_days"] = 1
+        # ensure numeric fare fields
+        if item.get("estimated_fare_npr") is None and item.get("cost_estimate"):
+            try:
+                item["estimated_fare_npr"] = int(round(float(item.get("cost_estimate"))) )
+            except Exception:
+                item["estimated_fare_npr"] = None
+    return ordered
+
+
 def _category_price_band(category):
     category_bands = {
         "heritage": "NPR 300-1200",
@@ -1960,12 +2094,96 @@ def _slug_close_match(input_slug, candidate_slug):
 
 def _place_photo_url(place, city_key):
     place_slug = slugify(place.get("name", "place")) or "place"
-    return f"/api/trips/media/place/{city_key}/{place_slug}.svg"
+    category = str(place.get("category", "")).lower()
+    # Try local static jpg first
+    static_base = os.path.join(settings.BASE_DIR, "core", "static", "core", "photos", "places")
+    city_dir = os.path.join(static_base, city_key)
+    match = _best_image_match_in_dir(city_dir, place_slug)
+    if match:
+        rel = os.path.relpath(match, os.path.join(settings.BASE_DIR, "core", "static"))
+        return "/static/" + rel.replace("\\", "/")
+    # Category fallback SVG
+    cat_svg = os.path.join(static_base, f"{category}.svg")
+    if os.path.isfile(cat_svg):
+        return f"/static/core/photos/places/{category}.svg"
+    return "/static/core/photos/places/default.svg"
 
 
 def _food_photo_url(food, city_key):
     food_slug = slugify(food.get("name", "food")) or "food"
-    return f"/api/trips/media/food/{city_key}/{food_slug}.svg"
+    food_type = str(food.get("type", "")).lower()
+    static_base = os.path.join(settings.BASE_DIR, "core", "static", "core", "photos", "foods")
+    city_dir = os.path.join(static_base, city_key)
+    match = _best_image_match_in_dir(city_dir, food_slug)
+    if match:
+        rel = os.path.relpath(match, os.path.join(settings.BASE_DIR, "core", "static"))
+        return "/static/" + rel.replace("\\", "/")
+    alias_slug = FOOD_SLUG_IMAGE_ALIASES.get(f"{city_key}:{food_slug}", "")
+    if alias_slug:
+        alias_match = _best_image_match_in_dir(city_dir, alias_slug)
+        if alias_match:
+            rel = os.path.relpath(alias_match, os.path.join(settings.BASE_DIR, "core", "static"))
+            return "/static/" + rel.replace("\\", "/")
+    # Type fallback SVG
+    type_svg = os.path.join(static_base, f"{food_type}.svg")
+    if os.path.isfile(type_svg):
+        return f"/static/core/photos/foods/{food_type}.svg"
+    return "/static/core/photos/foods/default.svg"
+
+
+def _best_keyword_image_match_in_dir(dir_path, keywords):
+    if not os.path.isdir(dir_path) or not keywords:
+        return ""
+
+    best_score = 0
+    best_file = ""
+    for filename in os.listdir(dir_path):
+        full_path = os.path.join(dir_path, filename)
+        if not os.path.isfile(full_path):
+            continue
+        ext = os.path.splitext(filename)[1].lower()
+        if ext not in ALLOWED_IMAGE_EXTENSIONS:
+            continue
+        stem = os.path.splitext(filename)[0].lower()
+        score = sum(1 for keyword in keywords if keyword in stem)
+        if score > best_score:
+            best_score = score
+            best_file = filename
+
+    if best_score > 0 and best_file:
+        return os.path.join(dir_path, best_file)
+    return ""
+
+
+def _activity_photo_url(activity, city_key):
+    name = str(getattr(activity, "name", "") or "").strip()
+    if not name:
+        return ""
+
+    base_dir = os.path.join(settings.BASE_DIR, "core", "static", "core", "photos", "places", city_key)
+    match = _best_image_match_in_dir(base_dir, slugify(name))
+    if match:
+        return _static_media_url(["core", "photos", "places", city_key, os.path.basename(match)])
+
+    guide = CITY_GUIDES.get(city_key)
+    if guide:
+        name_lc = name.lower()
+        for place in guide.get("places", []):
+            place_name = str(place.get("name", "") or "")
+            if not place_name:
+                continue
+            place_lc = place_name.lower()
+            if place_lc in name_lc or name_lc in place_lc:
+                return _place_photo_url(place, city_key)
+
+    keywords = _keywords_from_name(
+        f"{name} {getattr(activity, 'description', '') or ''} {getattr(activity, 'tags', '') or ''}"
+    )
+    match = _best_keyword_image_match_in_dir(base_dir, keywords)
+    if match:
+        return _static_media_url(["core", "photos", "places", city_key, os.path.basename(match)])
+
+    return ""
 
 
 def _local_media_candidates(base_dir, city_key, slug_name):
@@ -3030,6 +3248,8 @@ def city_ai_guide(request, city):
         },
     )
 
+    city_activities = _serialize_city_activities(city_key, all_interests, focus_activities)
+
     return Response(
         {
             "city": guide["display_name"],
@@ -3051,6 +3271,7 @@ def city_ai_guide(request, city):
             "best_places": places,
             "famous_foods": foods,
             "day_wise_itinerary": day_wise_itinerary,
+            "activities": city_activities,
             "city_profile": city_profile,
             "comfort_pack": _comfort_pack(guide["display_name"], safety_priority, pricing_priority),
             "anti_scam_pack": _anti_scam_pack(guide["display_name"]),
@@ -3371,3 +3592,74 @@ def trekking_offline_pack(request, route_id):
             ],
         }
     )
+
+
+# --- Enquiry API (simple server-side saving for booking enquiries) ---
+from .models import Enquiry
+from rest_framework import status
+from django.core.mail import send_mail
+import logging
+logger = logging.getLogger(__name__)
+from rest_framework import permissions
+
+
+class EnquirySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Enquiry
+        fields = ["id", "name", "email", "city", "activity_name", "activity_id", "message", "status", "operator_notes", "created_at", "updated_at"]
+
+
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def create_enquiry(request):
+    data = request.data or {}
+    # allow activity payload or flat fields
+    payload = {
+        "name": data.get("name") or data.get("contact_name") or "",
+        "email": data.get("email") or data.get("contact_email") or "",
+        "city": data.get("city") or data.get("activity_city") or "",
+        "activity_name": data.get("activity_name") or (data.get("activity") or {}).get("name") or "",
+        "activity_id": data.get("activity_id") or (data.get("activity") or {}).get("id") or None,
+        "message": data.get("message") or "",
+        "status": Enquiry.STATUS_NEW,
+    }
+    serializer = EnquirySerializer(data=payload)
+    if serializer.is_valid():
+        enquiry = serializer.save()
+
+        # Try sending a notification email to site admins (best-effort)
+        try:
+            admin_recipients = [addr for _, addr in getattr(settings, "ADMINS", [])]
+            if not admin_recipients:
+                admin_recipients = [getattr(settings, "DEFAULT_FROM_EMAIL", None) or getattr(settings, "EMAIL_HOST_USER", "book@trailmate.local")]
+
+            subject = f"New enquiry: {enquiry.activity_name or 'General'} from {enquiry.name}"
+            body = (
+                f"Name: {enquiry.name}\n"
+                f"Email: {enquiry.email}\n"
+                f"City: {enquiry.city}\n"
+                f"Activity: {enquiry.activity_name}\n\n"
+                f"Message:\n{enquiry.message}\n\n"
+                f"Received at: {enquiry.created_at}\n"
+            )
+            from_email = getattr(settings, "DEFAULT_FROM_EMAIL", None) or getattr(settings, "EMAIL_HOST_USER", None)
+            if from_email and admin_recipients:
+                send_mail(subject, body, from_email, admin_recipients, fail_silently=True)
+        except Exception as exc:
+            logger.exception("Failed to send enquiry notification email: %s", exc)
+
+        return Response(
+            {
+                **EnquirySerializer(enquiry).data,
+                "operator_message": "The enquiry is now visible on the operator dashboard and marked as new.",
+            },
+            status=status.HTTP_201_CREATED,
+        )
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class EnquiryListView(generics.ListAPIView):
+    """Admin-only listing of enquiries."""
+    queryset = Enquiry.objects.all().order_by("-created_at")
+    serializer_class = EnquirySerializer
+    permission_classes = [permissions.IsAdminUser]
