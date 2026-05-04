@@ -8,19 +8,19 @@
   <link rel="icon" type="image/svg+xml" href="/static/core/favicon.svg" />
   <style>
     :root {
-      --primary: #0f766e;
-      --primary-light: #ccfbf1;
-      --primary-dark: #0f766e;
-        --secondary: #ea580c;
-        --bg: #fffaf4;
+      --primary: #1f6f54;
+      --primary-light: #d6f5e6;
+      --primary-dark: #155a44;
+      --secondary: #d97706;
+      --bg: #f4efe7;
       --bg-dark: #0f172a;
       --card: rgba(255,255,255,0.92);
       --border: rgba(148,163,184,0.22);
       --text: #0f172a;
       --text-light: #475569;
-      --accent-sky: #0284c7;
-      --accent-indigo: #4338ca;
-      --accent-rose: #e11d48;
+      --accent-sky: #1f8ea3;
+      --accent-indigo: #365a72;
+      --accent-rose: #b45309;
       --ok: #10b981;
       --err: #ef4444;
       --header-offset: 94px;
@@ -31,16 +31,18 @@
     body { 
       margin: 0; 
         font-family: Poppins, "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
       background:
-          radial-gradient(circle at top left, rgba(20,184,166,0.2), transparent 30%),
-          radial-gradient(circle at bottom right, rgba(234,88,12,0.2), transparent 28%),
-          radial-gradient(circle at 75% 20%, rgba(2,132,199,0.12), transparent 24%),
-          linear-gradient(180deg, #fffaf4 0%, #f8fbff 100%);
+          radial-gradient(circle at top left, rgba(31,111,84,0.2), transparent 30%),
+          radial-gradient(circle at bottom right, rgba(217,119,6,0.18), transparent 28%),
+          radial-gradient(circle at 75% 20%, rgba(31,142,163,0.12), transparent 24%),
+          linear-gradient(180deg, var(--bg) 0%, #f7faf5 100%);
       color: var(--text);
       line-height: 1.6;
     }
     .navbar {
-      background: linear-gradient(135deg, var(--primary) 0%, #14b8a6 100%);
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
       color: white;
       padding: 16px 24px;
       box-shadow: var(--shadow-lg);
@@ -60,7 +62,7 @@
       margin: 0; 
       font-size: 28px; 
       font-weight: 700;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.6px;
     }
     .auth-status {
       padding: 6px 14px;
@@ -116,14 +118,14 @@
     .wrap { 
       max-width: 1400px; 
       margin: 0 auto; 
-      padding: 26px 24px; 
+      padding: 30px 24px; 
     }
     .tabs {
       display: grid;
       grid-template-columns: repeat(6, minmax(120px, 1fr));
       gap: 10px;
       margin-bottom: 32px;
-      padding: 12px;
+      padding: 14px;
       border: 1px solid var(--border);
       border-radius: 22px;
       background: linear-gradient(135deg, rgba(255,255,255,0.82), rgba(204,251,241,0.56));
@@ -139,7 +141,7 @@
       align-items: center;
       gap: 14px;
       padding: 16px 18px;
-      margin-bottom: 18px;
+      margin-bottom: 22px;
       background: linear-gradient(135deg, rgba(255,255,255,0.88), rgba(239,246,255,0.8));
       border: 1px solid var(--border);
       border-radius: 18px;
@@ -149,6 +151,7 @@
       margin: 0;
       font-size: 18px;
       color: #0f172a;
+      letter-spacing: -0.2px;
     }
     .portal-banner p {
       margin: 4px 0 0;
@@ -171,7 +174,7 @@
       font-size: 13px;
     }
     .portal-links a.primary-link {
-      background: linear-gradient(135deg, var(--primary) 0%, #14b8a6 100%);
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
       color: #fff;
       border-color: transparent;
     }
@@ -200,7 +203,7 @@
     }
     .tab-btn.active {
       color: #fff;
-      background: linear-gradient(135deg, var(--primary), #14b8a6);
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
       border-color: transparent;
       box-shadow: 0 14px 24px rgba(15,118,110,0.3);
     }
@@ -216,13 +219,14 @@
       font-size: 28px;
       font-weight: 700;
       color: var(--text);
+      letter-spacing: -0.3px;
     }
     .hero-card {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
       gap: 22px;
-      padding: 26px;
-      margin: 4px 0 26px;
+      padding: 28px;
+      margin: 6px 0 30px;
       border: 1px solid var(--border);
       border-radius: 24px;
         background: linear-gradient(145deg, rgba(255,255,255,0.96), rgba(236,253,245,0.9) 52%, rgba(255,237,213,0.82));
@@ -253,7 +257,7 @@
       min-width: 160px;
     }
     .hero-actions .cta-primary {
-      background: linear-gradient(135deg, var(--primary) 0%, #14b8a6 100%);
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
       color: #fff;
       box-shadow: 0 18px 28px rgba(20, 184, 166, 0.28);
     }
@@ -295,28 +299,34 @@
     .hero-image-stack {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      gap: 12px;
     }
     .hero-image-stack figure {
       margin: 0;
+      position: relative;
       border-radius: 14px;
       overflow: hidden;
-      border: 1px solid var(--border);
-      background: #fff;
-      box-shadow: var(--shadow);
+      border: none;
+      background: transparent;
+      box-shadow: 0 18px 30px rgba(15, 23, 42, 0.12);
     }
     .hero-image-stack img {
       width: 100%;
-      height: 150px;
+      height: 170px;
       object-fit: cover;
       display: block;
     }
     .hero-image-stack figcaption {
-      padding: 8px 10px;
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      padding: 6px 10px;
       font-size: 12px;
       font-weight: 700;
-      color: var(--text-light);
-      background: #fff;
+      color: #fff;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
     }
     .hero-note {
       padding: 18px;
@@ -327,6 +337,54 @@
     .hero-note strong {
       display: block;
       margin-bottom: 6px;
+    }
+    .mid-photo-strip {
+      margin: 14px 0 22px;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.9);
+      box-shadow: var(--shadow-lg);
+    }
+    .mid-photo-strip-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr 0.9fr;
+      gap: 10px;
+      padding: 12px;
+    }
+    .mid-photo-strip figure {
+      margin: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      min-height: 150px;
+      box-shadow: 0 18px 30px rgba(15, 23, 42, 0.12);
+    }
+    .mid-photo-strip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .mid-photo-strip figcaption {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #fff;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+    }
+    @media (max-width: 920px) {
+      .mid-photo-strip-grid {
+        grid-template-columns: 1fr;
+      }
+      .mid-photo-strip figure {
+        min-height: 170px;
+      }
     }
     .hero-feature-row {
       display: flex;
@@ -348,6 +406,67 @@
       display: grid;
       grid-template-columns: 1.15fr 0.95fr;
       gap: 24px;
+    }
+    .guide-tabs {
+      display: none;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 12px 0 18px;
+    }
+    #screen-guide.guide-generated .guide-tabs {
+      display: flex;
+    }
+    .guide-tab {
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+    .guide-tab.active {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff;
+      border-color: transparent;
+    }
+    /* Hide the old map tab content; maps are shown per card. */
+    [data-guide-section="map"] {
+      display: none !important;
+    }
+    #screen-guide.guide-generated button:not(.guide-tab) {
+      display: none !important;
+    }
+    #screen-guide.guide-generated .btn-small-secondary {
+      display: none !important;
+    }
+    #screen-guide.guide-generated .guide-section-card:first-child {
+      display: none;
+    }
+    #screen-guide.guide-generated .screen-head {
+      display: none;
+    }
+
+    body.guide-focus .navbar,
+    body.guide-focus .portal-banner,
+    body.guide-focus .hero-card,
+    body.guide-focus .tabs,
+    body.guide-focus #screen-dashboard,
+    body.guide-focus #screen-catalog,
+    body.guide-focus #screen-plans,
+    body.guide-focus #screen-items,
+    body.guide-focus #screen-trekking {
+      display: none !important;
+    }
+
+    body.guide-focus .wrap {
+      padding-top: 28px;
+    }
+
+    body.guide-focus #screen-guide {
+      margin-top: 0;
     }
     .guide-summary {
       padding: 20px;
@@ -455,7 +574,7 @@
       cursor: pointer;
     }
     .map-chip.active {
-      background: linear-gradient(135deg, var(--primary), #14b8a6);
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
       color: #fff;
       border-color: transparent;
     }
@@ -504,6 +623,10 @@
     }
     .activity-card .map-frame {
       height: 140px;
+    }
+    .activity-card .guide-photo {
+      height: 160px;
+      border-radius: 14px;
     }
     .activity-summary-note {
       margin-top: 8px;
@@ -586,7 +709,7 @@
       color: var(--text);
     }
     .trust-pill.primary {
-      background: linear-gradient(135deg, var(--primary), #14b8a6);
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
       color: #fff;
       border-color: transparent;
     }
@@ -747,6 +870,7 @@
       font-size: 18px;
       font-weight: 700;
       color: var(--text);
+      letter-spacing: -0.15px;
     }
     .hidden {
       display: none !important;
@@ -811,31 +935,33 @@
       cursor: pointer;
       font-weight: 700;
       font-size: 14px;
+      letter-spacing: 0.2px;
       transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       width: 100%;
       justify-content: center;
+      box-shadow: 0 10px 18px rgba(15, 23, 42, 0.12);
     }
     button:not(.ghost):not(.danger) { 
-      background: linear-gradient(135deg, var(--primary) 0%, #14b8a6 100%);
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
       color: white;
     }
     button:not(.ghost):not(.danger):hover { 
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+      box-shadow: 0 16px 22px rgba(21, 90, 68, 0.28);
     }
     button:not(.ghost):not(.danger):active {
       transform: translateY(0);
     }
     button.ghost { 
       background: transparent; 
-      color: var(--primary);
-      border: 1px solid var(--primary);
+      color: var(--primary-dark);
+      border: 1px solid rgba(21, 90, 68, 0.6);
     }
     button.ghost:hover {
-      background: var(--primary-light);
+      background: rgba(214, 245, 230, 0.7);
     }
     button.danger { 
       background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
@@ -1289,7 +1415,7 @@
 
   <header class="navbar">
     <div class="navbar-content">
-      <h1>TrailMate Tourist Portal</h1>
+      <h1>TrailMate</h1>
       <div class="top-auth">
         <div id="authChip" class="auth-status">Not authenticated</div>
         <div class="auth-inline guest-only">
@@ -1305,96 +1431,74 @@
   <div class="wrap">
     <div class="portal-banner">
       <div>
-        <h2>Tourist Portal</h2>
-        <p>Login first to use planner features. Before login, this page is view-only.</p>
-      </div>
-      <div class="portal-links">
-        <a class="primary-link" href="#guide" data-jump="screen-guide">Open Smart Tourist Planner</a>
-        <a href="#plans" data-jump="screen-plans">Trip Planner</a>
-        <a href="#trekking" data-jump="screen-trekking">Trekking Routes</a>
+        <h2>Your Nepal travel workspace</h2>
+        <p class="hint" style="margin:8px 0 0;">Build trip plans, generate a city guide, and keep maps ready while you travel.</p>
       </div>
     </div>
 
-    <section class="launch-kpi-strip" aria-label="Portal KPIs">
-      <article class="kpi-mini">
-        <strong>4 Trek Zones</strong>
-        <span>Route-mapped mountain regions</span>
-      </article>
-      <article class="kpi-mini">
-        <strong>AI Planning</strong>
-        <span>Personalized day-wise itineraries</span>
-      </article>
-      <article class="kpi-mini">
-        <strong>Budget Layer</strong>
-        <span>Transparent spending guidance</span>
-      </article>
-      <article class="kpi-mini">
-        <strong>Safety-First</strong>
-        <span>Trust, comfort, and route clarity</span>
-      </article>
-    </section>
-
     <section class="hero-card">
       <div>
-        <div class="pill" style="display:inline-block; margin-bottom:14px;">Nepal Tourist Portal</div>
-        <h2>Plan and enjoy Nepal with clear, practical travel tools.</h2>
+        <div class="pill" style="display:inline-block; margin-bottom:14px;">Nepal travel planning</div>
+        <h2>Plan Nepal with clean, practical tools.</h2>
         <p>
           TrailMate helps tourists build day-wise plans, discover trusted places, and navigate routes with confidence.
           The flow is kept simple so you can decide faster and travel better.
         </p>
-        <div class="hero-feature-row">
-          <span class="hero-feature-chip">Smart Tourist Planner</span>
-          <span class="hero-feature-chip">Trekking Route Insights</span>
-          <span class="hero-feature-chip">Budget and Safety Support</span>
-          <span class="hero-feature-chip">City Guide with Maps</span>
-        </div>
-        <div class="stat-grid">
-          <div class="stat-item"><strong>4</strong><span>Major trekking regions ready</span></div>
-          <div class="stat-item"><strong>Maps + Guide</strong><span>Integrated city planning support</span></div>
-          <div class="stat-item"><strong>Clear UX</strong><span>Fast, simple, mobile-ready flow</span></div>
-        </div>
       </div>
       <div class="hero-side">
         <div class="hero-image-stack" aria-label="Nepal highlights">
           <figure>
-            <img src="/static/core/photos/places/pokhara/phewa-lake.jpg" alt="Nepal scenery view" onerror="this.onerror=null;this.src='/static/core/photos/places/nature.svg';" />
-            <figcaption>Scenery</figcaption>
+            <img src="/static/core/photos/places/real/pokhara-mountains.jpg" alt="Pokhara mountain view" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/places/nature.svg';" />
+            <figcaption>Pokhara</figcaption>
           </figure>
           <figure>
-            <img src="/static/core/maps/annapurna_base_camp_route.jpg" alt="Nepal trekking route map" onerror="this.onerror=null;this.src='/static/core/photos/places/default.svg';" />
-            <figcaption>Route Map</figcaption>
+            <img src="/static/core/photos/places/real/nepal-bungee.jpg" alt="Bungee jump in Nepal" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/places/adventure.svg';" />
+            <figcaption>Adventure</figcaption>
           </figure>
-        </div>
-        <div class="hero-note">
-          <strong>Tourist-first experience</strong>
-          Focused on what travelers need most: where to go, what to do, and how to move safely.
-        </div>
-        <div class="hero-note">
-          <strong>Built for real-world travel</strong>
-          Includes practical guidance for budget, route timing, trusted places, and trek selection.
+          <figure>
+            <img src="/static/core/photos/places/real/kathmandu-swayambhu.jpg" alt="Kathmandu heritage" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/places/heritage.svg';" />
+            <figcaption>Kathmandu</figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
+    <section class="mid-photo-strip user-only hidden" aria-label="Nepal inspiration photos">
+      <div class="mid-photo-strip-grid">
+        <figure>
+          <img src="/static/core/photos/places/real/pokhara-lake.jpg" alt="Pokhara inspiration" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/places/nature.svg';" />
+          <figcaption>Pokhara</figcaption>
+        </figure>
+        <figure>
+          <img src="/static/core/photos/places/real/chitwan-elephant.jpg" alt="Chitwan inspiration" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/places/nature.svg';" />
+          <figcaption>Chitwan</figcaption>
+        </figure>
+        <figure>
+          <img src="/static/core/photos/foods/real/momo.jpg" alt="Nepali food inspiration" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/foods/default.svg';" />
+          <figcaption>Food</figcaption>
+        </figure>
+      </div>
+    </section>
+
     <div class="tabs">
-      <button class="tab-btn active" data-target="screen-dashboard"><span class="tab-icon">🏠</span>Home</button>
-      <button class="tab-btn" data-target="screen-catalog" data-requires-auth="1"><span class="tab-icon">🧭</span>Discovery</button>
-      <button class="tab-btn" data-target="screen-plans" data-requires-auth="1"><span class="tab-icon">📅</span>Planner</button>
-      <button class="tab-btn" data-target="screen-items" data-requires-auth="1"><span class="tab-icon">🎯</span>Scheduler</button>
-      <button class="tab-btn" data-target="screen-guide" data-requires-auth="1"><span class="tab-icon">🗺️</span>Guide</button>
-      <button class="tab-btn" data-target="screen-trekking" data-requires-auth="1"><span class="tab-icon">⛰️</span>Trekking</button>
+      <button class="tab-btn active" data-target="screen-dashboard">Home</button>
+      <button class="tab-btn" data-target="screen-catalog" data-requires-auth="1">Discover</button>
+      <button class="tab-btn" data-target="screen-plans" data-requires-auth="1">Planner</button>
+      <button class="tab-btn" data-target="screen-items" data-requires-auth="1">Schedule</button>
+      <button class="tab-btn" data-target="screen-guide" data-requires-auth="1">Guide</button>
+      <button class="tab-btn" data-target="screen-trekking" data-requires-auth="1">Trekking</button>
     </div>
 
     <section id="screen-dashboard" class="screen active">
-      <h2>Login Dashboard</h2>
+      <h2>Account</h2>
       <div class="grid">
         <div class="card guest-only">
-          <h3>🔐 Account Access</h3>
+          <h3>Account access</h3>
           <p class="hint">Sign in from the top-right bar for cleaner access from anywhere in the portal.</p>
           <div id="authStatus" class="status">Use the top-right sign in to continue</div>
         </div>
         <div class="card guest-only">
-          <h3>📝 Create Account</h3>
+          <h3>Create account</h3>
           <p class="hint">New to TrailMate? Sign up to start planning.</p>
           <div class="form-group">
             <label>Username</label>
@@ -1412,19 +1516,17 @@
           <div id="registerStatus" class="status">Sign up to get started</div>
         </div>
         <div id="travelerPanel" class="card traveler-card user-only hidden">
-          <h3>🎉 Traveler Control Panel</h3>
+          <h3>Traveler panel</h3>
           <p class="hint">Welcome back, <strong id="travelerName">traveler</strong>. Your personalized tools are ready.</p>
           <div class="row" style="margin-top:14px;">
             <button type="button" data-jump="screen-plans">My Trip Plans</button>
-            <button type="button" class="ghost" data-jump="screen-trekking">Open Trekking Routes</button>
           </div>
           <div class="row">
-            <button type="button" class="ghost" data-jump="screen-items">Open Scheduler</button>
-            <button id="logoutUserPanel" type="button" class="danger">Sign Out</button>
+            <button type="button" class="ghost" data-jump="screen-items">Open schedule</button>
           </div>
           <div class="status ok">Signed-in mode enabled: planning, activities, and saved trips.</div>
         </div>
-        <div class="card">
+        <div class="card hidden">
           <h3>✨ Quick Status</h3>
           <p class="hint">Run platform health and authentication endpoint checks.</p>
           <div class="row">
@@ -1437,27 +1539,27 @@
     </section>
 
     <section id="screen-catalog" class="screen">
-      <h2>🗺️ Discovery Engine</h2>
+      <h2>Discover</h2>
       <p class="hint">Explore verified destinations and activities curated for practical trip execution.</p>
       <div class="row" style="margin-bottom: 24px;">
         <button id="loadDestinations">Load Destinations</button>
         <button id="loadActivities" class="ghost">Load Activity Catalog</button>
       </div>
-      <div id="catalogStatus" class="status">Discovery engine ready</div>
+      <div id="catalogStatus" class="status">Ready to explore</div>
       <div class="grid">
         <div class="card">
-          <h3>🏔️ Destinations</h3>
+          <h3>Destinations</h3>
           <ul id="destinationsList" class="items-list"></ul>
         </div>
         <div class="card">
-          <h3>🎯 Activity Opportunities</h3>
+          <h3>Activities</h3>
           <ul id="activitiesList" class="items-list"></ul>
         </div>
       </div>
     </section>
 
     <section id="screen-plans" class="screen">
-      <h2>📋 Journey Planner</h2>
+      <h2>Trip Planner</h2>
       <p class="hint">Build clear itineraries with dates, budget control, and personal notes.</p>
       <div class="grid">
         <div class="card">
@@ -1571,7 +1673,7 @@
     </section>
 
     <section id="screen-items" class="screen">
-      <h2>🎒 Activity Scheduler</h2>
+      <h2>Schedule</h2>
       <p class="hint">Assign activities day-by-day with execution order for a smooth on-ground experience.</p>
       <div class="grid">
         <div class="card">
@@ -1605,7 +1707,7 @@
           <div id="itemStatus" class="status">Select a blueprint and activity to schedule</div>
         </div>
         <div class="card">
-          <h3>📝 Scheduled Activity Board</h3>
+          <h3>Scheduled activities</h3>
           <ul id="itemsList" class="items-list"></ul>
         </div>
       </div>
@@ -1613,9 +1715,16 @@
     <section id="screen-guide" class="screen">
       <div class="screen-head">
         <div>
-          <h2>Smart Tourist Planner</h2>
+          <h2>Tour Planner</h2>
           <p>Generate clear places, day-wise itinerary, food picks, and route-ready maps from one page.</p>
         </div>
+      </div>
+
+      <div class="guide-tabs" role="tablist" aria-label="Plan results">
+        <button class="guide-tab active" type="button" data-section="places">Places</button>
+        <button class="guide-tab" type="button" data-section="activities">Activities</button>
+        <button class="guide-tab" type="button" data-section="foods">Food</button>
+        <button class="guide-tab" type="button" data-section="itinerary">Day-wise Itinerary</button>
       </div>
 
       <div class="guide-grid">
@@ -1719,61 +1828,61 @@
           <div id="guideStatus" class="status">AI guide engine ready for generation</div>
         </div>
 
-        <div class="card guide-section-card guide-list">
+        <div class="card guide-section-card guide-list" data-guide-section="places">
           <h3>🏛️ Best Places to Visit</h3>
           <ul id="guidePlacesList" class="items-list"></ul>
         </div>
 
-        <div class="card guide-section-card guide-list">
+        <div class="card guide-section-card guide-list" data-guide-section="activities">
           <h3>🚀 Adventure & Activity Picks</h3>
           <ul id="guideActivitiesList" class="items-list"></ul>
         </div>
 
-        <div class="card guide-section-card guide-list">
+        <div class="card guide-section-card guide-list" data-guide-section="places">
           <h3>⭐ Top 3 Must-Visit</h3>
           <ul id="guideHighlightsList" class="items-list"></ul>
         </div>
 
-        <div class="card guide-section-card guide-list">
+        <div class="card guide-section-card guide-list" data-guide-section="places">
           <h3>🧭 Highlights by Category</h3>
           <ul id="guideCategoryList" class="items-list"></ul>
         </div>
 
-        <div class="card guide-section-card guide-list">
+        <div class="card guide-section-card guide-list" data-guide-section="foods">
           <h3>🍲 Famous Foods</h3>
           <ul id="guideFoodsList" class="items-list"></ul>
         </div>
 
-        <div class="card guide-section-card">
+        <div class="card guide-section-card" data-guide-section="itinerary">
           <h3>🗓️ Day-wise Itinerary</h3>
           <div id="guideItinerary" class="guide-itinerary"></div>
         </div>
 
-        <div class="card guide-section-card guide-list">
+        <div class="card guide-section-card guide-list" data-guide-section="itinerary">
           <h3>🚖 Transport Between Stops</h3>
           <ul id="guideTransportList" class="items-list"></ul>
         </div>
 
-        <div class="card guide-section-card guide-list">
+        <div class="card guide-section-card guide-list" data-guide-section="itinerary">
           <h3>🛡️ Safety + Fair Pricing</h3>
           <ul id="guideComfortList" class="items-list"></ul>
         </div>
 
-        <div class="card guide-section-card guide-list">
+        <div class="card guide-section-card guide-list" data-guide-section="itinerary">
           <h3>🧑‍🤝‍🧑 Local Lifestyle and City Connect</h3>
           <ul id="guideConnectionList" class="items-list">
             <li>Generate a city plan to load local lifestyle, main activities, and street food scene.</li>
           </ul>
         </div>
 
-        <div class="card guide-section-card guide-list">
+        <div class="card guide-section-card guide-list" data-guide-section="itinerary">
           <h3>🧰 Tourist Essentials Toolkit</h3>
           <ul id="touristToolkitList" class="items-list">
             <li>Generate a city plan to load emergency contacts, fair pricing, and safety checklist.</li>
           </ul>
         </div>
 
-        <div class="card guide-section-card">
+        <div class="card guide-section-card" data-guide-section="map">
           <h3>City Map and Summary</h3>
           <div id="guideSummary" class="guide-summary">
             <h3>City travel preview</h3>
@@ -1904,7 +2013,7 @@
           </div>
 
           <div class="card guide-section-card trekking-panel trekking-region-card" style="margin-top: 16px;">
-            <h3>🏔️ Route Region Guide</h3>
+          <h3>Route region guide</h3>
             <div id="trekkingRegionDetails" class="trekking-regions-grid">
               <p class="hint">Select a route to show ordered region details.</p>
             </div>
@@ -1963,6 +2072,18 @@
     const guidePersona = document.getElementById("guidePersona");
     const guideActivityType = document.getElementById("guideActivityType");
     const applyPersonaBtn = document.getElementById("applyPersonaBtn");
+    const guideTabs = Array.from(document.querySelectorAll(".guide-tab"));
+    const guideSections = Array.from(document.querySelectorAll("[data-guide-section]"));
+
+    const setGuideSection = (section) => {
+      guideSections.forEach((card) => {
+        const match = card.dataset.guideSection === section;
+        card.classList.toggle("hidden", !match);
+      });
+      guideTabs.forEach((tab) => {
+        tab.classList.toggle("active", tab.dataset.section === section);
+      });
+    };
 
     const planDestination = document.getElementById("planDestination");
     const filterDestination = document.getElementById("filterDestination");
@@ -1992,12 +2113,20 @@
       cityName: "Kathmandu",
       destinationQuery: "Kathmandu Durbar Square",
       origin: null,
+      planMapUrl: "",
+      planMapQuery: "",
     };
 
     function setMapApiStatus(message, isError = false) {
       if (!mapApiStatus) return;
-      mapApiStatus.textContent = message;
-      mapApiStatus.className = `status ${isError ? "danger" : "ok"}`;
+      // Keep map provider details out of the tourist UI.
+      if (isError) {
+        mapApiStatus.textContent = "";
+        mapApiStatus.className = "status hidden";
+        return;
+      }
+      mapApiStatus.textContent = message || "";
+      mapApiStatus.className = message ? `status ${isError ? "danger" : "ok"}` : "status hidden";
     }
 
     function mapQueryFromUrl(mapUrl, fallback = "Kathmandu Tourist Attractions") {
@@ -2081,19 +2210,22 @@
 
       guideRouteState.cityName = cityName;
       guideRouteState.destinationQuery = guideRouteDestination.value || `${cityName} Tourist Attractions`;
+      guideRouteState.planMapUrl = (places?.[0]?.map_url || foods?.[0]?.map_url || "");
+      guideRouteState.planMapQuery = mapQueryFromUrl(guideRouteState.planMapUrl, `${cityName} Tourist Attractions`);
 
       if (guideRouteLink) {
-        guideRouteLink.href = `https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination=${encodeURIComponent(guideRouteState.destinationQuery)}`;
+        guideRouteLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(guideRouteState.planMapQuery)}`;
       }
       if (guideRouteFrame) {
-        guideRouteFrame.src = directionEmbedUrl(null, guideRouteState.destinationQuery);
+        guideRouteFrame.src = mapEmbedUrl(guideRouteState.planMapUrl, guideRouteState.planMapQuery);
       }
-      setGuideRouteStatus("Choose destination and press Use My Current Location for live directions.");
+      setGuideRouteStatus("Showing your city plan map. Use current location for live directions.");
     }
 
     async function useCurrentLocationForGuideRoute() {
       if (!navigator.geolocation) {
         setGuideRouteStatus("Geolocation is not available in this browser.", true);
+        renderGuideRouteDirections();
         return;
       }
 
@@ -2101,21 +2233,30 @@
       navigator.geolocation.getCurrentPosition(
         (position) => {
           guideRouteState.origin = `${position.coords.latitude.toFixed(6)},${position.coords.longitude.toFixed(6)}`;
-          setGuideRouteStatus("Current location captured ✓");
+          setGuideRouteStatus("Current location captured ✓ Loading route...");
+          renderGuideRouteDirections();
         },
         () => {
           setGuideRouteStatus("Could not access your location. Please allow location permission.", true);
+          renderGuideRouteDirections();
         },
         { enableHighAccuracy: true, timeout: 10000 }
       );
     }
 
     function renderGuideRouteDirections() {
-      const destinationQuery = guideRouteDestination?.value || guideRouteState.destinationQuery || `${guideRouteState.cityName} Tourist Attractions`;
+      const planFallbackQuery = guideRouteState.planMapQuery || `${guideRouteState.cityName} Tourist Attractions`;
+      const destinationQuery = guideRouteDestination?.value || guideRouteState.destinationQuery || planFallbackQuery;
       guideRouteState.destinationQuery = destinationQuery;
 
       if (!guideRouteState.origin) {
-        setGuideRouteStatus("Use My Current Location first to generate route directions.", true);
+        if (guideRouteFrame) {
+          guideRouteFrame.src = mapEmbedUrl(guideRouteState.planMapUrl, planFallbackQuery);
+        }
+        if (guideRouteLink) {
+          guideRouteLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(planFallbackQuery)}`;
+        }
+        setGuideRouteStatus(`Showing ${guideRouteState.cityName} plan map. Use current location for live directions.`);
         return;
       }
 
@@ -2142,7 +2283,7 @@
 
       const apiKey = window.TRAILMATE_MAPS_API_KEY || "";
       if (!apiKey) {
-        setMapApiStatus("Google Maps API key missing. Showing fallback map mode.", true);
+        setMapApiStatus("", true);
         return Promise.resolve(false);
       }
 
@@ -2164,7 +2305,7 @@
       if (!isReady || !window.google?.maps) {
         if (personalCityMap) personalCityMap.classList.add("hidden");
         cityMapFrame.classList.remove("hidden");
-        setMapApiStatus("Using fallback map mode. Set GOOGLE_MAPS_API_KEY to enable app map.", true);
+        setMapApiStatus("", true);
         return;
       }
 
@@ -3218,7 +3359,7 @@
     };
 
     if (navLogoutBtn) navLogoutBtn.addEventListener("click", logoutUser);
-    document.getElementById("logoutUserPanel").addEventListener("click", logoutUser);
+    // traveler panel no longer includes a second sign-out button (navbar handles sign-out)
 
     document.getElementById("checkHealthBtn").addEventListener("click", async () => {
       setStatus(quickStatus, "Checking health...");
@@ -3250,6 +3391,9 @@
     if (guideActivityType) guideActivityType.addEventListener("change", applyActivityTypePreset);
     if (guideUseLocationBtn) guideUseLocationBtn.addEventListener("click", useCurrentLocationForGuideRoute);
     if (guideShowDirectionsBtn) guideShowDirectionsBtn.addEventListener("click", renderGuideRouteDirections);
+    guideTabs.forEach((tab) => {
+      tab.addEventListener("click", () => setGuideSection(tab.dataset.section));
+    });
     if (guideRouteDestination) {
       guideRouteDestination.addEventListener("change", () => {
         guideRouteState.destinationQuery = guideRouteDestination.value;
@@ -3270,6 +3414,8 @@
       const pricing_priority = document.getElementById("guidePricing").checked;
 
       setStatus(guideStatus, `Generating ${city.charAt(0).toUpperCase() + city.slice(1)} AI guide...`);
+      document.getElementById("screen-guide")?.classList.remove("guide-generated");
+      document.body?.classList.remove("guide-focus");
 
       const { response, payload } = await api(`/api/trips/guide/${city}/`, {
         method: "POST",
@@ -3288,6 +3434,8 @@
       }, false);
 
       if (!response.ok || !payload) {
+        document.getElementById("screen-guide")?.classList.remove("guide-generated");
+        document.body?.classList.remove("guide-focus");
         renderList(guidePlacesList, [], (x) => x);
         renderList(guideActivitiesList, [], (x) => x);
         renderList(guideHighlightsList, [], (x) => x);
@@ -3301,6 +3449,8 @@
         return setStatus(guideStatus, `Guide generation failed (${response.status})`, true);
       }
 
+      document.getElementById("screen-guide")?.classList.add("guide-generated");
+      document.body?.classList.add("guide-focus");
       guideSummary.innerHTML = `
         <h3>${payload.city} travel preview</h3>
         <p>${payload.tagline || `Smart recommendations for ${payload.city} travel.`}</p>
@@ -3323,9 +3473,22 @@
       cityMapFrame.src = mapEmbedUrl(payload.city_map_url, `${payload.city} Tourist Attractions`);
       await renderPersonalCityGuideMap(payload.city, payload.best_places || []);
       renderMapBoard(payload.city, payload.best_places || [], payload.famous_foods || [], payload.day_wise_itinerary || []);
+      guideRouteState.planMapUrl = payload.day_wise_itinerary?.[0]?.stops?.[0]?.map_url || payload.city_map_url || payload.best_places?.[0]?.map_url || "";
+      guideRouteState.planMapQuery = mapQueryFromUrl(guideRouteState.planMapUrl, `${payload.city} Tourist Attractions`);
       populateGuideRouteDestinations(payload.city, payload.best_places || [], payload.famous_foods || []);
 
       renderList(guideActivitiesList, payload.activities || [], (activity) => {
+        const activityImage = (type, cityName = "") => {
+          const key = (type || "").toLowerCase();
+          const city = (cityName || "").toLowerCase();
+          if (key.includes("bungee") || key.includes("jump")) return "/static/core/photos/places/real/nepal-bungee.jpg";
+          if (key.includes("flight") || key.includes("paragl") || key.includes("balloon")) return "/static/core/photos/places/real/pokhara-mountains.jpg";
+          if (key.includes("nature") || key.includes("lake")) return "/static/core/photos/places/real/pokhara-lake.jpg";
+          if (key.includes("heritage") || key.includes("culture") || key.includes("spiritual")) return "/static/core/photos/places/real/kathmandu-swayambhu.jpg";
+          if (city.includes("chitwan")) return "/static/core/photos/places/real/chitwan-elephant.jpg";
+          return "/static/core/photos/places/real/pokhara-mountains.jpg";
+        };
+
         const badges = [
           activity.type ? `<span class="guide-pill">${activity.type}</span>` : "",
           activity.family_friendly ? `<span class="guide-pill">Family friendly</span>` : "",
@@ -3347,12 +3510,15 @@
         const safety = activity.safety_note ? `<br><span class="activity-summary-line"><strong>Safety:</strong> ${activity.safety_note}</span>` : "";
         const flightDetails = activity.flight_altitude_m ? `<div class="activity-summary-line"><strong>Flight:</strong> ~${activity.flight_altitude_m} m • ${activity.flight_duration_min || (activity.duration_hours ? activity.duration_hours*60 : 60)} min</div>` : "";
         const activityDataB64 = btoa(unescape(encodeURIComponent(JSON.stringify(activity))));
-        return `<div class="activity-card"><strong>${activity.name}</strong><br><span style="color:#0f766e;font-size:12px;">${activity.type || "Experience"}</span><br><span class="activity-summary-line">${details}</span><br><span style="display:block; margin:8px 0; color:#334155;">${activity.description || "A curated local experience."}</span><div class="activity-summary-note">${note}</div>${booking}${operator}${included}${lead}${flightDetails}${safety}<iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapEmbedUrl(activity.map_url, `${activity.name} ${payload.city}`)}" title="${activity.name} map"></iframe><div class="guide-meta" style="margin-top:10px;">${badges}</div><div class="guide-meta" style="margin-top:8px;">${tags}</div><div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;"><a class="map-preview-btn" href="${activity.map_url}" target="_blank" rel="noopener noreferrer">🎯 View activity location</a><button type="button" class="btn-small-secondary booking-btn" data-activity="${activityDataB64}">✉️ Contact operator</button></div></div>`;
+        const activityFallback = activityImage(activity.type, payload.city);
+        const activitySrc = activity.photo_url ? safePlaceImage(activity.photo_url) : activityFallback;
+        const img = `<img class="guide-photo" src="${activitySrc}" alt="${activity.name} photo" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/places/default.svg';" />`;
+        return `<div class="activity-card">${img}<strong>${activity.name}</strong><br><span style="color:#0f766e;font-size:12px;">${activity.type || "Experience"}</span><br><span class="activity-summary-line">${details}</span><br><span style="display:block; margin:8px 0; color:#334155;">${activity.description || "A curated local experience."}</span><div class="activity-summary-note">${note}</div>${booking}${operator}${included}${lead}${flightDetails}${safety}<iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapEmbedUrl(activity.map_url, `${activity.name} ${payload.city}`)}" title="${activity.name} map"></iframe><div class="guide-meta" style="margin-top:10px;">${badges}</div><div class="guide-meta" style="margin-top:8px;">${tags}</div><div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;"><a class="map-preview-btn" href="${activity.map_url}" target="_blank" rel="noopener noreferrer">View activity location</a><button type="button" class="btn-small-secondary booking-btn" data-activity="${activityDataB64}">Contact operator</button></div></div>`;
       });
 
       renderList(guideHighlightsList, payload.top_highlights || (payload.best_places || []).slice(0, 3), (place) => {
         const tags = (place.recommended_for || []).slice(0, 2).map((tag) => `<span class="guide-pill">${tag}</span>`).join(" ");
-        return `<strong>${place.name}</strong><br><span style="color:#6b7280;font-size:12px;">${place.category}</span><br><span style="display:block; margin:8px 0;">${place.why_best}</span><iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapEmbedUrl(place.map_url, `${place.name} ${payload.city}`)}" title="${place.name} map"></iframe><a class="map-preview-btn" href="${place.map_url}" target="_blank" rel="noopener noreferrer">🗺️ Open in Google Maps</a><div class="guide-meta" style="margin-top:10px;">${tags}</div>`;
+        return `<strong>${place.name}</strong><br><span style="color:#6b7280;font-size:12px;">${place.category}</span><br><span style="display:block; margin:8px 0;">${place.why_best}</span><iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapEmbedUrl(place.map_url, `${place.name} ${payload.city}`)}" title="${place.name} map"></iframe><a class="map-preview-btn" href="${place.map_url}" target="_blank" rel="noopener noreferrer">Open in Google Maps</a><div class="guide-meta" style="margin-top:10px;">${tags}</div>`;
       });
 
       const groupedCategories = (payload.best_places || []).reduce((acc, place) => {
@@ -3365,6 +3531,20 @@
         return `<strong>${category}</strong><br><span style="color:#6b7280;font-size:12px;">${names.join(" • ")}</span><span class="category-pill">Top category pick</span>`;
       });
 
+      const placeImage = (category, cityName = "") => {
+        const key = (category || "").toLowerCase();
+        const city = (cityName || "").toLowerCase();
+        if (city.includes("kathmandu")) return "/static/core/photos/places/real/kathmandu-swayambhu.jpg";
+        if (city.includes("pokhara")) return "/static/core/photos/places/real/pokhara-lake.jpg";
+        if (city.includes("chitwan")) return "/static/core/photos/places/real/chitwan-elephant.jpg";
+        if (key.includes("adventure") || key.includes("hike") || key.includes("trek")) return "/static/core/photos/places/real/nepal-bungee.jpg";
+        if (key.includes("nature") || key.includes("lake") || key.includes("view")) return "/static/core/photos/places/real/pokhara-mountains.jpg";
+        if (key.includes("heritage") || key.includes("history") || key.includes("culture") || key.includes("spiritual") || key.includes("temple")) {
+          return "/static/core/photos/places/real/kathmandu-swayambhu.jpg";
+        }
+        return "/static/core/photos/places/real/pokhara-lake.jpg";
+      };
+
       renderList(guidePlacesList, payload.best_places || [], (place) => {
         const tags = (place.recommended_for || []).slice(0, 3).map((tag) => `<span class="guide-pill">${tag}</span>`).join(" ");
         const foodLine = place.famous_food_nearby?.length ? `<br><span style="color:#6b7280;font-size:12px;">Food nearby: ${place.famous_food_nearby.join(", ")}</span>` : "";
@@ -3372,16 +3552,26 @@
         const activityLine = place.main_activity ? `<br><span style="color:#1d4ed8;font-size:12px;">Main activity: ${place.main_activity}</span>` : "";
         const historyLine = place.historical_formation ? `<br><span style="color:#334155;font-size:12px; display:block; margin-top:6px;"><strong>Historical formation:</strong> ${place.historical_formation}</span>` : "";
         const safetyLine = place.safety_note ? `<br><span style="color:#475569;font-size:12px;">Safety: ${place.safety_note}</span>` : "";
-        return `<strong>${place.name}</strong><br><span style="color:#6b7280;font-size:12px;">${place.category}</span><br><span style="display:block; margin:8px 0;">${place.why_best}</span>${foodLine}${priceLine}${activityLine}${historyLine}${safetyLine}<br><iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapEmbedUrl(place.map_url, `${place.name} ${payload.city}`)}" title="${place.name} map"></iframe><div class="guide-meta" style="margin-top:10px;">${tags}</div><a class="map-preview-btn" href="${place.map_url}" target="_blank" rel="noopener noreferrer">🗺️ Open in Google Maps</a>`;
+        const placeFallback = placeImage(place.category, payload.city);
+        const placeSrc = place.area_photo_url ? safePlaceImage(place.area_photo_url) : placeFallback;
+        const img = `<img class="guide-photo" src="${placeSrc}" alt="${place.name} photo" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/places/default.svg';" />`;
+        return `${img}<strong>${place.name}</strong><br><span style="color:#6b7280;font-size:12px;">${place.category}</span><br><span style="display:block; margin:8px 0;">${place.why_best}</span>${foodLine}${priceLine}${activityLine}${historyLine}${safetyLine}<br><iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapEmbedUrl(place.map_url, `${place.name} ${payload.city}`)}" title="${place.name} map"></iframe><div class="guide-meta" style="margin-top:10px;">${tags}</div><a class="map-preview-btn" href="${place.map_url}" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>`;
       });
 
       renderList(guideFoodsList, payload.famous_foods || [], (food) => {
         const foodFare = food.price_range_npr ? ` • Fare: ${food.price_range_npr}` : "";
+        const foodFallback = (() => {
+          const t = (food.type || food.name || "").toLowerCase();
+          if (t.includes("momo")) return "/static/core/photos/foods/real/momo.jpg";
+          if (t.includes("dal") || t.includes("bhat") || t.includes("thali")) return "/static/core/photos/foods/real/dal-bhat.jpg";
+          if (t.includes("sel") || t.includes("roti")) return "/static/core/photos/foods/real/sel-roti.jpg";
+          return "/static/core/photos/foods/real/momo.jpg";
+        })();
         const foodPhoto = food.photo_url
-          ? `<img class="guide-photo" src="${safeFoodImage(food.photo_url)}" alt="${food.name} photo" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/foods/default.svg';" />`
-          : "";
+          ? `<img class="guide-photo" src="${safeFoodImage(food.photo_url)}" alt="${food.name} photo" loading="lazy" onerror="this.onerror=null;this.src='${foodFallback}';" />`
+          : `<img class="guide-photo" src="${foodFallback}" alt="${food.name} photo" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/foods/default.svg';" />`;
         const foodOrigin = food.origin_note ? `<br><span style="color:#334155;font-size:12px;"><strong>Food history:</strong> ${food.origin_note}</span>` : "";
-        return `<div class="food-card"><strong>${food.name}</strong><br><span style="color:#6b7280;font-size:12px;">${food.type} • ${food.where_to_try}${foodFare}</span>${foodPhoto}${foodOrigin}<iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapEmbedUrl(food.map_url, `${food.name} ${payload.city}`)}" title="${food.name} map"></iframe><a class="map-preview-btn" href="${food.map_url}" target="_blank" rel="noopener noreferrer">🍽️ Open in Google Maps</a></div>`;
+        return `<div class="food-card"><strong>${food.name}</strong><br><span style="color:#6b7280;font-size:12px;">${food.type} • ${food.where_to_try}${foodFare}</span>${foodPhoto}${foodOrigin}<iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapEmbedUrl(food.map_url, `${food.name} ${payload.city}`)}" title="${food.name} map"></iframe><a class="map-preview-btn" href="${food.map_url}" target="_blank" rel="noopener noreferrer">Open in Google Maps</a></div>`;
       });
 
       guideItinerary.innerHTML = "";
@@ -3473,6 +3663,7 @@
     }
 
     updateAuthStatus();
+    setGuideSection("places");
     loadDestinations();
     loadActivities();
 

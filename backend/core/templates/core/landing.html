@@ -7,16 +7,16 @@
   <link rel="icon" type="image/svg+xml" href="/static/core/favicon.svg" />
   <style>
     :root {
-      --bg: #fdf8f2;
+      --bg: #f4efe7;
       --surface: rgba(255, 255, 255, 0.92);
       --line: rgba(15, 23, 42, 0.15);
       --text: #1f2937;
       --muted: #4b5563;
-      --primary: #0f766e;
-      --primary-strong: #0b5e57;
-      --accent: #ea580c;
-      --accent-soft: #fed7aa;
-      --sky: #0284c7;
+      --primary: #1f6f54;
+      --primary-strong: #155a44;
+      --accent: #d97706;
+      --accent-soft: #fde4c4;
+      --sky: #1f8ea3;
       --shadow: 0 18px 46px rgba(15, 23, 42, 0.14);
     }
 
@@ -26,18 +26,20 @@
       margin: 0;
       min-height: 100vh;
       font-family: "Poppins", "Trebuchet MS", "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
       color: var(--text);
       background:
-        radial-gradient(circle at 0% 0%, rgba(15, 118, 110, 0.2), transparent 35%),
-        radial-gradient(circle at 100% 100%, rgba(234, 88, 12, 0.18), transparent 32%),
-        radial-gradient(circle at 80% 20%, rgba(2, 132, 199, 0.15), transparent 28%),
-        linear-gradient(180deg, #fdf8f2 0%, #fff5ea 100%);
+        radial-gradient(circle at 0% 0%, rgba(31, 111, 84, 0.2), transparent 35%),
+        radial-gradient(circle at 100% 100%, rgba(217, 119, 6, 0.18), transparent 32%),
+        radial-gradient(circle at 80% 20%, rgba(31, 142, 163, 0.15), transparent 28%),
+        linear-gradient(180deg, var(--bg) 0%, #f7faf5 100%);
     }
 
     .shell {
       max-width: 1160px;
       margin: 0 auto;
-      padding: 24px;
+      padding: 28px 24px 32px;
     }
 
     .topbar {
@@ -45,7 +47,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 12px 16px;
+      padding: 14px 18px;
       border-radius: 16px;
       border: 1px solid var(--line);
       background: var(--surface);
@@ -68,13 +70,13 @@
       font-size: 20px;
       font-weight: 800;
       color: #fff;
-      background: linear-gradient(135deg, var(--primary), #14b8a6);
+      background: linear-gradient(135deg, var(--primary-strong), var(--primary));
     }
 
     .brand h1 {
       margin: 0;
       font-size: 20px;
-      letter-spacing: -0.2px;
+      letter-spacing: -0.4px;
     }
 
     .brand p {
@@ -86,9 +88,9 @@
     .pill {
       padding: 8px 12px;
       border-radius: 999px;
-      border: 1px solid #99d7d0;
-      color: #0f766e;
-      background: #ecfeff;
+      border: 1px solid rgba(21, 90, 68, 0.25);
+      color: var(--primary-strong);
+      background: rgba(214, 245, 230, 0.6);
       font-size: 12px;
       font-weight: 700;
       white-space: nowrap;
@@ -102,18 +104,6 @@
       align-items: stretch;
     }
 
-    .update-banner {
-      margin-top: 18px;
-      border: 1px solid rgba(2, 132, 199, 0.2);
-      border-radius: 14px;
-      padding: 10px 14px;
-      background: linear-gradient(135deg, #eff6ff, #ecfeff);
-      color: #0c4a6e;
-      font-size: 13px;
-      font-weight: 700;
-      box-shadow: 0 8px 20px rgba(14, 116, 144, 0.12);
-    }
-
     .hero-panel,
     .aside {
       border: 1px solid var(--line);
@@ -123,14 +113,14 @@
     }
 
     .hero-panel {
-      padding: 34px;
+      padding: 36px;
     }
 
     .hero-panel h2 {
       margin: 0 0 14px;
       font-size: clamp(34px, 5vw, 56px);
       line-height: 1.03;
-      letter-spacing: -0.9px;
+      letter-spacing: -1.1px;
     }
 
     .hero-panel p {
@@ -161,13 +151,14 @@
       font-weight: 800;
       border: 1px solid transparent;
       cursor: pointer;
+      letter-spacing: 0.2px;
     }
 
     .primary-action {
       color: #fff;
-      background: linear-gradient(135deg, var(--primary), #14b8a6);
-      box-shadow: 0 16px 26px rgba(20, 184, 166, 0.28);
-      transition: transform 0.2s ease;
+      background: linear-gradient(135deg, var(--primary-strong), var(--primary));
+      box-shadow: 0 18px 28px rgba(21, 90, 68, 0.28);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .primary-action:hover { transform: translateY(-2px); }
@@ -197,13 +188,12 @@
       overflow: hidden;
       position: relative;
       border: 1px solid var(--line);
-      min-height: 170px;
-      background: #e5e7eb;
+      min-height: 140px;
     }
 
     .image-grid img {
       width: 100%;
-      height: 190px;
+      height: 100%;
       object-fit: cover;
       display: block;
     }
@@ -220,7 +210,7 @@
     }
 
     .aside {
-      padding: 22px;
+      padding: 24px;
       display: grid;
       gap: 12px;
       align-content: start;
@@ -258,32 +248,6 @@
       color: var(--muted);
     }
 
-    .feature-board {
-      margin-top: 22px;
-      border: 1px solid rgba(234, 88, 12, 0.2);
-      border-radius: 18px;
-      background: linear-gradient(140deg, rgba(255, 237, 213, 0.85), rgba(255, 255, 255, 0.96));
-      padding: 16px;
-      display: none;
-    }
-
-    .feature-board.active {
-      display: block;
-    }
-
-    .feature-board h4 {
-      margin: 0 0 8px;
-      font-size: 18px;
-      color: #9a3412;
-    }
-
-    .feature-board p {
-      margin: 0;
-      color: #7c2d12;
-      line-height: 1.6;
-      font-size: 14px;
-    }
-
     .sections {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -314,19 +278,6 @@
       margin-top: 10px;
       display: grid;
       gap: 12px;
-    }
-
-    .login-stack.reveal {
-      animation: loginFocus 0.9s ease;
-    }
-
-    @keyframes loginFocus {
-      0% {
-        box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.28);
-      }
-      100% {
-        box-shadow: 0 0 0 12px rgba(15, 118, 110, 0);
-      }
     }
 
     .login-card {
@@ -372,10 +323,12 @@
       display: inline-flex;
       justify-content: center;
       align-items: center;
+      letter-spacing: 0.2px;
+      box-shadow: 0 12px 20px rgba(15, 23, 42, 0.16);
     }
 
     .submit-btn {
-      background: linear-gradient(135deg, var(--primary), #14b8a6);
+      background: linear-gradient(135deg, var(--primary-strong), var(--primary));
     }
 
     .admin-btn {
@@ -424,40 +377,35 @@
         <div class="logo">T</div>
         <div>
           <h1>TrailMate</h1>
-          <p>Tourist portal for planning clear, practical trips across Nepal</p>
+          <p>Plan beautiful, practical trips across Nepal</p>
         </div>
       </div>
+      <div class="pill">Nepal travel planning</div>
     </header>
 
     <main class="hero">
       <section class="hero-panel">
-        <h2>Explore Nepal with a clean and practical travel portal.</h2>
+        <h2>Explore Nepal with a modern, simple travel planner.</h2>
         <p>
-          Discover places, routes, culture, and food before you log in. Features become available
-          after login, so this page is focused on information and inspiration only.
+          Sign in to build day-wise itineraries, discover trusted places, and keep maps ready while you travel.
         </p>
         <div class="cta-row">
-          <button class="primary-action" type="button" id="showFeaturesBtn">View Feature Highlights</button>
-          <a class="secondary-action" href="#login-section" id="goLoginBtn">Go To Login Panels</a>
-        </div>
-        <div class="hero-note">Features are separated clearly and unlocked after login.</div>
-
-        <div class="feature-board" id="featureBoard">
-          <h4>Tourist Portal Highlights</h4>
-          <p>
-            Smart city guide, day-wise itinerary, trekking route details, map-based planning,
-            and budget plus safety suggestions in one practical portal.
-          </p>
+          <a class="primary-action" href="#login-section">Continue</a>
+          <a class="secondary-action" href="/app/">Open Planner</a>
         </div>
 
         <div class="image-grid">
           <figure>
-            <img src="/static/core/photos/places/pokhara/phewa-lake.jpg" alt="Nepal scenery view" onerror="this.onerror=null;this.src='/static/core/photos/places/nature.svg';" />
-            <figcaption>Scenery Preview</figcaption>
+            <img src="/static/core/photos/places/real/kathmandu-swayambhu.jpg" alt="Kathmandu heritage" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/places/heritage.svg';" />
+            <figcaption>Kathmandu</figcaption>
           </figure>
           <figure>
-            <img src="/static/core/maps/annapurna_base_camp_route.jpg" alt="Nepal trekking route map" onerror="this.onerror=null;this.src='/static/core/photos/places/default.svg';" />
-            <figcaption>Route Map Preview</figcaption>
+            <img src="/static/core/photos/places/real/pokhara-lake.jpg" alt="Pokhara lake view" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/places/nature.svg';" />
+            <figcaption>Pokhara</figcaption>
+          </figure>
+          <figure style="grid-column: 1 / -1; min-height: 180px;">
+            <img src="/static/core/photos/places/real/nepal-bungee.jpg" alt="Nepal bungee adventure" loading="lazy" onerror="this.onerror=null;this.src='/static/core/photos/places/adventure.svg';" />
+            <figcaption>Chitwan</figcaption>
           </figure>
         </div>
 
@@ -471,14 +419,14 @@
             <p>See fair-price suggestions, emergency details, and safer route tips.</p>
           </article>
           <article class="section-card">
-            <h5>Trekking Routes</h5>
-            <p>Compare difficulty, altitude, and route summaries before you travel.</p>
+            <h5>Map-ready Planning</h5>
+            <p>Open places quickly in Google Maps and keep your route organized.</p>
           </article>
         </div>
       </section>
 
       <aside class="aside">
-        <h3>What Tourists Need</h3>
+        <h3>Ready to plan?</h3>
         <div class="metric">
           <strong>4+ Trek Regions</strong>
           <span>Popular route plans with day breakdown and map preview.</span>
@@ -487,10 +435,15 @@
           <strong>City Guide Mode</strong>
           <span>Personalized recommendations for Kathmandu, Pokhara, Chitwan, and Lumbini.</span>
         </div>
+        <div class="metric">
+          <strong>Mobile Friendly</strong>
+          <span>Readable layout for both desktop and phone users.</span>
+        </div>
+
         <div class="login-stack" id="login-section">
           <div class="login-card">
             <h4>Tourist Login</h4>
-            <p>Login to open the planner and use all travel features.</p>
+            <p>Sign in to open the planner.</p>
             <div class="field">
               <input id="touristUsername" type="text" placeholder="Tourist username" autocomplete="username" />
             </div>
@@ -530,10 +483,6 @@
     const tokenKey = "trailmate_access_token";
     const usernameKey = "trailmate_username";
 
-    const featureBtn = document.getElementById("showFeaturesBtn");
-    const goLoginBtn = document.getElementById("goLoginBtn");
-    const featureBoard = document.getElementById("featureBoard");
-    const loginSection = document.getElementById("login-section");
     const touristLoginBtn = document.getElementById("touristLoginBtn");
     const touristStatus = document.getElementById("touristStatus");
     const signupBtn = document.getElementById("signupBtn");
@@ -543,25 +492,6 @@
       el.textContent = message;
       el.className = `status ${isError ? "error" : "ok"}`;
     };
-
-    if (featureBtn && featureBoard) {
-      featureBtn.addEventListener("click", () => {
-        featureBoard.classList.toggle("active");
-        featureBtn.textContent = featureBoard.classList.contains("active")
-          ? "Hide Feature Highlights"
-          : "View Feature Highlights";
-      });
-    }
-
-    if (goLoginBtn && loginSection) {
-      goLoginBtn.addEventListener("click", (event) => {
-        event.preventDefault();
-        loginSection.scrollIntoView({ behavior: "smooth", block: "start" });
-        loginSection.classList.remove("reveal");
-        void loginSection.offsetWidth;
-        loginSection.classList.add("reveal");
-      });
-    }
 
     touristLoginBtn.addEventListener("click", async () => {
       const username = document.getElementById("touristUsername").value.trim();
@@ -584,7 +514,7 @@
         }
         localStorage.setItem(tokenKey, data.access);
         localStorage.setItem(usernameKey, username);
-        setStatus(touristStatus, "Login successful. Opening tourist portal...");
+        setStatus(touristStatus, "Login successful. Opening planner...");
         window.location.href = "/app/";
       } catch (error) {
         setStatus(touristStatus, "Login error. Please try again.", true);
