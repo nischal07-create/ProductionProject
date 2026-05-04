@@ -1,0 +1,604 @@
+{
+  "city": "Lumbini",
+  "city_slug": "lumbini",
+  "tagline": "AI-based peaceful heritage guide for spiritual and cultural travel",
+  "inputs": {
+    "interests": [
+      "spiritual",
+      "culture",
+      "history"
+    ],
+    "days": 2,
+    "budget_npr": 4000,
+    "budget_level": "medium",
+    "family_mode": false,
+    "focus_activities": [],
+    "avoid_categories": [],
+    "transport_preference": "balanced",
+    "safety_priority": true,
+    "pricing_priority": true
+  },
+  "top_highlights": [
+    {
+      "name": "Maya Devi Temple",
+      "category": "spiritual",
+      "best_for": [
+        "spiritual",
+        "history",
+        "culture",
+        "peaceful"
+      ],
+      "budget_level": "low",
+      "family_friendly": true,
+      "why_best": "Sacred birthplace site of Lord Buddha with deep heritage value.",
+      "famous_food_nearby": [
+        "Tea",
+        "Simple meals",
+        "Snacks"
+      ],
+      "map_query": "Maya Devi Temple Lumbini"
+    },
+    {
+      "name": "Lumbini Museum",
+      "category": "history",
+      "best_for": [
+        "history",
+        "education",
+        "family",
+        "culture"
+      ],
+      "budget_level": "low",
+      "family_friendly": true,
+      "why_best": "Detailed history of Buddhism and Lumbini civilization.",
+      "famous_food_nearby": [
+        "Tea",
+        "Snacks"
+      ],
+      "map_query": "Lumbini Museum"
+    },
+    {
+      "name": "Ashoka Pillar",
+      "category": "heritage",
+      "best_for": [
+        "history",
+        "photography",
+        "culture"
+      ],
+      "budget_level": "low",
+      "family_friendly": true,
+      "why_best": "Ancient pillar marking the birthplace of Buddha, UNESCO world heritage.",
+      "famous_food_nearby": [
+        "Tea",
+        "Snacks"
+      ],
+      "map_query": "Ashoka Pillar Lumbini"
+    }
+  ],
+  "best_places": [
+    {
+      "name": "Maya Devi Temple",
+      "category": "spiritual",
+      "why_best": "Sacred birthplace site of Lord Buddha with deep heritage value.",
+      "main_activity": "Spiritual",
+      "recommended_for": [
+        "spiritual",
+        "history",
+        "culture",
+        "peaceful"
+      ],
+      "famous_food_nearby": [
+        "Tea",
+        "Simple meals",
+        "Snacks"
+      ],
+      "price_band_npr": "NPR 500-2000",
+      "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+      "area_photo_url": "/api/trips/media/place/lumbini/maya-devi-temple.svg",
+      "historical_formation": "Maya Devi Temple in Lumbini has layered local history. It developed as a sacred gathering point where pilgrimage, ritual practice, and community support systems grew together over generations. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Maya+Devi+Temple+Lumbini"
+    },
+    {
+      "name": "Lumbini Museum",
+      "category": "history",
+      "why_best": "Detailed history of Buddhism and Lumbini civilization.",
+      "main_activity": "History",
+      "recommended_for": [
+        "history",
+        "education",
+        "family",
+        "culture"
+      ],
+      "famous_food_nearby": [
+        "Tea",
+        "Snacks"
+      ],
+      "price_band_npr": "NPR 400-1400",
+      "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+      "area_photo_url": "/api/trips/media/place/lumbini/lumbini-museum.svg",
+      "historical_formation": "Lumbini Museum in Lumbini has layered local history. It evolved as a historical landmark over multiple local governance periods, and later became a preserved reference point for regional identity. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Lumbini+Museum"
+    },
+    {
+      "name": "Ashoka Pillar",
+      "category": "heritage",
+      "why_best": "Ancient pillar marking the birthplace of Buddha, UNESCO world heritage.",
+      "main_activity": "History",
+      "recommended_for": [
+        "history",
+        "photography",
+        "culture"
+      ],
+      "famous_food_nearby": [
+        "Tea",
+        "Snacks"
+      ],
+      "price_band_npr": "NPR 300-1200",
+      "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+      "area_photo_url": "/api/trips/media/place/lumbini/ashoka-pillar.svg",
+      "historical_formation": "Ashoka Pillar in Lumbini has layered local history. Local records and community memory describe it as a long-standing civic and spiritual core, expanded through royal-era patronage and traditional trade movement. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Ashoka+Pillar+Lumbini"
+    },
+    {
+      "name": "Lumbini Monastic Zone",
+      "category": "culture",
+      "why_best": "International monasteries with unique architecture and calm gardens.",
+      "main_activity": "Culture",
+      "recommended_for": [
+        "culture",
+        "architecture",
+        "peaceful",
+        "photography"
+      ],
+      "famous_food_nearby": [
+        "Vegetarian thali",
+        "Tea"
+      ],
+      "price_band_npr": "NPR 500-2000",
+      "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+      "area_photo_url": "/api/trips/media/place/lumbini/lumbini-monastic-zone.svg",
+      "historical_formation": "Lumbini Monastic Zone in Lumbini has layered local history. The area formed around settlement clusters, festival routes, and artisan activity, gradually becoming a living cultural hub. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Lumbini+Monastic+Zone"
+    }
+  ],
+  "famous_foods": [
+    {
+      "name": "Simple Veg Thali",
+      "type": "budget meal",
+      "where_to_try": "Lumbini Bazaar",
+      "price_range_npr": "NPR 200-650",
+      "photo_url": "/api/trips/media/food/lumbini/simple-veg-thali.svg",
+      "origin_note": "Simple Veg Thali in Lumbini: It became popular through a mix of local ingredients, migration influence, and city food-lane adaptation.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Simple+Veg+Thali+Lumbini+Bazaar+Lumbini"
+    },
+    {
+      "name": "Tea and Local Snacks",
+      "type": "light refreshment",
+      "where_to_try": "Monastic area",
+      "price_range_npr": "NPR 200-650",
+      "photo_url": "/api/trips/media/food/lumbini/tea-and-local-snacks.svg",
+      "origin_note": "Tea and Local Snacks in Lumbini: It became popular through a mix of local ingredients, migration influence, and city food-lane adaptation.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Tea+and+Local+Snacks+Monastic+area+Lumbini"
+    },
+    {
+      "name": "Buddhist Vegetarian Curry",
+      "type": "traditional meal",
+      "where_to_try": "Monastery restaurants",
+      "price_range_npr": "NPR 350-900",
+      "photo_url": "/api/trips/media/food/lumbini/buddhist-vegetarian-curry.svg",
+      "origin_note": "Buddhist Vegetarian Curry in Lumbini: Its preparation style comes from household and festival kitchens, then moved into public eateries as demand grew.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Buddhist+Vegetarian+Curry+Monastery+restaurants+Lumbini"
+    },
+    {
+      "name": "Fresh Momos",
+      "type": "street food",
+      "where_to_try": "Lumbini Bazaar",
+      "price_range_npr": "NPR 120-280",
+      "photo_url": "/api/trips/media/food/lumbini/fresh-momos.svg",
+      "origin_note": "Fresh Momos in Lumbini: It grew through market-stall culture where vendors optimized quick, affordable flavor for daily commuters and evening crowds.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Fresh+Momos+Lumbini+Bazaar+Lumbini"
+    }
+  ],
+  "day_wise_itinerary": [
+    {
+      "day": 1,
+      "stops": [
+        {
+          "name": "Maya Devi Temple",
+          "category": "spiritual",
+          "why_best": "Sacred birthplace site of Lord Buddha with deep heritage value.",
+          "main_activity": "Spiritual",
+          "recommended_for": [
+            "spiritual",
+            "history",
+            "culture",
+            "peaceful"
+          ],
+          "famous_food_nearby": [
+            "Tea",
+            "Simple meals",
+            "Snacks"
+          ],
+          "price_band_npr": "NPR 500-2000",
+          "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+          "area_photo_url": "/api/trips/media/place/lumbini/maya-devi-temple.svg",
+          "historical_formation": "Maya Devi Temple in Lumbini has layered local history. It developed as a sacred gathering point where pilgrimage, ritual practice, and community support systems grew together over generations. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Maya+Devi+Temple+Lumbini"
+        },
+        {
+          "name": "Ashoka Pillar",
+          "category": "heritage",
+          "why_best": "Ancient pillar marking the birthplace of Buddha, UNESCO world heritage.",
+          "main_activity": "History",
+          "recommended_for": [
+            "history",
+            "photography",
+            "culture"
+          ],
+          "famous_food_nearby": [
+            "Tea",
+            "Snacks"
+          ],
+          "price_band_npr": "NPR 300-1200",
+          "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+          "area_photo_url": "/api/trips/media/place/lumbini/ashoka-pillar.svg",
+          "historical_formation": "Ashoka Pillar in Lumbini has layered local history. Local records and community memory describe it as a long-standing civic and spiritual core, expanded through royal-era patronage and traditional trade movement. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Ashoka+Pillar+Lumbini"
+        }
+      ],
+      "overview": [
+        {
+          "slot": "Morning",
+          "title": "Maya Devi Temple",
+          "note": "Sacred birthplace site of Lord Buddha with deep heritage value.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Maya+Devi+Temple+Lumbini",
+          "duration_hint": "2-3 hrs",
+          "opening_hours": "6:00 AM - 7:00 PM",
+          "timing_note": "Morning and early evening are calmer for spiritual visits."
+        },
+        {
+          "slot": "Afternoon",
+          "title": "Ashoka Pillar",
+          "note": "Ancient pillar marking the birthplace of Buddha, UNESCO world heritage.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Ashoka+Pillar+Lumbini",
+          "duration_hint": "2-3 hrs",
+          "opening_hours": "9:00 AM - 5:00 PM",
+          "timing_note": "Daylight hours are better for museums and cultural sites."
+        }
+      ],
+      "transport_plan": [
+        {
+          "from": "Maya Devi Temple",
+          "to": "Ashoka Pillar",
+          "slot": "Afternoon",
+          "mode": "ride-share",
+          "duration_min": 29,
+          "estimated_cost_npr": 438,
+          "estimated_cost_range_npr": "NPR 270-607",
+          "safety_tip": "Use verified app rides after sunset and share live location.",
+          "pricing_tip": "Confirm fare in-app or ask meter-based fare before ride."
+        }
+      ],
+      "trust": {
+        "safety_score": 80,
+        "pricing_score": 76,
+        "comfort_score": 86,
+        "badge": "High Trust",
+        "level": "high",
+        "reasons": [
+          "Safety-first mode enabled.",
+          "Fair-pricing mode enabled for budget-aware recommendations.",
+          "Transport pricing stayed within normal city range.",
+          "No risky evening walking segments detected."
+        ],
+        "scam_alert": {
+          "score": 28,
+          "level": "low",
+          "badge": "Scam Alert: Low",
+          "reasons": [
+            "Fair-pricing mode reduces overcharge exposure.",
+            "Safety-priority mode keeps routes in safer movement windows.",
+            "Transport fares are within safer baseline range."
+          ]
+        }
+      },
+      "stop_count": 2,
+      "day_budget_estimate_npr": 1638,
+      "practical_note": "2 main stops planned with timing validation."
+    },
+    {
+      "day": 2,
+      "stops": [
+        {
+          "name": "Lumbini Museum",
+          "category": "history",
+          "why_best": "Detailed history of Buddhism and Lumbini civilization.",
+          "main_activity": "History",
+          "recommended_for": [
+            "history",
+            "education",
+            "family",
+            "culture"
+          ],
+          "famous_food_nearby": [
+            "Tea",
+            "Snacks"
+          ],
+          "price_band_npr": "NPR 400-1400",
+          "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+          "area_photo_url": "/api/trips/media/place/lumbini/lumbini-museum.svg",
+          "historical_formation": "Lumbini Museum in Lumbini has layered local history. It evolved as a historical landmark over multiple local governance periods, and later became a preserved reference point for regional identity. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Lumbini+Museum"
+        },
+        {
+          "name": "Lumbini Monastic Zone",
+          "category": "culture",
+          "why_best": "International monasteries with unique architecture and calm gardens.",
+          "main_activity": "Culture",
+          "recommended_for": [
+            "culture",
+            "architecture",
+            "peaceful",
+            "photography"
+          ],
+          "famous_food_nearby": [
+            "Vegetarian thali",
+            "Tea"
+          ],
+          "price_band_npr": "NPR 500-2000",
+          "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+          "area_photo_url": "/api/trips/media/place/lumbini/lumbini-monastic-zone.svg",
+          "historical_formation": "Lumbini Monastic Zone in Lumbini has layered local history. The area formed around settlement clusters, festival routes, and artisan activity, gradually becoming a living cultural hub. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Lumbini+Monastic+Zone"
+        }
+      ],
+      "overview": [
+        {
+          "slot": "Morning",
+          "title": "Lumbini Museum",
+          "note": "Detailed history of Buddhism and Lumbini civilization.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Lumbini+Museum",
+          "duration_hint": "2-3 hrs",
+          "opening_hours": "10:00 AM - 5:00 PM",
+          "timing_note": "Most historical venues run daytime schedules."
+        },
+        {
+          "slot": "Afternoon",
+          "title": "Lumbini Monastic Zone",
+          "note": "International monasteries with unique architecture and calm gardens.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Lumbini+Monastic+Zone",
+          "duration_hint": "2-3 hrs",
+          "opening_hours": "9:00 AM - 6:00 PM",
+          "timing_note": "Daytime visit recommended."
+        }
+      ],
+      "transport_plan": [
+        {
+          "from": "Lumbini Museum",
+          "to": "Lumbini Monastic Zone",
+          "slot": "Afternoon",
+          "mode": "ride-share",
+          "duration_min": 35,
+          "estimated_cost_npr": 465,
+          "estimated_cost_range_npr": "NPR 289-642",
+          "safety_tip": "Use verified app rides after sunset and share live location.",
+          "pricing_tip": "Confirm fare in-app or ask meter-based fare before ride."
+        }
+      ],
+      "trust": {
+        "safety_score": 80,
+        "pricing_score": 76,
+        "comfort_score": 86,
+        "badge": "High Trust",
+        "level": "high",
+        "reasons": [
+          "Safety-first mode enabled.",
+          "Fair-pricing mode enabled for budget-aware recommendations.",
+          "Transport pricing stayed within normal city range.",
+          "No risky evening walking segments detected."
+        ],
+        "scam_alert": {
+          "score": 28,
+          "level": "low",
+          "badge": "Scam Alert: Low",
+          "reasons": [
+            "Fair-pricing mode reduces overcharge exposure.",
+            "Safety-priority mode keeps routes in safer movement windows.",
+            "Transport fares are within safer baseline range."
+          ]
+        }
+      },
+      "stop_count": 2,
+      "day_budget_estimate_npr": 2215,
+      "practical_note": "2 main stops planned with timing validation."
+    }
+  ],
+  "activities": [
+    {
+      "name": "Pilgrim Guided Walk with Local Guide",
+      "type": "Cultural Experience",
+      "description": "Learn about Buddhist history with a certified local guide.",
+      "destination": "Lumbini",
+      "cost_estimate": 1200.0,
+      "duration_hours": 3.0,
+      "indoor": false,
+      "family_friendly": true,
+      "tags": [
+        "history",
+        "guided",
+        "culture"
+      ],
+      "seasonal": false,
+      "adventure_level": "Low",
+      "best_time": "Best in the morning or early afternoon",
+      "recommendation_note": "Family-friendly and easy to slot into a city day plan.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Pilgrim+Guided+Walk+with+Local+Guide+Lumbini",
+      "exact_fare_npr": 1200,
+      "estimated_fare_npr": 1200,
+      "estimated_fare_range": null,
+      "booking_tip": "Family-friendly and easy to slot into a city day plan.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    },
+    {
+      "name": "Bicycle Tour of Sacred Sites",
+      "type": "Ride & Trail",
+      "description": "Easy cycling tour covering ruins, monasteries and museum sites.",
+      "destination": "Lumbini",
+      "cost_estimate": 800.0,
+      "duration_hours": 3.0,
+      "indoor": false,
+      "family_friendly": true,
+      "tags": [
+        "bike",
+        "culture",
+        "heritage"
+      ],
+      "seasonal": false,
+      "adventure_level": "Low",
+      "best_time": "Best in clear weather",
+      "recommendation_note": "Family-friendly and easy to slot into a city day plan.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Bicycle+Tour+of+Sacred+Sites+Lumbini",
+      "exact_fare_npr": 800,
+      "estimated_fare_npr": 800,
+      "estimated_fare_range": null,
+      "booking_tip": "Family-friendly and easy to slot into a city day plan.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    },
+    {
+      "name": "Monastic Circuit & Meditation Session",
+      "type": "Wellness",
+      "description": "Visit Maya Devi Temple, monastery circuit and join a guided meditation.",
+      "destination": "Lumbini",
+      "cost_estimate": 500.0,
+      "duration_hours": 2.0,
+      "indoor": false,
+      "family_friendly": true,
+      "tags": [
+        "spiritual",
+        "heritage",
+        "meditation"
+      ],
+      "seasonal": false,
+      "adventure_level": "Low",
+      "best_time": "Best in the morning or early afternoon",
+      "recommendation_note": "Family-friendly and easy to slot into a city day plan.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Monastic+Circuit+%26+Meditation+Session+Lumbini",
+      "exact_fare_npr": 500,
+      "estimated_fare_npr": 500,
+      "estimated_fare_range": null,
+      "booking_tip": "Family-friendly and easy to slot into a city day plan.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    }
+  ],
+  "city_profile": {
+    "lifestyle": "Calm spiritual environment centered around monasteries, meditation, and slow travel.",
+    "main_activities": [
+      "Monastery circuit",
+      "Meditation sessions",
+      "Heritage museum visit",
+      "Cycle around sacred garden"
+    ],
+    "street_food_scene": [
+      "Bazaar momos",
+      "Simple veg thali shops",
+      "Monastic tea kiosks"
+    ],
+    "local_connect_tips": [
+      "Dress modestly around sacred zones.",
+      "Keep phone on silent in monasteries.",
+      "Use bicycles for eco-friendly local travel."
+    ]
+  },
+  "comfort_pack": {
+    "city": "Lumbini",
+    "safety_priority": true,
+    "pricing_priority": true,
+    "emergency_contacts": [
+      "Tourist Police: 1144",
+      "Emergency Police: 100",
+      "Ambulance: 102"
+    ],
+    "pricing_baseline": [
+      "City bus/public micro: NPR 20-60",
+      "Ride-share short trip: NPR 200-480",
+      "Taxi short trip: NPR 300-780",
+      "Typical local meal: NPR 250-900",
+      "Cafe/restaurant meal: NPR 500-1400"
+    ],
+    "safety_checklist": [
+      "Prefer verified transport after dark.",
+      "Avoid carrying all cash in one place.",
+      "Keep offline map and hotel contact ready.",
+      "Use marked ATMs and avoid isolated lanes at night."
+    ]
+  },
+  "anti_scam_pack": {
+    "city": "Lumbini",
+    "verified_fare_ranges": [
+      "Public micro/bus typical range: NPR 20-60",
+      "Ride-share short trip normal range: NPR 200-480",
+      "Taxi short trip normal range: NPR 300-780"
+    ],
+    "scam_red_flags": [
+      "Driver refuses meter and demands price far above local range.",
+      "Someone pushes you to switch to an unmarked vehicle or unofficial guide.",
+      "Restaurant/agent avoids printed bill or adds hidden service charges.",
+      "Street currency exchange offers rates that are too good to be true."
+    ],
+    "safe_actions": [
+      "Confirm price before ride/food order and re-check at payment time.",
+      "Use app-based rides or hotel-booked transport at night.",
+      "Pay with small notes and avoid exposing full cash wallet.",
+      "Choose busy, well-reviewed restaurants and licensed ticket counters."
+    ],
+    "report_steps": [
+      "Call Tourist Police 1144 for overcharging or harassment.",
+      "Note plate number/business name and keep receipt screenshot.",
+      "Share route and fare details with hotel/front desk for support."
+    ]
+  },
+  "fare_tiers": {
+    "recommended_tier": "standard",
+    "tiers": {
+      "budget": {
+        "meals_per_person_npr": "NPR 250-700",
+        "transport_per_day_npr": "NPR 20-60",
+        "estimated_daily_total_npr": "NPR 1600-3200",
+        "notes": "Mostly public transport, local eateries, and low ticket-cost spots."
+      },
+      "standard": {
+        "meals_per_person_npr": "NPR 400-1000",
+        "transport_per_day_npr": "NPR 200-480",
+        "estimated_daily_total_npr": "NPR 2800-5200",
+        "notes": "Mix of ride-share and public transport with balanced dining."
+      },
+      "premium": {
+        "meals_per_person_npr": "NPR 700-1800",
+        "transport_per_day_npr": "NPR 315-819",
+        "estimated_daily_total_npr": "NPR 4800-9200",
+        "notes": "Taxi-first mobility, premium cafes/restaurants, and comfort-focused pacing."
+      }
+    }
+  },
+  "overall_trust": 86,
+  "overall_scam_alert": {
+    "score": 28,
+    "level": "low",
+    "badge": "Scam Alert: Low"
+  },
+  "city_map_url": "https://www.google.com/maps/search/?api=1&query=Lumbini+Tourist+Attractions",
+  "next_expansion": [
+    "Dolpa",
+    "Pathibhara",
+    "Bardia",
+    "Khaptad"
+  ]
+}

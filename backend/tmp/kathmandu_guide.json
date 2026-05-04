@@ -1,0 +1,893 @@
+{
+  "city": "Kathmandu",
+  "city_slug": "kathmandu",
+  "tagline": "AI-based smart guide for culture, food, and map navigation",
+  "inputs": {
+    "interests": [
+      "culture",
+      "food",
+      "nature",
+      "hiking",
+      "nightlife"
+    ],
+    "days": 2,
+    "budget_npr": 4000,
+    "budget_level": "medium",
+    "family_mode": false,
+    "focus_activities": [],
+    "avoid_categories": [],
+    "transport_preference": "balanced",
+    "safety_priority": true,
+    "pricing_priority": true
+  },
+  "top_highlights": [
+    {
+      "name": "Kathmandu Street Food Tour",
+      "category": "nightlife",
+      "best_for": [
+        "food",
+        "culture",
+        "nightlife",
+        "adventure"
+      ],
+      "budget_level": "low",
+      "family_friendly": true,
+      "why_best": "Evening guided tour through street food markets with local flavors.",
+      "famous_food_nearby": [
+        "Momos",
+        "Sekuwa",
+        "Lassi",
+        "Bara"
+      ],
+      "map_query": "Thamel Street Food Kathmandu"
+    },
+    {
+      "name": "Shivapuri National Park (Nagi Gumba Trail)",
+      "category": "hiking",
+      "best_for": [
+        "hiking",
+        "nature",
+        "photography",
+        "adventure"
+      ],
+      "budget_level": "medium",
+      "family_friendly": true,
+      "why_best": "A clean forest hiking route with panoramic valley views.",
+      "famous_food_nearby": [
+        "Local tea",
+        "Momo",
+        "Snacks"
+      ],
+      "map_query": "Shivapuri National Park Nagi Gumba"
+    },
+    {
+      "name": "Asan Bazaar",
+      "category": "shopping",
+      "best_for": [
+        "shopping",
+        "culture",
+        "street-life",
+        "food"
+      ],
+      "budget_level": "low",
+      "family_friendly": true,
+      "why_best": "Authentic local market for spices, souvenirs, and street snacks.",
+      "famous_food_nearby": [
+        "Lassi",
+        "Jeri",
+        "Chatamari"
+      ],
+      "map_query": "Asan Bazar Kathmandu"
+    }
+  ],
+  "best_places": [
+    {
+      "name": "Kathmandu Street Food Tour",
+      "category": "nightlife",
+      "why_best": "Evening guided tour through street food markets with local flavors.",
+      "main_activity": "Food",
+      "recommended_for": [
+        "food",
+        "culture",
+        "nightlife",
+        "adventure"
+      ],
+      "famous_food_nearby": [
+        "Momos",
+        "Sekuwa",
+        "Lassi",
+        "Bara"
+      ],
+      "price_band_npr": "NPR 1200-5000",
+      "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+      "area_photo_url": "/api/trips/media/place/kathmandu/kathmandu-street-food-tour.svg",
+      "historical_formation": "Kathmandu Street Food Tour in Kathmandu has layered local history. This zone evolved from a commercial street into a social evening district as tourism and hospitality services expanded. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Thamel+Street+Food+Kathmandu"
+    },
+    {
+      "name": "Shivapuri National Park (Nagi Gumba Trail)",
+      "category": "hiking",
+      "why_best": "A clean forest hiking route with panoramic valley views.",
+      "main_activity": "Hiking",
+      "recommended_for": [
+        "hiking",
+        "nature",
+        "photography",
+        "adventure"
+      ],
+      "famous_food_nearby": [
+        "Local tea",
+        "Momo",
+        "Snacks"
+      ],
+      "price_band_npr": "NPR 200-2200",
+      "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+      "area_photo_url": "/api/trips/media/place/kathmandu/shivapuri-national-park-nagi-gumba-trail.svg",
+      "historical_formation": "Shivapuri National Park (Nagi Gumba Trail) in Kathmandu has layered local history. Originally a local movement trail for villages and pasture access, it gradually transitioned into a trekking corridor for visitors. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Shivapuri+National+Park+Nagi+Gumba"
+    },
+    {
+      "name": "Asan Bazaar",
+      "category": "shopping",
+      "why_best": "Authentic local market for spices, souvenirs, and street snacks.",
+      "main_activity": "Shopping",
+      "recommended_for": [
+        "shopping",
+        "culture",
+        "street-life",
+        "food"
+      ],
+      "famous_food_nearby": [
+        "Lassi",
+        "Jeri",
+        "Chatamari"
+      ],
+      "price_band_npr": "NPR 500-2000",
+      "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+      "area_photo_url": "/api/trips/media/place/kathmandu/asan-bazaar.svg",
+      "historical_formation": "Asan Bazaar in Kathmandu has layered local history. It formed as a local market exchange zone where agricultural produce, crafts, and daily goods connected nearby settlements. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Asan+Bazar+Kathmandu"
+    },
+    {
+      "name": "Kirtipur Old Town",
+      "category": "culture",
+      "why_best": "Traditional Newari town with local culture and less crowd.",
+      "main_activity": "Culture",
+      "recommended_for": [
+        "culture",
+        "food",
+        "history",
+        "photography"
+      ],
+      "famous_food_nearby": [
+        "Newari Khaja",
+        "Choila",
+        "Aila"
+      ],
+      "price_band_npr": "NPR 500-2000",
+      "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+      "area_photo_url": "/api/trips/media/place/kathmandu/kirtipur-old-town.svg",
+      "historical_formation": "Kirtipur Old Town in Kathmandu has layered local history. The area formed around settlement clusters, festival routes, and artisan activity, gradually becoming a living cultural hub. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Kirtipur+Kathmandu"
+    }
+  ],
+  "famous_foods": [
+    {
+      "name": "Buff Momo",
+      "type": "must-try street food",
+      "where_to_try": "Thamel, New Road",
+      "price_range_npr": "NPR 120-280",
+      "photo_url": "/api/trips/media/food/kathmandu/buff-momo.svg",
+      "origin_note": "Buff Momo in Kathmandu: It grew through market-stall culture where vendors optimized quick, affordable flavor for daily commuters and evening crowds.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Buff+Momo+Thamel%2C+New+Road+Kathmandu"
+    },
+    {
+      "name": "Newari Khaja Set",
+      "type": "traditional",
+      "where_to_try": "Patan, Kirtipur",
+      "price_range_npr": "NPR 350-900",
+      "photo_url": "/api/trips/media/food/kathmandu/newari-khaja-set.svg",
+      "origin_note": "Newari Khaja Set in Kathmandu: Its preparation style comes from household and festival kitchens, then moved into public eateries as demand grew.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Newari+Khaja+Set+Patan%2C+Kirtipur+Kathmandu"
+    },
+    {
+      "name": "Yomari",
+      "type": "festive sweet",
+      "where_to_try": "Patan, Bhaktapur",
+      "price_range_npr": "NPR 80-220",
+      "photo_url": "/api/trips/media/food/kathmandu/yomari.svg",
+      "origin_note": "Yomari in Kathmandu: The recipe evolved from ceremonial and festive use into a popular everyday sweet sold in local markets.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Yomari+Patan%2C+Bhaktapur+Kathmandu"
+    },
+    {
+      "name": "Chatamari",
+      "type": "Newari classic",
+      "where_to_try": "Ason, Basantapur",
+      "price_range_npr": "NPR 200-650",
+      "photo_url": "/api/trips/media/food/kathmandu/chatamari.svg",
+      "origin_note": "Chatamari in Kathmandu: It became popular through a mix of local ingredients, migration influence, and city food-lane adaptation.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Chatamari+Ason%2C+Basantapur+Kathmandu"
+    },
+    {
+      "name": "Sekuwa",
+      "type": "grilled favorite",
+      "where_to_try": "Boudha, Putalisadak",
+      "price_range_npr": "NPR 200-650",
+      "photo_url": "/api/trips/media/food/kathmandu/sekuwa.svg",
+      "origin_note": "Sekuwa in Kathmandu: It became popular through a mix of local ingredients, migration influence, and city food-lane adaptation.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Sekuwa+Boudha%2C+Putalisadak+Kathmandu"
+    },
+    {
+      "name": "Juju Dhau",
+      "type": "bread pudding dessert",
+      "where_to_try": "Bhaktapur",
+      "price_range_npr": "NPR 80-220",
+      "photo_url": "/api/trips/media/food/kathmandu/juju-dhau.svg",
+      "origin_note": "Juju Dhau in Kathmandu: The recipe evolved from ceremonial and festive use into a popular everyday sweet sold in local markets.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Juju+Dhau+Bhaktapur+Kathmandu"
+    },
+    {
+      "name": "Thukpa",
+      "type": "Tibetan noodle soup",
+      "where_to_try": "Boudha",
+      "price_range_npr": "NPR 200-650",
+      "photo_url": "/api/trips/media/food/kathmandu/thukpa.svg",
+      "origin_note": "Thukpa in Kathmandu: It became popular through a mix of local ingredients, migration influence, and city food-lane adaptation.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Thukpa+Boudha+Kathmandu"
+    },
+    {
+      "name": "Street Lassi",
+      "type": "yogurt drink",
+      "where_to_try": "Basantapur, Ason",
+      "price_range_npr": "NPR 60-180",
+      "photo_url": "/api/trips/media/food/kathmandu/street-lassi.svg",
+      "origin_note": "Street Lassi in Kathmandu: The drink tradition formed around climate, local ingredients, and social tea-time habits in public gathering spaces.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Street+Lassi+Basantapur%2C+Ason+Kathmandu"
+    }
+  ],
+  "day_wise_itinerary": [
+    {
+      "day": 1,
+      "stops": [
+        {
+          "name": "Asan Bazaar",
+          "category": "shopping",
+          "why_best": "Authentic local market for spices, souvenirs, and street snacks.",
+          "main_activity": "Shopping",
+          "recommended_for": [
+            "shopping",
+            "culture",
+            "street-life",
+            "food"
+          ],
+          "famous_food_nearby": [
+            "Lassi",
+            "Jeri",
+            "Chatamari"
+          ],
+          "price_band_npr": "NPR 500-2000",
+          "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+          "area_photo_url": "/api/trips/media/place/kathmandu/asan-bazaar.svg",
+          "historical_formation": "Asan Bazaar in Kathmandu has layered local history. It formed as a local market exchange zone where agricultural produce, crafts, and daily goods connected nearby settlements. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Asan+Bazar+Kathmandu"
+        },
+        {
+          "name": "Kathmandu Street Food Tour",
+          "category": "nightlife",
+          "why_best": "Evening guided tour through street food markets with local flavors.",
+          "main_activity": "Food",
+          "recommended_for": [
+            "food",
+            "culture",
+            "nightlife",
+            "adventure"
+          ],
+          "famous_food_nearby": [
+            "Momos",
+            "Sekuwa",
+            "Lassi",
+            "Bara"
+          ],
+          "price_band_npr": "NPR 1200-5000",
+          "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+          "area_photo_url": "/api/trips/media/place/kathmandu/kathmandu-street-food-tour.svg",
+          "historical_formation": "Kathmandu Street Food Tour in Kathmandu has layered local history. This zone evolved from a commercial street into a social evening district as tourism and hospitality services expanded. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Thamel+Street+Food+Kathmandu"
+        }
+      ],
+      "overview": [
+        {
+          "slot": "Afternoon",
+          "title": "Asan Bazaar",
+          "note": "Authentic local market for spices, souvenirs, and street snacks.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Asan+Bazar+Kathmandu",
+          "duration_hint": "2-3 hrs",
+          "opening_hours": "11:00 AM - 8:00 PM",
+          "timing_note": "Markets and shopping streets are most active later in the day."
+        },
+        {
+          "slot": "Evening",
+          "title": "Kathmandu Street Food Tour",
+          "note": "Evening guided tour through street food markets with local flavors.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Thamel+Street+Food+Kathmandu",
+          "duration_hint": "2-3 hrs",
+          "opening_hours": "5:00 PM - Late Night",
+          "timing_note": "Best visited in the evening for live atmosphere."
+        }
+      ],
+      "transport_plan": [
+        {
+          "from": "Asan Bazaar",
+          "to": "Kathmandu Street Food Tour",
+          "slot": "Afternoon",
+          "mode": "ride-share",
+          "duration_min": 37,
+          "estimated_cost_npr": 505,
+          "estimated_cost_range_npr": "NPR 316-694",
+          "safety_tip": "Use verified app rides after sunset and share live location.",
+          "pricing_tip": "Confirm fare in-app or ask meter-based fare before ride."
+        }
+      ],
+      "trust": {
+        "safety_score": 80,
+        "pricing_score": 76,
+        "comfort_score": 86,
+        "badge": "High Trust",
+        "level": "high",
+        "reasons": [
+          "Safety-first mode enabled.",
+          "Fair-pricing mode enabled for budget-aware recommendations.",
+          "Transport pricing stayed within normal city range.",
+          "No risky evening walking segments detected."
+        ],
+        "scam_alert": {
+          "score": 36,
+          "level": "low",
+          "badge": "Scam Alert: Low",
+          "reasons": [
+            "Fair-pricing mode reduces overcharge exposure.",
+            "Safety-priority mode keeps routes in safer movement windows.",
+            "Transport fares are within safer baseline range."
+          ]
+        }
+      },
+      "stop_count": 2,
+      "day_budget_estimate_npr": 4105,
+      "practical_note": "2 main stops planned with timing validation."
+    },
+    {
+      "day": 2,
+      "stops": [
+        {
+          "name": "Shivapuri National Park (Nagi Gumba Trail)",
+          "category": "hiking",
+          "why_best": "A clean forest hiking route with panoramic valley views.",
+          "main_activity": "Hiking",
+          "recommended_for": [
+            "hiking",
+            "nature",
+            "photography",
+            "adventure"
+          ],
+          "famous_food_nearby": [
+            "Local tea",
+            "Momo",
+            "Snacks"
+          ],
+          "price_band_npr": "NPR 200-2200",
+          "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+          "area_photo_url": "/api/trips/media/place/kathmandu/shivapuri-national-park-nagi-gumba-trail.svg",
+          "historical_formation": "Shivapuri National Park (Nagi Gumba Trail) in Kathmandu has layered local history. Originally a local movement trail for villages and pasture access, it gradually transitioned into a trekking corridor for visitors. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Shivapuri+National+Park+Nagi+Gumba"
+        },
+        {
+          "name": "Kirtipur Old Town",
+          "category": "culture",
+          "why_best": "Traditional Newari town with local culture and less crowd.",
+          "main_activity": "Culture",
+          "recommended_for": [
+            "culture",
+            "food",
+            "history",
+            "photography"
+          ],
+          "famous_food_nearby": [
+            "Newari Khaja",
+            "Choila",
+            "Aila"
+          ],
+          "price_band_npr": "NPR 500-2000",
+          "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+          "area_photo_url": "/api/trips/media/place/kathmandu/kirtipur-old-town.svg",
+          "historical_formation": "Kirtipur Old Town in Kathmandu has layered local history. The area formed around settlement clusters, festival routes, and artisan activity, gradually becoming a living cultural hub. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Kirtipur+Kathmandu"
+        }
+      ],
+      "overview": [
+        {
+          "slot": "Morning",
+          "title": "Shivapuri National Park (Nagi Gumba Trail)",
+          "note": "A clean forest hiking route with panoramic valley views.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Shivapuri+National+Park+Nagi+Gumba",
+          "duration_hint": "2-3 hrs",
+          "opening_hours": "6:00 AM - 5:00 PM",
+          "timing_note": "Start early for safer weather and daylight return."
+        },
+        {
+          "slot": "Afternoon",
+          "title": "Kirtipur Old Town",
+          "note": "Traditional Newari town with local culture and less crowd.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Kirtipur+Kathmandu",
+          "duration_hint": "2-3 hrs",
+          "opening_hours": "9:00 AM - 6:00 PM",
+          "timing_note": "Daytime visit recommended."
+        }
+      ],
+      "transport_plan": [
+        {
+          "from": "Shivapuri National Park (Nagi Gumba Trail)",
+          "to": "Kirtipur Old Town",
+          "slot": "Afternoon",
+          "mode": "ride-share",
+          "duration_min": 38,
+          "estimated_cost_npr": 509,
+          "estimated_cost_range_npr": "NPR 319-699",
+          "safety_tip": "Use verified app rides after sunset and share live location.",
+          "pricing_tip": "Confirm fare in-app or ask meter-based fare before ride."
+        }
+      ],
+      "trust": {
+        "safety_score": 80,
+        "pricing_score": 76,
+        "comfort_score": 86,
+        "badge": "High Trust",
+        "level": "high",
+        "reasons": [
+          "Safety-first mode enabled.",
+          "Fair-pricing mode enabled for budget-aware recommendations.",
+          "Transport pricing stayed within normal city range.",
+          "No risky evening walking segments detected."
+        ],
+        "scam_alert": {
+          "score": 28,
+          "level": "low",
+          "badge": "Scam Alert: Low",
+          "reasons": [
+            "Fair-pricing mode reduces overcharge exposure.",
+            "Safety-priority mode keeps routes in safer movement windows.",
+            "Transport fares are within safer baseline range."
+          ]
+        }
+      },
+      "stop_count": 2,
+      "day_budget_estimate_npr": 2609,
+      "practical_note": "2 main stops planned with timing validation."
+    }
+  ],
+  "activities": [
+    {
+      "name": "Chandragiri Cable Car + Short Hike",
+      "type": "Local Experience",
+      "description": "Cable car ride with a short ridge walk and picnic; seasonal winds may affect operations.",
+      "destination": "Kathmandu",
+      "cost_estimate": 1000.0,
+      "duration_hours": 3.0,
+      "indoor": false,
+      "family_friendly": true,
+      "tags": [
+        "cablecar",
+        "hike",
+        "viewpoint",
+        "nature"
+      ],
+      "seasonal": true,
+      "adventure_level": "Low",
+      "best_time": "Best for a flexible half-day plan",
+      "recommendation_note": "Seasonal experience - check weather and booking window before travel.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Chandragiri+Cable+Car+%2B+Short+Hike+Kathmandu",
+      "exact_fare_npr": 1000,
+      "estimated_fare_npr": 1000,
+      "estimated_fare_range": null,
+      "booking_tip": "Seasonal experience - check weather and booking window before travel.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    },
+    {
+      "name": "Culinary Street Food Responsible Tour",
+      "type": "Food Experience",
+      "description": "Small-group evening tour sampling local specialties with hygiene-conscious vendors and allergy-aware guidance.",
+      "destination": "Kathmandu",
+      "cost_estimate": 900.0,
+      "duration_hours": 2.5,
+      "indoor": false,
+      "family_friendly": true,
+      "tags": [
+        "food",
+        "tour",
+        "streetfood",
+        "culinary"
+      ],
+      "seasonal": false,
+      "adventure_level": "Low",
+      "best_time": "Best for a flexible half-day plan",
+      "recommendation_note": "Family-friendly and easy to slot into a city day plan.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Culinary+Street+Food+Responsible+Tour+Kathmandu",
+      "exact_fare_npr": 900,
+      "estimated_fare_npr": 900,
+      "estimated_fare_range": null,
+      "booking_tip": "Inform operator of allergies; small-group tours are common.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [
+        "Tasting portions",
+        "Local guide"
+      ],
+      "booking_lead_time_days": 0
+    },
+    {
+      "name": "Evening Cultural Dance Show & Workshop",
+      "type": "Cultural Experience",
+      "description": "Attend a short traditional dance performance followed by a participatory workshop run by local performers.",
+      "destination": "Kathmandu",
+      "cost_estimate": 700.0,
+      "duration_hours": 2.0,
+      "indoor": true,
+      "family_friendly": true,
+      "tags": [
+        "culture",
+        "dance",
+        "performance",
+        "workshop"
+      ],
+      "seasonal": false,
+      "adventure_level": "Low",
+      "best_time": "Best in the morning or early afternoon",
+      "recommendation_note": "Family-friendly and easy to slot into a city day plan.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Evening+Cultural+Dance+Show+%26+Workshop+Kathmandu",
+      "exact_fare_npr": 700,
+      "estimated_fare_npr": 700,
+      "estimated_fare_range": null,
+      "booking_tip": "Family-friendly and easy to slot into a city day plan.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    },
+    {
+      "name": "Heritage Walk",
+      "type": "Cultural Experience",
+      "description": "Guided walk through Durbar Square",
+      "destination": "Kathmandu",
+      "cost_estimate": 700.0,
+      "duration_hours": 3.0,
+      "indoor": false,
+      "family_friendly": true,
+      "tags": [
+        "culture",
+        "history",
+        "city"
+      ],
+      "seasonal": false,
+      "adventure_level": "Low",
+      "best_time": "Best in the morning or early afternoon",
+      "recommendation_note": "Family-friendly and easy to slot into a city day plan.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Heritage+Walk+Kathmandu",
+      "exact_fare_npr": 700,
+      "estimated_fare_npr": 700,
+      "estimated_fare_range": null,
+      "booking_tip": "Family-friendly and easy to slot into a city day plan.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    },
+    {
+      "name": "Heritage Walking & Responsible Cultural Workshop",
+      "type": "Cultural Experience",
+      "description": "Guided walking tour of old city with a short hands-on cultural workshop led by local artisans. Low-impact, community-led.",
+      "destination": "Kathmandu",
+      "cost_estimate": 700.0,
+      "duration_hours": 3.0,
+      "indoor": false,
+      "family_friendly": true,
+      "tags": [
+        "culture",
+        "walking",
+        "workshop",
+        "community"
+      ],
+      "seasonal": false,
+      "adventure_level": "Low",
+      "best_time": "Best in the morning or early afternoon",
+      "recommendation_note": "Family-friendly and easy to slot into a city day plan.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Heritage+Walking+%26+Responsible+Cultural+Workshop+Kathmandu",
+      "exact_fare_npr": 700,
+      "estimated_fare_npr": 700,
+      "estimated_fare_range": null,
+      "booking_tip": "Family-friendly and easy to slot into a city day plan.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    },
+    {
+      "name": "Photography & Conservation Walk",
+      "type": "Local Experience",
+      "description": "Guided nature photography walk focusing on respectful wildlife and habitat viewing practices.",
+      "destination": "Kathmandu",
+      "cost_estimate": 1000.0,
+      "duration_hours": 2.5,
+      "indoor": false,
+      "family_friendly": true,
+      "tags": [
+        "photography",
+        "nature",
+        "conservation",
+        "walking"
+      ],
+      "seasonal": false,
+      "adventure_level": "Low",
+      "best_time": "Best for a flexible half-day plan",
+      "recommendation_note": "Family-friendly and easy to slot into a city day plan.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Photography+%26+Conservation+Walk+Kathmandu",
+      "exact_fare_npr": 1000,
+      "estimated_fare_npr": 1000,
+      "estimated_fare_range": null,
+      "booking_tip": "Family-friendly and easy to slot into a city day plan.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    },
+    {
+      "name": "City Mountain Biking (Nagarjun Trails)",
+      "type": "Extreme Adventure",
+      "description": "Half-day guided mountain-bike trip on safe marked trails around Nagarjun and Shivapuri ridgelines. Helmet recommended.",
+      "destination": "Kathmandu",
+      "cost_estimate": 3500.0,
+      "duration_hours": 4.0,
+      "indoor": false,
+      "family_friendly": false,
+      "tags": [
+        "biking",
+        "offroad",
+        "adventure",
+        "outdoors"
+      ],
+      "seasonal": false,
+      "adventure_level": "High",
+      "best_time": "Best in clear weather",
+      "recommendation_note": "Plan this as a focused activity block with enough buffer time.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=City+Mountain+Biking+%28Nagarjun+Trails%29+Kathmandu",
+      "exact_fare_npr": 3500,
+      "estimated_fare_npr": 3500,
+      "estimated_fare_range": null,
+      "booking_tip": "Plan this as a focused activity block with enough buffer time.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    },
+    {
+      "name": "Guided Rock Climbing Intro (Local Crags)",
+      "type": "Extreme Adventure",
+      "description": "Introductory climbing session with certified guides on accessible crags near the valley. Safety gear provided.",
+      "destination": "Kathmandu",
+      "cost_estimate": 3500.0,
+      "duration_hours": 4.0,
+      "indoor": false,
+      "family_friendly": false,
+      "tags": [
+        "climbing",
+        "adventure",
+        "skills",
+        "safety"
+      ],
+      "seasonal": false,
+      "adventure_level": "Medium",
+      "best_time": "Best in clear weather",
+      "recommendation_note": "Plan this as a focused activity block with enough buffer time.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Guided+Rock+Climbing+Intro+%28Local+Crags%29+Kathmandu",
+      "exact_fare_npr": 3500,
+      "estimated_fare_npr": 3500,
+      "estimated_fare_range": null,
+      "booking_tip": "Plan this as a focused activity block with enough buffer time.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    },
+    {
+      "name": "Responsible Volunteer Half-Day Experience",
+      "type": "Local Experience",
+      "description": "Half-day volunteering with a registered local NGO (education, clean-up projects) — pre-book and check requirements.",
+      "destination": "Kathmandu",
+      "cost_estimate": 1000.0,
+      "duration_hours": 4.0,
+      "indoor": false,
+      "family_friendly": true,
+      "tags": [
+        "volunteer",
+        "community",
+        "responsible",
+        "learning"
+      ],
+      "seasonal": false,
+      "adventure_level": "Low",
+      "best_time": "Best for a flexible half-day plan",
+      "recommendation_note": "Family-friendly and easy to slot into a city day plan.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Responsible+Volunteer+Half-Day+Experience+Kathmandu",
+      "exact_fare_npr": 1000,
+      "estimated_fare_npr": 1000,
+      "estimated_fare_range": null,
+      "booking_tip": "Family-friendly and easy to slot into a city day plan.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    },
+    {
+      "name": "Rooftop Yoga & Sunrise Session",
+      "type": "Wellness",
+      "description": "Early-morning yoga overlooking the valley and distant Himalaya (seasonal clear-sky mornings). Responsible instructor-led class.",
+      "destination": "Kathmandu",
+      "cost_estimate": 900.0,
+      "duration_hours": 1.0,
+      "indoor": true,
+      "family_friendly": true,
+      "tags": [
+        "wellness",
+        "yoga",
+        "sunrise",
+        "relax"
+      ],
+      "seasonal": true,
+      "adventure_level": "Low",
+      "best_time": "Best in the morning or early afternoon",
+      "recommendation_note": "Seasonal experience - check weather and booking window before travel.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Rooftop+Yoga+%26+Sunrise+Session+Kathmandu",
+      "exact_fare_npr": 900,
+      "estimated_fare_npr": 900,
+      "estimated_fare_range": null,
+      "booking_tip": "Seasonal experience - check weather and booking window before travel.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    },
+    {
+      "name": "Thamel Bike Rental & Self-Guided City Loop",
+      "type": "Ride & Trail",
+      "description": "Short-term bike rental for self-guided exploration on mixed city roads; includes helmet and basic safety briefing.",
+      "destination": "Kathmandu",
+      "cost_estimate": 2500.0,
+      "duration_hours": 6.0,
+      "indoor": false,
+      "family_friendly": true,
+      "tags": [
+        "rental",
+        "bike",
+        "self-guided",
+        "urban"
+      ],
+      "seasonal": false,
+      "adventure_level": "Low",
+      "best_time": "Best in clear weather",
+      "recommendation_note": "Family-friendly and easy to slot into a city day plan.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Thamel+Bike+Rental+%26+Self-Guided+City+Loop+Kathmandu",
+      "exact_fare_npr": 2500,
+      "estimated_fare_npr": 2500,
+      "estimated_fare_range": null,
+      "booking_tip": "Family-friendly and easy to slot into a city day plan.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    }
+  ],
+  "city_profile": {
+    "lifestyle": "Fast-paced valley life mixing old Newari neighborhoods, modern cafes, and evening bazaars.",
+    "main_activities": [
+      "Heritage walks",
+      "Temple visits",
+      "Street food crawl",
+      "Evening cultural markets"
+    ],
+    "street_food_scene": [
+      "Momo lanes in Thamel",
+      "Ason chatamari stalls",
+      "New Road lassi and sel roti"
+    ],
+    "local_connect_tips": [
+      "Start greetings with 'Namaste'.",
+      "Remove shoes before entering temples.",
+      "Respect queue culture in busy shrines."
+    ]
+  },
+  "comfort_pack": {
+    "city": "Kathmandu",
+    "safety_priority": true,
+    "pricing_priority": true,
+    "emergency_contacts": [
+      "Tourist Police: 1144",
+      "Emergency Police: 100",
+      "Ambulance: 102"
+    ],
+    "pricing_baseline": [
+      "City bus/public micro: NPR 25-70",
+      "Ride-share short trip: NPR 220-520",
+      "Taxi short trip: NPR 300-850",
+      "Typical local meal: NPR 250-900",
+      "Cafe/restaurant meal: NPR 500-1400"
+    ],
+    "safety_checklist": [
+      "Prefer verified transport after dark.",
+      "Avoid carrying all cash in one place.",
+      "Keep offline map and hotel contact ready.",
+      "Use marked ATMs and avoid isolated lanes at night."
+    ]
+  },
+  "anti_scam_pack": {
+    "city": "Kathmandu",
+    "verified_fare_ranges": [
+      "Public micro/bus typical range: NPR 25-70",
+      "Ride-share short trip normal range: NPR 220-520",
+      "Taxi short trip normal range: NPR 300-850"
+    ],
+    "scam_red_flags": [
+      "Driver refuses meter and demands price far above local range.",
+      "Someone pushes you to switch to an unmarked vehicle or unofficial guide.",
+      "Restaurant/agent avoids printed bill or adds hidden service charges.",
+      "Street currency exchange offers rates that are too good to be true."
+    ],
+    "safe_actions": [
+      "Confirm price before ride/food order and re-check at payment time.",
+      "Use app-based rides or hotel-booked transport at night.",
+      "Pay with small notes and avoid exposing full cash wallet.",
+      "Choose busy, well-reviewed restaurants and licensed ticket counters."
+    ],
+    "report_steps": [
+      "Call Tourist Police 1144 for overcharging or harassment.",
+      "Note plate number/business name and keep receipt screenshot.",
+      "Share route and fare details with hotel/front desk for support."
+    ]
+  },
+  "fare_tiers": {
+    "recommended_tier": "standard",
+    "tiers": {
+      "budget": {
+        "meals_per_person_npr": "NPR 250-700",
+        "transport_per_day_npr": "NPR 25-70",
+        "estimated_daily_total_npr": "NPR 1600-3200",
+        "notes": "Mostly public transport, local eateries, and low ticket-cost spots."
+      },
+      "standard": {
+        "meals_per_person_npr": "NPR 400-1000",
+        "transport_per_day_npr": "NPR 220-520",
+        "estimated_daily_total_npr": "NPR 2800-5200",
+        "notes": "Mix of ride-share and public transport with balanced dining."
+      },
+      "premium": {
+        "meals_per_person_npr": "NPR 700-1800",
+        "transport_per_day_npr": "NPR 315-892",
+        "estimated_daily_total_npr": "NPR 4800-9200",
+        "notes": "Taxi-first mobility, premium cafes/restaurants, and comfort-focused pacing."
+      }
+    }
+  },
+  "overall_trust": 86,
+  "overall_scam_alert": {
+    "score": 32,
+    "level": "low",
+    "badge": "Scam Alert: Low"
+  },
+  "city_map_url": "https://www.google.com/maps/search/?api=1&query=Kathmandu+Tourist+Attractions",
+  "next_expansion": [
+    "Dolpa",
+    "Pathibhara",
+    "Bardia",
+    "Khaptad"
+  ]
+}

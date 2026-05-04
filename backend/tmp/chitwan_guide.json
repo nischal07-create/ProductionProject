@@ -1,0 +1,614 @@
+{
+  "city": "Chitwan",
+  "city_slug": "chitwan",
+  "tagline": "AI-based wildlife and cultural guide with safe transport planning",
+  "inputs": {
+    "interests": [
+      "wildlife",
+      "nature",
+      "culture"
+    ],
+    "days": 2,
+    "budget_npr": 4000,
+    "budget_level": "medium",
+    "family_mode": false,
+    "focus_activities": [],
+    "avoid_categories": [],
+    "transport_preference": "balanced",
+    "safety_priority": true,
+    "pricing_priority": true
+  },
+  "top_highlights": [
+    {
+      "name": "Birdwatching Tour",
+      "category": "wildlife",
+      "best_for": [
+        "wildlife",
+        "photography",
+        "nature",
+        "education"
+      ],
+      "budget_level": "medium",
+      "family_friendly": true,
+      "why_best": "Guided birdwatching with over 400+ species in Chitwan.",
+      "famous_food_nearby": [
+        "Tea",
+        "Snacks",
+        "Dal Bhat"
+      ],
+      "map_query": "Chitwan Birdwatching Tour"
+    },
+    {
+      "name": "Chitwan Sunrise Safari",
+      "category": "nature",
+      "best_for": [
+        "sunrise",
+        "wildlife",
+        "photography",
+        "adventure"
+      ],
+      "budget_level": "medium",
+      "family_friendly": true,
+      "why_best": "Early morning jungle safari with best wildlife spotting chances.",
+      "famous_food_nearby": [
+        "Breakfast",
+        "Tea",
+        "Simple meals"
+      ],
+      "map_query": "Chitwan National Park Safari Sunrise"
+    },
+    {
+      "name": "Canoe Safari",
+      "category": "adventure",
+      "best_for": [
+        "adventure",
+        "wildlife",
+        "photography"
+      ],
+      "budget_level": "medium",
+      "family_friendly": true,
+      "why_best": "Quiet canoe ride through river channels for wildlife spotting.",
+      "famous_food_nearby": [
+        "Tea",
+        "Snacks",
+        "Simple meals"
+      ],
+      "map_query": "Canoe Safari Rapti River Chitwan"
+    }
+  ],
+  "best_places": [
+    {
+      "name": "Birdwatching Tour",
+      "category": "wildlife",
+      "why_best": "Guided birdwatching with over 400+ species in Chitwan.",
+      "main_activity": "Wildlife",
+      "recommended_for": [
+        "wildlife",
+        "photography",
+        "nature",
+        "education"
+      ],
+      "famous_food_nearby": [
+        "Tea",
+        "Snacks",
+        "Dal Bhat"
+      ],
+      "price_band_npr": "NPR 500-2000",
+      "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+      "area_photo_url": "/api/trips/media/place/chitwan/birdwatching-tour.svg",
+      "historical_formation": "Birdwatching Tour in Chitwan has layered local history. It was shaped by forest and habitat conservation boundaries, then opened in controlled phases for eco-tourism and education. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Chitwan+Birdwatching+Tour"
+    },
+    {
+      "name": "Chitwan Sunrise Safari",
+      "category": "nature",
+      "why_best": "Early morning jungle safari with best wildlife spotting chances.",
+      "main_activity": "Sunrise",
+      "recommended_for": [
+        "sunrise",
+        "wildlife",
+        "photography",
+        "adventure"
+      ],
+      "famous_food_nearby": [
+        "Breakfast",
+        "Tea",
+        "Simple meals"
+      ],
+      "price_band_npr": "NPR 500-2500",
+      "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+      "area_photo_url": "/api/trips/media/place/chitwan/chitwan-sunrise-safari.svg",
+      "historical_formation": "Chitwan Sunrise Safari in Chitwan has layered local history. Its landscape was formed by Himalayan geology and water systems, and local communities adapted their lifestyle around seasonal patterns. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Chitwan+National+Park+Safari+Sunrise"
+    },
+    {
+      "name": "Canoe Safari",
+      "category": "adventure",
+      "why_best": "Quiet canoe ride through river channels for wildlife spotting.",
+      "main_activity": "Adventure",
+      "recommended_for": [
+        "adventure",
+        "wildlife",
+        "photography"
+      ],
+      "famous_food_nearby": [
+        "Tea",
+        "Snacks",
+        "Simple meals"
+      ],
+      "price_band_npr": "NPR 1200-4500",
+      "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+      "area_photo_url": "/api/trips/media/place/chitwan/canoe-safari.svg",
+      "historical_formation": "Canoe Safari in Chitwan has layered local history. The site gained popularity after local route use and modern safety upgrades made the terrain accessible for guided adventure travel. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Canoe+Safari+Rapti+River+Chitwan"
+    },
+    {
+      "name": "Tharu Cultural Museum",
+      "category": "culture",
+      "why_best": "Learn indigenous Tharu heritage and local lifestyle.",
+      "main_activity": "Culture",
+      "recommended_for": [
+        "culture",
+        "history",
+        "family",
+        "education"
+      ],
+      "famous_food_nearby": [
+        "Tharu Khana",
+        "Local snacks"
+      ],
+      "price_band_npr": "NPR 500-2000",
+      "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+      "area_photo_url": "/api/trips/media/place/chitwan/tharu-cultural-museum.svg",
+      "historical_formation": "Tharu Cultural Museum in Chitwan has layered local history. The area formed around settlement clusters, festival routes, and artisan activity, gradually becoming a living cultural hub. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Tharu+Cultural+Museum+Sauraha"
+    }
+  ],
+  "famous_foods": [
+    {
+      "name": "Tharu Khana Set",
+      "type": "traditional",
+      "where_to_try": "Sauraha",
+      "price_range_npr": "NPR 350-900",
+      "photo_url": "/api/trips/media/food/chitwan/tharu-khana-set.svg",
+      "origin_note": "Tharu Khana Set in Chitwan: Its preparation style comes from household and festival kitchens, then moved into public eateries as demand grew.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Tharu+Khana+Set+Sauraha+Chitwan"
+    },
+    {
+      "name": "Fresh River Fish",
+      "type": "local specialty",
+      "where_to_try": "Rapti riverside",
+      "price_range_npr": "NPR 350-1100",
+      "photo_url": "/api/trips/media/food/chitwan/fresh-river-fish.svg",
+      "origin_note": "Fresh River Fish in Chitwan: It became popular through a mix of local ingredients, migration influence, and city food-lane adaptation.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Fresh+River+Fish+Rapti+riverside+Chitwan"
+    },
+    {
+      "name": "Dal Bhat",
+      "type": "budget meal",
+      "where_to_try": "Local lodges",
+      "price_range_npr": "NPR 200-650",
+      "photo_url": "/api/trips/media/food/chitwan/dal-bhat.svg",
+      "origin_note": "Dal Bhat in Chitwan: It became popular through a mix of local ingredients, migration influence, and city food-lane adaptation.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Dal+Bhat+Local+lodges+Chitwan"
+    },
+    {
+      "name": "Jungle vegetables curry",
+      "type": "fresh meal",
+      "where_to_try": "Eco-lodges",
+      "price_range_npr": "NPR 200-650",
+      "photo_url": "/api/trips/media/food/chitwan/jungle-vegetables-curry.svg",
+      "origin_note": "Jungle vegetables curry in Chitwan: It became popular through a mix of local ingredients, migration influence, and city food-lane adaptation.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Jungle+vegetables+curry+Eco-lodges+Chitwan"
+    }
+  ],
+  "day_wise_itinerary": [
+    {
+      "day": 1,
+      "stops": [
+        {
+          "name": "Birdwatching Tour",
+          "category": "wildlife",
+          "why_best": "Guided birdwatching with over 400+ species in Chitwan.",
+          "main_activity": "Wildlife",
+          "recommended_for": [
+            "wildlife",
+            "photography",
+            "nature",
+            "education"
+          ],
+          "famous_food_nearby": [
+            "Tea",
+            "Snacks",
+            "Dal Bhat"
+          ],
+          "price_band_npr": "NPR 500-2000",
+          "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+          "area_photo_url": "/api/trips/media/place/chitwan/birdwatching-tour.svg",
+          "historical_formation": "Birdwatching Tour in Chitwan has layered local history. It was shaped by forest and habitat conservation boundaries, then opened in controlled phases for eco-tourism and education. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Chitwan+Birdwatching+Tour"
+        },
+        {
+          "name": "Canoe Safari",
+          "category": "adventure",
+          "why_best": "Quiet canoe ride through river channels for wildlife spotting.",
+          "main_activity": "Adventure",
+          "recommended_for": [
+            "adventure",
+            "wildlife",
+            "photography"
+          ],
+          "famous_food_nearby": [
+            "Tea",
+            "Snacks",
+            "Simple meals"
+          ],
+          "price_band_npr": "NPR 1200-4500",
+          "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+          "area_photo_url": "/api/trips/media/place/chitwan/canoe-safari.svg",
+          "historical_formation": "Canoe Safari in Chitwan has layered local history. The site gained popularity after local route use and modern safety upgrades made the terrain accessible for guided adventure travel. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Canoe+Safari+Rapti+River+Chitwan"
+        }
+      ],
+      "overview": [
+        {
+          "slot": "Morning",
+          "title": "Birdwatching Tour",
+          "note": "Guided birdwatching with over 400+ species in Chitwan.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Chitwan+Birdwatching+Tour",
+          "duration_hint": "2-3 hrs",
+          "opening_hours": "6:00 AM - 6:00 PM",
+          "timing_note": "Wildlife activities are usually day-time only."
+        },
+        {
+          "slot": "Afternoon",
+          "title": "Canoe Safari",
+          "note": "Quiet canoe ride through river channels for wildlife spotting.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Canoe+Safari+Rapti+River+Chitwan",
+          "duration_hint": "2-3 hrs",
+          "opening_hours": "9:00 AM - 6:00 PM",
+          "timing_note": "Daytime visit recommended."
+        }
+      ],
+      "transport_plan": [
+        {
+          "from": "Birdwatching Tour",
+          "to": "Canoe Safari",
+          "slot": "Afternoon",
+          "mode": "ride-share",
+          "duration_min": 29,
+          "estimated_cost_npr": 538,
+          "estimated_cost_range_npr": "NPR 330-747",
+          "safety_tip": "Use verified app rides after sunset and share live location.",
+          "pricing_tip": "Confirm fare in-app or ask meter-based fare before ride."
+        }
+      ],
+      "trust": {
+        "safety_score": 80,
+        "pricing_score": 76,
+        "comfort_score": 86,
+        "badge": "High Trust",
+        "level": "high",
+        "reasons": [
+          "Safety-first mode enabled.",
+          "Fair-pricing mode enabled for budget-aware recommendations.",
+          "Transport pricing stayed within normal city range.",
+          "No risky evening walking segments detected."
+        ],
+        "scam_alert": {
+          "score": 28,
+          "level": "low",
+          "badge": "Scam Alert: Low",
+          "reasons": [
+            "Fair-pricing mode reduces overcharge exposure.",
+            "Safety-priority mode keeps routes in safer movement windows.",
+            "Transport fares are within safer baseline range."
+          ]
+        }
+      },
+      "stop_count": 2,
+      "day_budget_estimate_npr": 5638,
+      "practical_note": "2 main stops planned with timing validation."
+    },
+    {
+      "day": 2,
+      "stops": [
+        {
+          "name": "Chitwan Sunrise Safari",
+          "category": "nature",
+          "why_best": "Early morning jungle safari with best wildlife spotting chances.",
+          "main_activity": "Sunrise",
+          "recommended_for": [
+            "sunrise",
+            "wildlife",
+            "photography",
+            "adventure"
+          ],
+          "famous_food_nearby": [
+            "Breakfast",
+            "Tea",
+            "Simple meals"
+          ],
+          "price_band_npr": "NPR 500-2500",
+          "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+          "area_photo_url": "/api/trips/media/place/chitwan/chitwan-sunrise-safari.svg",
+          "historical_formation": "Chitwan Sunrise Safari in Chitwan has layered local history. Its landscape was formed by Himalayan geology and water systems, and local communities adapted their lifestyle around seasonal patterns. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Chitwan+National+Park+Safari+Sunrise"
+        },
+        {
+          "name": "Tharu Cultural Museum",
+          "category": "culture",
+          "why_best": "Learn indigenous Tharu heritage and local lifestyle.",
+          "main_activity": "Culture",
+          "recommended_for": [
+            "culture",
+            "history",
+            "family",
+            "education"
+          ],
+          "famous_food_nearby": [
+            "Tharu Khana",
+            "Local snacks"
+          ],
+          "price_band_npr": "NPR 500-2000",
+          "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+          "area_photo_url": "/api/trips/media/place/chitwan/tharu-cultural-museum.svg",
+          "historical_formation": "Tharu Cultural Museum in Chitwan has layered local history. The area formed around settlement clusters, festival routes, and artisan activity, gradually becoming a living cultural hub. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Tharu+Cultural+Museum+Sauraha"
+        }
+      ],
+      "overview": [
+        {
+          "slot": "Morning",
+          "title": "Chitwan Sunrise Safari",
+          "note": "Early morning jungle safari with best wildlife spotting chances.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Chitwan+National+Park+Safari+Sunrise",
+          "duration_hint": "2-3 hrs",
+          "opening_hours": "9:00 AM - 6:00 PM",
+          "timing_note": "Daytime visit recommended."
+        },
+        {
+          "slot": "Afternoon",
+          "title": "Tharu Cultural Museum",
+          "note": "Learn indigenous Tharu heritage and local lifestyle.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Tharu+Cultural+Museum+Sauraha",
+          "duration_hint": "2-3 hrs",
+          "opening_hours": "9:00 AM - 6:00 PM",
+          "timing_note": "Daytime visit recommended."
+        }
+      ],
+      "transport_plan": [
+        {
+          "from": "Chitwan Sunrise Safari",
+          "to": "Tharu Cultural Museum",
+          "slot": "Afternoon",
+          "mode": "ride-share",
+          "duration_min": 22,
+          "estimated_cost_npr": 507,
+          "estimated_cost_range_npr": "NPR 308-707",
+          "safety_tip": "Use verified app rides after sunset and share live location.",
+          "pricing_tip": "Confirm fare in-app or ask meter-based fare before ride."
+        }
+      ],
+      "trust": {
+        "safety_score": 80,
+        "pricing_score": 76,
+        "comfort_score": 86,
+        "badge": "High Trust",
+        "level": "high",
+        "reasons": [
+          "Safety-first mode enabled.",
+          "Fair-pricing mode enabled for budget-aware recommendations.",
+          "Transport pricing stayed within normal city range.",
+          "No risky evening walking segments detected."
+        ],
+        "scam_alert": {
+          "score": 28,
+          "level": "low",
+          "badge": "Scam Alert: Low",
+          "reasons": [
+            "Fair-pricing mode reduces overcharge exposure.",
+            "Safety-priority mode keeps routes in safer movement windows.",
+            "Transport fares are within safer baseline range."
+          ]
+        }
+      },
+      "stop_count": 2,
+      "day_budget_estimate_npr": 2607,
+      "practical_note": "2 main stops planned with timing validation."
+    }
+  ],
+  "activities": [
+    {
+      "name": "Jungle Safari (Chitwan National Park)",
+      "type": "Local Experience",
+      "description": "Half-day jeep or open-vehicle safari to spot rhinos, deer and birds.",
+      "destination": "Chitwan",
+      "cost_estimate": 2000.0,
+      "duration_hours": 4.0,
+      "indoor": false,
+      "family_friendly": true,
+      "tags": [
+        "wildlife",
+        "safari",
+        "nature",
+        "family"
+      ],
+      "seasonal": false,
+      "adventure_level": "Low",
+      "best_time": "Best for a flexible half-day plan",
+      "recommendation_note": "Family-friendly and easy to slot into a city day plan.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Jungle+Safari+%28Chitwan+National+Park%29+Chitwan",
+      "exact_fare_npr": 2000,
+      "estimated_fare_npr": 2000,
+      "estimated_fare_range": null,
+      "booking_tip": "Family-friendly and easy to slot into a city day plan.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    },
+    {
+      "name": "Canoe Ride on Rapti River",
+      "type": "Water Adventure",
+      "description": "Guided canoe trip with birdwatching and riverbank wildlife viewing.",
+      "destination": "Chitwan",
+      "cost_estimate": 1500.0,
+      "duration_hours": 2.0,
+      "indoor": false,
+      "family_friendly": true,
+      "tags": [
+        "water",
+        "wildlife",
+        "boat"
+      ],
+      "seasonal": false,
+      "adventure_level": "Low",
+      "best_time": "Best for a flexible half-day plan",
+      "recommendation_note": "Family-friendly and easy to slot into a city day plan.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Canoe+Ride+on+Rapti+River+Chitwan",
+      "exact_fare_npr": 1500,
+      "estimated_fare_npr": 1500,
+      "estimated_fare_range": null,
+      "booking_tip": "Family-friendly and easy to slot into a city day plan.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    },
+    {
+      "name": "Tharu Cultural Village & Dance Show",
+      "type": "Food Experience",
+      "description": "Evening cultural performance and village visit with Tharu hosts.",
+      "destination": "Chitwan",
+      "cost_estimate": 900.0,
+      "duration_hours": 2.0,
+      "indoor": false,
+      "family_friendly": true,
+      "tags": [
+        "culture",
+        "heritage",
+        "food"
+      ],
+      "seasonal": false,
+      "adventure_level": "Low",
+      "best_time": "Best in the morning or early afternoon",
+      "recommendation_note": "Family-friendly and easy to slot into a city day plan.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Tharu+Cultural+Village+%26+Dance+Show+Chitwan",
+      "exact_fare_npr": 900,
+      "estimated_fare_npr": 900,
+      "estimated_fare_range": null,
+      "booking_tip": "Inform operator of allergies; small-group tours are common.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [
+        "Tasting portions",
+        "Local guide"
+      ],
+      "booking_lead_time_days": 0
+    }
+  ],
+  "city_profile": {
+    "lifestyle": "Jungle-edge town life with Tharu community culture and early-start safari routines.",
+    "main_activities": [
+      "Jeep and canoe safari",
+      "Village culture walk",
+      "Birdwatching",
+      "River sunset"
+    ],
+    "street_food_scene": [
+      "Sauraha grilled fish",
+      "Tharu snack stalls",
+      "Riverside tea and spicy chat"
+    ],
+    "local_connect_tips": [
+      "Follow park guide rules strictly.",
+      "Avoid loud behavior near wildlife zones.",
+      "Prefer local Tharu-run food houses."
+    ]
+  },
+  "comfort_pack": {
+    "city": "Chitwan",
+    "safety_priority": true,
+    "pricing_priority": true,
+    "emergency_contacts": [
+      "Tourist Police: 1144",
+      "Emergency Police: 100",
+      "Ambulance: 102"
+    ],
+    "pricing_baseline": [
+      "City bus/public micro: NPR 35-90",
+      "Ride-share short trip: NPR 260-620",
+      "Taxi short trip: NPR 380-980",
+      "Typical local meal: NPR 250-900",
+      "Cafe/restaurant meal: NPR 500-1400"
+    ],
+    "safety_checklist": [
+      "Prefer verified transport after dark.",
+      "Avoid carrying all cash in one place.",
+      "Keep offline map and hotel contact ready.",
+      "Use marked ATMs and avoid isolated lanes at night."
+    ]
+  },
+  "anti_scam_pack": {
+    "city": "Chitwan",
+    "verified_fare_ranges": [
+      "Public micro/bus typical range: NPR 35-90",
+      "Ride-share short trip normal range: NPR 260-620",
+      "Taxi short trip normal range: NPR 380-980"
+    ],
+    "scam_red_flags": [
+      "Driver refuses meter and demands price far above local range.",
+      "Someone pushes you to switch to an unmarked vehicle or unofficial guide.",
+      "Restaurant/agent avoids printed bill or adds hidden service charges.",
+      "Street currency exchange offers rates that are too good to be true."
+    ],
+    "safe_actions": [
+      "Confirm price before ride/food order and re-check at payment time.",
+      "Use app-based rides or hotel-booked transport at night.",
+      "Pay with small notes and avoid exposing full cash wallet.",
+      "Choose busy, well-reviewed restaurants and licensed ticket counters."
+    ],
+    "report_steps": [
+      "Call Tourist Police 1144 for overcharging or harassment.",
+      "Note plate number/business name and keep receipt screenshot.",
+      "Share route and fare details with hotel/front desk for support."
+    ]
+  },
+  "fare_tiers": {
+    "recommended_tier": "standard",
+    "tiers": {
+      "budget": {
+        "meals_per_person_npr": "NPR 250-700",
+        "transport_per_day_npr": "NPR 35-90",
+        "estimated_daily_total_npr": "NPR 1600-3200",
+        "notes": "Mostly public transport, local eateries, and low ticket-cost spots."
+      },
+      "standard": {
+        "meals_per_person_npr": "NPR 400-1000",
+        "transport_per_day_npr": "NPR 260-620",
+        "estimated_daily_total_npr": "NPR 2800-5200",
+        "notes": "Mix of ride-share and public transport with balanced dining."
+      },
+      "premium": {
+        "meals_per_person_npr": "NPR 700-1800",
+        "transport_per_day_npr": "NPR 399-1029",
+        "estimated_daily_total_npr": "NPR 4800-9200",
+        "notes": "Taxi-first mobility, premium cafes/restaurants, and comfort-focused pacing."
+      }
+    }
+  },
+  "overall_trust": 86,
+  "overall_scam_alert": {
+    "score": 28,
+    "level": "low",
+    "badge": "Scam Alert: Low"
+  },
+  "city_map_url": "https://www.google.com/maps/search/?api=1&query=Chitwan+Tourist+Attractions",
+  "next_expansion": [
+    "Dolpa",
+    "Pathibhara",
+    "Bardia",
+    "Khaptad"
+  ]
+}

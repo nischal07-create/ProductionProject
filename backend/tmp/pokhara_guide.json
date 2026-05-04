@@ -1,0 +1,858 @@
+{
+  "city": "Pokhara",
+  "city_slug": "pokhara",
+  "tagline": "AI-based smart guide for lakes, sunrise, food, and adventure",
+  "inputs": {
+    "interests": [
+      "nature",
+      "photography",
+      "adventure"
+    ],
+    "days": 2,
+    "budget_npr": 4000,
+    "budget_level": "medium",
+    "family_mode": false,
+    "focus_activities": [],
+    "avoid_categories": [],
+    "transport_preference": "balanced",
+    "safety_priority": true,
+    "pricing_priority": true
+  },
+  "top_highlights": [
+    {
+      "name": "Bat Cave",
+      "category": "nature",
+      "best_for": [
+        "nature",
+        "adventure",
+        "family",
+        "photography"
+      ],
+      "budget_level": "low",
+      "family_friendly": true,
+      "why_best": "Interesting cave filled with thousands of bats at dusk.",
+      "famous_food_nearby": [
+        "Tea",
+        "Momo",
+        "Snacks"
+      ],
+      "map_query": "Bat Cave Pokhara"
+    },
+    {
+      "name": "Pumdikot Shiva Statue",
+      "category": "viewpoint",
+      "best_for": [
+        "photography",
+        "sunset",
+        "family",
+        "nature"
+      ],
+      "budget_level": "medium",
+      "family_friendly": true,
+      "why_best": "Huge Shiva statue with wide panoramic mountain and city views.",
+      "famous_food_nearby": [
+        "Tea",
+        "Snacks",
+        "Corn"
+      ],
+      "map_query": "Pumdikot Shiva Statue Pokhara"
+    },
+    {
+      "name": "Australian Camp Hike",
+      "category": "hiking",
+      "best_for": [
+        "hiking",
+        "nature",
+        "sunrise",
+        "adventure"
+      ],
+      "budget_level": "medium",
+      "family_friendly": false,
+      "why_best": "Short but scenic hill hike with Annapurna range views.",
+      "famous_food_nearby": [
+        "Dal Bhat",
+        "Tea",
+        "Noodles"
+      ],
+      "map_query": "Australian Camp Dhampus"
+    }
+  ],
+  "best_places": [
+    {
+      "name": "Bat Cave",
+      "category": "nature",
+      "why_best": "Interesting cave filled with thousands of bats at dusk.",
+      "main_activity": "Nature",
+      "recommended_for": [
+        "nature",
+        "adventure",
+        "family",
+        "photography"
+      ],
+      "famous_food_nearby": [
+        "Tea",
+        "Momo",
+        "Snacks"
+      ],
+      "price_band_npr": "NPR 500-2500",
+      "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+      "area_photo_url": "/api/trips/media/place/pokhara/bat-cave.svg",
+      "historical_formation": "Bat Cave in Pokhara has layered local history. Its landscape was formed by Himalayan geology and water systems, and local communities adapted their lifestyle around seasonal patterns. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Bat+Cave+Pokhara"
+    },
+    {
+      "name": "Pumdikot Shiva Statue",
+      "category": "viewpoint",
+      "why_best": "Huge Shiva statue with wide panoramic mountain and city views.",
+      "main_activity": "Photography",
+      "recommended_for": [
+        "photography",
+        "sunset",
+        "family",
+        "nature"
+      ],
+      "famous_food_nearby": [
+        "Tea",
+        "Snacks",
+        "Corn"
+      ],
+      "price_band_npr": "NPR 500-2000",
+      "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+      "area_photo_url": "/api/trips/media/place/pokhara/pumdikot-shiva-statue.svg",
+      "historical_formation": "Pumdikot Shiva Statue in Pokhara has layered local history. This viewpoint emerged from older walking and grazing paths, later becoming a known public lookout for sunrise, navigation, and festivals. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Pumdikot+Shiva+Statue+Pokhara"
+    },
+    {
+      "name": "Australian Camp Hike",
+      "category": "hiking",
+      "why_best": "Short but scenic hill hike with Annapurna range views.",
+      "main_activity": "Hiking",
+      "recommended_for": [
+        "hiking",
+        "nature",
+        "sunrise",
+        "adventure"
+      ],
+      "famous_food_nearby": [
+        "Dal Bhat",
+        "Tea",
+        "Noodles"
+      ],
+      "price_band_npr": "NPR 200-2200",
+      "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+      "area_photo_url": "/api/trips/media/place/pokhara/australian-camp-hike.svg",
+      "historical_formation": "Australian Camp Hike in Pokhara has layered local history. Originally a local movement trail for villages and pasture access, it gradually transitioned into a trekking corridor for visitors. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Australian+Camp+Dhampus"
+    },
+    {
+      "name": "World Peace Pagoda",
+      "category": "heritage",
+      "why_best": "Iconic hilltop pagoda with panoramic views of Pokhara and the Annapurna range.",
+      "main_activity": "Sunrise",
+      "recommended_for": [
+        "sunrise",
+        "photography",
+        "peaceful",
+        "nature"
+      ],
+      "famous_food_nearby": [
+        "Tea",
+        "Corn",
+        "Momo"
+      ],
+      "price_band_npr": "NPR 300-1200",
+      "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+      "area_photo_url": "/api/trips/media/place/pokhara/world-peace-pagoda.svg",
+      "historical_formation": "World Peace Pagoda in Pokhara has layered local history. Local records and community memory describe it as a long-standing civic and spiritual core, expanded through royal-era patronage and traditional trade movement. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=World+Peace+Pagoda+Pokhara"
+    }
+  ],
+  "famous_foods": [
+    {
+      "name": "Thakali Set",
+      "type": "must-try main meal",
+      "where_to_try": "Lakeside, Chipledhunga",
+      "price_range_npr": "NPR 350-900",
+      "photo_url": "/api/trips/media/food/pokhara/thakali-set.svg",
+      "origin_note": "Thakali Set in Pokhara: It became popular through a mix of local ingredients, migration influence, and city food-lane adaptation.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Thakali+Set+Lakeside%2C+Chipledhunga+Pokhara"
+    },
+    {
+      "name": "Momo",
+      "type": "comfort food",
+      "where_to_try": "Lakeside, Damside",
+      "price_range_npr": "NPR 200-650",
+      "photo_url": "/api/trips/media/food/pokhara/momo.svg",
+      "origin_note": "Momo in Pokhara: It became popular through a mix of local ingredients, migration influence, and city food-lane adaptation.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Momo+Lakeside%2C+Damside+Pokhara"
+    },
+    {
+      "name": "Tea snacks",
+      "type": "viewpoint snack",
+      "where_to_try": "Sarangkot, Lakeside",
+      "price_range_npr": "NPR 100-250",
+      "photo_url": "/api/trips/media/food/pokhara/tea-snacks.svg",
+      "origin_note": "Tea snacks in Pokhara: It became popular through a mix of local ingredients, migration influence, and city food-lane adaptation.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Tea+snacks+Sarangkot%2C+Lakeside+Pokhara"
+    },
+    {
+      "name": "Fresh trout",
+      "type": "signature local meal",
+      "where_to_try": "Lakeside restaurants",
+      "price_range_npr": "NPR 200-650",
+      "photo_url": "/api/trips/media/food/pokhara/fresh-trout.svg",
+      "origin_note": "Fresh trout in Pokhara: It became popular through a mix of local ingredients, migration influence, and city food-lane adaptation.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Fresh+trout+Lakeside+restaurants+Pokhara"
+    },
+    {
+      "name": "Fewa Fish curry",
+      "type": "local specialty",
+      "where_to_try": "Phewa village",
+      "price_range_npr": "NPR 350-1100",
+      "photo_url": "/api/trips/media/food/pokhara/fewa-fish-curry.svg",
+      "origin_note": "Fewa Fish curry in Pokhara: It became popular through a mix of local ingredients, migration influence, and city food-lane adaptation.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Fewa+Fish+curry+Phewa+village+Pokhara"
+    },
+    {
+      "name": "Nepali Thali",
+      "type": "complete meal",
+      "where_to_try": "Local cafes",
+      "price_range_npr": "NPR 200-650",
+      "photo_url": "/api/trips/media/food/pokhara/nepali-thali.svg",
+      "origin_note": "Nepali Thali in Pokhara: It became popular through a mix of local ingredients, migration influence, and city food-lane adaptation.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Nepali+Thali+Local+cafes+Pokhara"
+    }
+  ],
+  "day_wise_itinerary": [
+    {
+      "day": 1,
+      "stops": [
+        {
+          "name": "Bat Cave",
+          "category": "nature",
+          "why_best": "Interesting cave filled with thousands of bats at dusk.",
+          "main_activity": "Nature",
+          "recommended_for": [
+            "nature",
+            "adventure",
+            "family",
+            "photography"
+          ],
+          "famous_food_nearby": [
+            "Tea",
+            "Momo",
+            "Snacks"
+          ],
+          "price_band_npr": "NPR 500-2500",
+          "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+          "area_photo_url": "/api/trips/media/place/pokhara/bat-cave.svg",
+          "historical_formation": "Bat Cave in Pokhara has layered local history. Its landscape was formed by Himalayan geology and water systems, and local communities adapted their lifestyle around seasonal patterns. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Bat+Cave+Pokhara"
+        },
+        {
+          "name": "Australian Camp Hike",
+          "category": "hiking",
+          "why_best": "Short but scenic hill hike with Annapurna range views.",
+          "main_activity": "Hiking",
+          "recommended_for": [
+            "hiking",
+            "nature",
+            "sunrise",
+            "adventure"
+          ],
+          "famous_food_nearby": [
+            "Dal Bhat",
+            "Tea",
+            "Noodles"
+          ],
+          "price_band_npr": "NPR 200-2200",
+          "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+          "area_photo_url": "/api/trips/media/place/pokhara/australian-camp-hike.svg",
+          "historical_formation": "Australian Camp Hike in Pokhara has layered local history. Originally a local movement trail for villages and pasture access, it gradually transitioned into a trekking corridor for visitors. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Australian+Camp+Dhampus"
+        }
+      ],
+      "overview": [
+        {
+          "slot": "Morning",
+          "title": "Bat Cave",
+          "note": "Interesting cave filled with thousands of bats at dusk.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Bat+Cave+Pokhara",
+          "duration_hint": "2-3 hrs",
+          "opening_hours": "9:00 AM - 6:00 PM",
+          "timing_note": "Daytime visit recommended."
+        },
+        {
+          "slot": "Afternoon",
+          "title": "Australian Camp Hike",
+          "note": "Short but scenic hill hike with Annapurna range views.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Australian+Camp+Dhampus",
+          "duration_hint": "2-3 hrs",
+          "opening_hours": "6:00 AM - 5:00 PM",
+          "timing_note": "Start early for safer weather and daylight return."
+        }
+      ],
+      "transport_plan": [
+        {
+          "from": "Bat Cave",
+          "to": "Australian Camp Hike",
+          "slot": "Afternoon",
+          "mode": "ride-share",
+          "duration_min": 28,
+          "estimated_cost_npr": 499,
+          "estimated_cost_range_npr": "NPR 317-681",
+          "safety_tip": "Use verified app rides after sunset and share live location.",
+          "pricing_tip": "Confirm fare in-app or ask meter-based fare before ride."
+        }
+      ],
+      "trust": {
+        "safety_score": 80,
+        "pricing_score": 76,
+        "comfort_score": 86,
+        "badge": "High Trust",
+        "level": "high",
+        "reasons": [
+          "Safety-first mode enabled.",
+          "Fair-pricing mode enabled for budget-aware recommendations.",
+          "Transport pricing stayed within normal city range.",
+          "No risky evening walking segments detected."
+        ],
+        "scam_alert": {
+          "score": 28,
+          "level": "low",
+          "badge": "Scam Alert: Low",
+          "reasons": [
+            "Fair-pricing mode reduces overcharge exposure.",
+            "Safety-priority mode keeps routes in safer movement windows.",
+            "Transport fares are within safer baseline range."
+          ]
+        }
+      },
+      "stop_count": 2,
+      "day_budget_estimate_npr": 2899,
+      "practical_note": "2 main stops planned with timing validation."
+    },
+    {
+      "day": 2,
+      "stops": [
+        {
+          "name": "Pumdikot Shiva Statue",
+          "category": "viewpoint",
+          "why_best": "Huge Shiva statue with wide panoramic mountain and city views.",
+          "main_activity": "Photography",
+          "recommended_for": [
+            "photography",
+            "sunset",
+            "family",
+            "nature"
+          ],
+          "famous_food_nearby": [
+            "Tea",
+            "Snacks",
+            "Corn"
+          ],
+          "price_band_npr": "NPR 500-2000",
+          "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+          "area_photo_url": "/api/trips/media/place/pokhara/pumdikot-shiva-statue.svg",
+          "historical_formation": "Pumdikot Shiva Statue in Pokhara has layered local history. This viewpoint emerged from older walking and grazing paths, later becoming a known public lookout for sunrise, navigation, and festivals. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Pumdikot+Shiva+Statue+Pokhara"
+        },
+        {
+          "name": "World Peace Pagoda",
+          "category": "heritage",
+          "why_best": "Iconic hilltop pagoda with panoramic views of Pokhara and the Annapurna range.",
+          "main_activity": "Sunrise",
+          "recommended_for": [
+            "sunrise",
+            "photography",
+            "peaceful",
+            "nature"
+          ],
+          "famous_food_nearby": [
+            "Tea",
+            "Corn",
+            "Momo"
+          ],
+          "price_band_npr": "NPR 300-1200",
+          "safety_note": "Prefer trusted transport and stay in well-lit routes.",
+          "area_photo_url": "/api/trips/media/place/pokhara/world-peace-pagoda.svg",
+          "historical_formation": "World Peace Pagoda in Pokhara has layered local history. Local records and community memory describe it as a long-standing civic and spiritual core, expanded through royal-era patronage and traditional trade movement. Today it connects tourists with community memory through food, rituals, architecture, and daily street life.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=World+Peace+Pagoda+Pokhara"
+        }
+      ],
+      "overview": [
+        {
+          "slot": "Morning",
+          "title": "Pumdikot Shiva Statue",
+          "note": "Huge Shiva statue with wide panoramic mountain and city views.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=Pumdikot+Shiva+Statue+Pokhara",
+          "duration_hint": "2-3 hrs",
+          "opening_hours": "9:00 AM - 6:00 PM",
+          "timing_note": "Daytime visit recommended."
+        },
+        {
+          "slot": "Afternoon",
+          "title": "World Peace Pagoda",
+          "note": "Iconic hilltop pagoda with panoramic views of Pokhara and the Annapurna range.",
+          "map_url": "https://www.google.com/maps/search/?api=1&query=World+Peace+Pagoda+Pokhara",
+          "duration_hint": "2-3 hrs",
+          "opening_hours": "9:00 AM - 5:00 PM",
+          "timing_note": "Daylight hours are better for museums and cultural sites."
+        }
+      ],
+      "transport_plan": [
+        {
+          "from": "Pumdikot Shiva Statue",
+          "to": "World Peace Pagoda",
+          "slot": "Afternoon",
+          "mode": "ride-share",
+          "duration_min": 39,
+          "estimated_cost_npr": 548,
+          "estimated_cost_range_npr": "NPR 352-745",
+          "safety_tip": "Use verified app rides after sunset and share live location.",
+          "pricing_tip": "Confirm fare in-app or ask meter-based fare before ride."
+        }
+      ],
+      "trust": {
+        "safety_score": 80,
+        "pricing_score": 76,
+        "comfort_score": 86,
+        "badge": "High Trust",
+        "level": "high",
+        "reasons": [
+          "Safety-first mode enabled.",
+          "Fair-pricing mode enabled for budget-aware recommendations.",
+          "Transport pricing stayed within normal city range.",
+          "No risky evening walking segments detected."
+        ],
+        "scam_alert": {
+          "score": 28,
+          "level": "low",
+          "badge": "Scam Alert: Low",
+          "reasons": [
+            "Fair-pricing mode reduces overcharge exposure.",
+            "Safety-priority mode keeps routes in safer movement windows.",
+            "Transport fares are within safer baseline range."
+          ]
+        }
+      },
+      "stop_count": 2,
+      "day_budget_estimate_npr": 2248,
+      "practical_note": "2 main stops planned with timing validation."
+    }
+  ],
+  "activities": [
+    {
+      "name": "Caving & Gupteshwor Exploration",
+      "type": "Local Experience",
+      "description": "Guided exploration of Gupteshwor and nearby caves with responsible lighting and conservation-aware practices.",
+      "destination": "Pokhara",
+      "cost_estimate": 1000.0,
+      "duration_hours": 1.0,
+      "indoor": false,
+      "family_friendly": true,
+      "tags": [
+        "caving",
+        "adventure",
+        "nature",
+        "conservation"
+      ],
+      "seasonal": false,
+      "adventure_level": "Medium",
+      "best_time": "Best for a flexible half-day plan",
+      "recommendation_note": "Family-friendly and easy to slot into a city day plan.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Caving+%26+Gupteshwor+Exploration+Pokhara",
+      "exact_fare_npr": 1000,
+      "estimated_fare_npr": 1000,
+      "estimated_fare_range": null,
+      "booking_tip": "Family-friendly and easy to slot into a city day plan.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    },
+    {
+      "name": "Mountain Biking Trails Around Begnas & Phewa",
+      "type": "Extreme Adventure",
+      "description": "Guided single-day mountain-biking on designated trails around Pokhara's lakes and foothills.",
+      "destination": "Pokhara",
+      "cost_estimate": 3500.0,
+      "duration_hours": 5.0,
+      "indoor": false,
+      "family_friendly": false,
+      "tags": [
+        "biking",
+        "offroad",
+        "adventure",
+        "nature"
+      ],
+      "seasonal": false,
+      "adventure_level": "High",
+      "best_time": "Best in clear weather",
+      "recommendation_note": "Plan this as a focused activity block with enough buffer time.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Mountain+Biking+Trails+Around+Begnas+%26+Phewa+Pokhara",
+      "exact_fare_npr": 3500,
+      "estimated_fare_npr": 3500,
+      "estimated_fare_range": null,
+      "booking_tip": "Plan this as a focused activity block with enough buffer time.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    },
+    {
+      "name": "Seasonal Hot Air Balloon (Lake & Mountain Views)",
+      "type": "Air Adventure",
+      "description": "Occasional hot-air balloon operations over the Pokhara valley in clear-season windows; book early and follow safety briefings.",
+      "destination": "Pokhara",
+      "cost_estimate": 8000.0,
+      "duration_hours": 1.0,
+      "indoor": false,
+      "family_friendly": true,
+      "tags": [
+        "hotairballoon",
+        "seasonal",
+        "scenic",
+        "photography"
+      ],
+      "seasonal": true,
+      "adventure_level": "Low",
+      "best_time": "Best for a flexible half-day plan",
+      "recommendation_note": "Seasonal experience - check weather and booking window before travel.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Seasonal+Hot+Air+Balloon+%28Lake+%26+Mountain+Views%29+Pokhara",
+      "exact_fare_npr": 8000,
+      "estimated_fare_npr": 8000,
+      "estimated_fare_range": null,
+      "booking_tip": "Weather-dependent. Book at least 3-7 days in advance and confirm fly windows.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [
+        "Safety briefing",
+        "Pilot and crew",
+        "Passenger harnesses"
+      ],
+      "booking_lead_time_days": 7,
+      "flight_altitude_m": 300,
+      "flight_duration_min": 60,
+      "safety_briefing_included": true
+    },
+    {
+      "name": "Seti/Trishuli Day White-Water Rafting",
+      "type": "Water Adventure",
+      "description": "Full-day or half-day rafting options on nearby rivers; choose grade and operator according to experience and safety briefings.",
+      "destination": "Pokhara",
+      "cost_estimate": 2500.0,
+      "duration_hours": 6.0,
+      "indoor": false,
+      "family_friendly": false,
+      "tags": [
+        "rafting",
+        "water",
+        "adventure",
+        "river"
+      ],
+      "seasonal": false,
+      "adventure_level": "High",
+      "best_time": "Best in clear weather",
+      "recommendation_note": "Plan this as a focused activity block with enough buffer time.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Seti%2FTrishuli+Day+White-Water+Rafting+Pokhara",
+      "exact_fare_npr": 2500,
+      "estimated_fare_npr": 2500,
+      "estimated_fare_range": null,
+      "booking_tip": "Operator provides lifejackets; confirm class of river and experience level.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [
+        "Lifejacket",
+        "Guide",
+        "Safety briefing"
+      ],
+      "booking_lead_time_days": 1
+    },
+    {
+      "name": "Lake Boat Rental & Sunset Cruise",
+      "type": "Local Experience",
+      "description": "Private or shared boat rentals on Phewa Lake with options for sunset photography and gentle paddling.",
+      "destination": "Pokhara",
+      "cost_estimate": 2500.0,
+      "duration_hours": 1.5,
+      "indoor": false,
+      "family_friendly": true,
+      "tags": [
+        "boat",
+        "relax",
+        "photography",
+        "romantic"
+      ],
+      "seasonal": false,
+      "adventure_level": "Low",
+      "best_time": "Best for a flexible half-day plan",
+      "recommendation_note": "Family-friendly and easy to slot into a city day plan.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Lake+Boat+Rental+%26+Sunset+Cruise+Pokhara",
+      "exact_fare_npr": 2500,
+      "estimated_fare_npr": 2500,
+      "estimated_fare_range": null,
+      "booking_tip": "Family-friendly and easy to slot into a city day plan.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    },
+    {
+      "name": "Zipline & Canopy Adventure",
+      "type": "Extreme Adventure",
+      "description": "High-elevation zipline runs above forested valleys; seasonal weather restrictions apply.",
+      "destination": "Pokhara",
+      "cost_estimate": 3500.0,
+      "duration_hours": 2.0,
+      "indoor": false,
+      "family_friendly": true,
+      "tags": [
+        "zipline",
+        "adrenaline",
+        "forest",
+        "seasonal"
+      ],
+      "seasonal": true,
+      "adventure_level": "High",
+      "best_time": "Best in clear weather",
+      "recommendation_note": "Seasonal experience - check weather and booking window before travel.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Zipline+%26+Canopy+Adventure+Pokhara",
+      "exact_fare_npr": 3500,
+      "estimated_fare_npr": 3500,
+      "estimated_fare_range": null,
+      "booking_tip": "Seasonal experience - check weather and booking window before travel.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    },
+    {
+      "name": "Kusma (Khimti) Bungee & Canyon Swing",
+      "type": "Extreme Adventure",
+      "description": "Nearby bungee jump and canyon swings for adrenaline seekers; operator safety certifications recommended.",
+      "destination": "Pokhara",
+      "cost_estimate": 3500.0,
+      "duration_hours": 1.5,
+      "indoor": false,
+      "family_friendly": false,
+      "tags": [
+        "bungee",
+        "adrenaline",
+        "seasonal",
+        "thrill"
+      ],
+      "seasonal": true,
+      "adventure_level": "High",
+      "best_time": "Best in clear weather",
+      "recommendation_note": "Seasonal experience - check weather and booking window before travel.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Kusma+%28Khimti%29+Bungee+%26+Canyon+Swing+Pokhara",
+      "exact_fare_npr": 3500,
+      "estimated_fare_npr": 3500,
+      "estimated_fare_range": null,
+      "booking_tip": "Seasonal experience - check weather and booking window before travel.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    },
+    {
+      "name": "Seasonal Skydiving Festival (Tandem)",
+      "type": "Air Adventure",
+      "description": "Occasional tandem skydiving drop zones for certified operators during good-weather festival windows; book well in advance.",
+      "destination": "Pokhara",
+      "cost_estimate": 300.0,
+      "duration_hours": 1.0,
+      "indoor": false,
+      "family_friendly": false,
+      "tags": [
+        "skydiving",
+        "seasonal",
+        "tandem",
+        "adrenaline"
+      ],
+      "seasonal": true,
+      "adventure_level": "High",
+      "best_time": "Best in clear weather",
+      "recommendation_note": "Seasonal experience - check weather and booking window before travel.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Seasonal+Skydiving+Festival+%28Tandem%29+Pokhara",
+      "exact_fare_npr": 300,
+      "estimated_fare_npr": 300,
+      "estimated_fare_range": null,
+      "booking_tip": "Weather-dependent. Book at least 3-7 days in advance and confirm fly windows.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [
+        "Safety briefing",
+        "Pilot and crew",
+        "Passenger harnesses"
+      ],
+      "booking_lead_time_days": 7
+    },
+    {
+      "name": "Tandem Paragliding from Sarangkot",
+      "type": "Air Adventure",
+      "description": "World-famous tandem paragliding flights (weather dependent) with certified pilots; ideal for sunrise flights.",
+      "destination": "Pokhara",
+      "cost_estimate": 8000.0,
+      "duration_hours": 1.0,
+      "indoor": false,
+      "family_friendly": false,
+      "tags": [
+        "paragliding",
+        "adrenaline",
+        "sky",
+        "seasonal"
+      ],
+      "seasonal": true,
+      "adventure_level": "High",
+      "best_time": "Best in clear weather",
+      "recommendation_note": "Seasonal experience - check weather and booking window before travel.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Tandem+Paragliding+from+Sarangkot+Pokhara",
+      "exact_fare_npr": 8000,
+      "estimated_fare_npr": 8000,
+      "estimated_fare_range": null,
+      "booking_tip": "Weather-dependent. Book at least 3-7 days in advance and confirm fly windows.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [
+        "Safety briefing",
+        "Pilot and crew",
+        "Passenger harnesses"
+      ],
+      "booking_lead_time_days": 7
+    },
+    {
+      "name": "Motorbike Rental & Off-Road Annapurna Foothills Tour",
+      "type": "Extreme Adventure",
+      "description": "Daily motorbike rentals and guided off-road loops on maintained trails; safety gear and local license required.",
+      "destination": "Pokhara",
+      "cost_estimate": 3500.0,
+      "duration_hours": 6.0,
+      "indoor": false,
+      "family_friendly": false,
+      "tags": [
+        "motorbike",
+        "rental",
+        "offroad",
+        "tour"
+      ],
+      "seasonal": false,
+      "adventure_level": "High",
+      "best_time": "Best in clear weather",
+      "recommendation_note": "Plan this as a focused activity block with enough buffer time.",
+      "safety_note": "Check weather, operator certification, and safety gear before booking.",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=Motorbike+Rental+%26+Off-Road+Annapurna+Foothills+Tour+Pokhara",
+      "exact_fare_npr": 3500,
+      "estimated_fare_npr": 3500,
+      "estimated_fare_range": null,
+      "booking_tip": "Plan this as a focused activity block with enough buffer time.",
+      "operator_suggestion": "Contact local licensed operators; confirm price and safety certification.",
+      "included_items": [],
+      "booking_lead_time_days": 1
+    }
+  ],
+  "city_profile": {
+    "lifestyle": "Relaxed lakeside rhythm with adventure sports by day and cafe music at night.",
+    "main_activities": [
+      "Boating and lakeside cycling",
+      "Paragliding",
+      "Sunrise viewpoint runs",
+      "Live music cafes"
+    ],
+    "street_food_scene": [
+      "Lakeside momo corners",
+      "Damside grilled snacks",
+      "Night market tea stalls"
+    ],
+    "local_connect_tips": [
+      "Bargain politely in souvenir lanes.",
+      "Carry a light layer for evening lake breeze.",
+      "Use local boats with lifejackets."
+    ]
+  },
+  "comfort_pack": {
+    "city": "Pokhara",
+    "safety_priority": true,
+    "pricing_priority": true,
+    "emergency_contacts": [
+      "Tourist Police: 1144",
+      "Emergency Police: 100",
+      "Ambulance: 102"
+    ],
+    "pricing_baseline": [
+      "City bus/public micro: NPR 30-80",
+      "Ride-share short trip: NPR 250-560",
+      "Taxi short trip: NPR 350-900",
+      "Typical local meal: NPR 250-900",
+      "Cafe/restaurant meal: NPR 500-1400"
+    ],
+    "safety_checklist": [
+      "Prefer verified transport after dark.",
+      "Avoid carrying all cash in one place.",
+      "Keep offline map and hotel contact ready.",
+      "Use marked ATMs and avoid isolated lanes at night."
+    ]
+  },
+  "anti_scam_pack": {
+    "city": "Pokhara",
+    "verified_fare_ranges": [
+      "Public micro/bus typical range: NPR 30-80",
+      "Ride-share short trip normal range: NPR 250-560",
+      "Taxi short trip normal range: NPR 350-900"
+    ],
+    "scam_red_flags": [
+      "Driver refuses meter and demands price far above local range.",
+      "Someone pushes you to switch to an unmarked vehicle or unofficial guide.",
+      "Restaurant/agent avoids printed bill or adds hidden service charges.",
+      "Street currency exchange offers rates that are too good to be true."
+    ],
+    "safe_actions": [
+      "Confirm price before ride/food order and re-check at payment time.",
+      "Use app-based rides or hotel-booked transport at night.",
+      "Pay with small notes and avoid exposing full cash wallet.",
+      "Choose busy, well-reviewed restaurants and licensed ticket counters."
+    ],
+    "report_steps": [
+      "Call Tourist Police 1144 for overcharging or harassment.",
+      "Note plate number/business name and keep receipt screenshot.",
+      "Share route and fare details with hotel/front desk for support."
+    ]
+  },
+  "fare_tiers": {
+    "recommended_tier": "standard",
+    "tiers": {
+      "budget": {
+        "meals_per_person_npr": "NPR 250-700",
+        "transport_per_day_npr": "NPR 30-80",
+        "estimated_daily_total_npr": "NPR 1600-3200",
+        "notes": "Mostly public transport, local eateries, and low ticket-cost spots."
+      },
+      "standard": {
+        "meals_per_person_npr": "NPR 400-1000",
+        "transport_per_day_npr": "NPR 250-560",
+        "estimated_daily_total_npr": "NPR 2800-5200",
+        "notes": "Mix of ride-share and public transport with balanced dining."
+      },
+      "premium": {
+        "meals_per_person_npr": "NPR 700-1800",
+        "transport_per_day_npr": "NPR 367-945",
+        "estimated_daily_total_npr": "NPR 4800-9200",
+        "notes": "Taxi-first mobility, premium cafes/restaurants, and comfort-focused pacing."
+      }
+    }
+  },
+  "overall_trust": 86,
+  "overall_scam_alert": {
+    "score": 28,
+    "level": "low",
+    "badge": "Scam Alert: Low"
+  },
+  "city_map_url": "https://www.google.com/maps/search/?api=1&query=Pokhara+Tourist+Attractions",
+  "next_expansion": [
+    "Dolpa",
+    "Pathibhara",
+    "Bardia",
+    "Khaptad"
+  ]
+}
