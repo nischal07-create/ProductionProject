@@ -6,6 +6,7 @@ from trips.views import trekking_routes_list, trekking_route_detail, trekking_of
 
 urlpatterns = [
     path("", landing_page),
+    path("accounts/", include('allauth.urls')),
     path("", include("core.urls")),
     path("app/", user_portal),
     path("admin/", admin.site.urls),
