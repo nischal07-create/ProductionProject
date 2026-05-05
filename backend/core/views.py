@@ -11,6 +11,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
 from django.conf import settings
+from django.http import JsonResponse
 
 User = get_user_model()
 def landing_page(request):
@@ -154,3 +155,18 @@ def confirm_password_reset(request):
     user.set_password(new_password)
     user.save(update_fields=["password"])
     return Response({"message": "Password reset successfully. You can now sign in."}, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def session_status(request):
+    """Return whether the current request has an authenticated Django session.
+
+    This allows client-side JS to detect server-side (session) authentication
+    after OAuth login flows (django-allauth) which do not set the local JWT.
+    """
+    user = request.user
+    return JsonResponse({
+        "authenticated": bool(user and user.is_authenticated),
+        "username": user.username if (user and user.is_authenticated) else "",
+    })
