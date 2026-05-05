@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="800">
+      <stop offset="0" stop-color="#f0f9ff"/>
+      <stop offset="0.55" stop-color="#ecfeff"/>
+      <stop offset="1" stop-color="#f7fee7"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#0f172a" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <path d="M0 560 C 220 500, 360 610, 560 560 C 760 510, 950 650, 1200 575 L1200 800 L0 800 Z" fill="#0f766e" opacity="0.12"/>
+  <path d="M0 650 C 260 610, 430 740, 680 650 C 930 560, 1060 700, 1200 660 L1200 800 L0 800 Z" fill="#155a44" opacity="0.10"/>
+
+  <!-- Bridge -->
+  <g filter="url(#shadow)">
+    <rect x="170" y="220" width="860" height="48" rx="16" fill="#0f172a" opacity="0.80"/>
+    <rect x="210" y="250" width="120" height="16" rx="8" fill="#ffffff" opacity="0.22"/>
+    <rect x="880" y="250" width="120" height="16" rx="8" fill="#ffffff" opacity="0.22"/>
+    <rect x="210" y="210" width="16" height="120" rx="8" fill="#334155" opacity="0.65"/>
+    <rect x="974" y="210" width="16" height="120" rx="8" fill="#334155" opacity="0.65"/>
+  </g>
+
+  <!-- Rope -->
+  <path d="M600 268 C 600 320, 650 360, 650 420 C 650 500, 560 520, 560 610" stroke="#14b8a6" stroke-width="10" stroke-linecap="round"/>
+  <path d="M600 268 C 600 320, 550 360, 550 420 C 550 520, 650 540, 650 610" stroke="#fb7185" stroke-width="10" stroke-linecap="round" opacity="0.9"/>
+
+  <!-- Jumper -->
+  <g filter="url(#shadow)">
+    <circle cx="605" cy="470" r="22" fill="#0f172a" opacity="0.85"/>
+    <path d="M590 500 C 610 512, 628 512, 650 500" stroke="#0f172a" stroke-width="14" stroke-linecap="round" opacity="0.85"/>
+    <path d="M606 488 L606 548" stroke="#0f172a" stroke-width="14" stroke-linecap="round" opacity="0.85"/>
+    <path d="M606 548 L575 590" stroke="#0f172a" stroke-width="14" stroke-linecap="round" opacity="0.85"/>
+    <path d="M606 548 L640 590" stroke="#0f172a" stroke-width="14" stroke-linecap="round" opacity="0.85"/>
+    <path d="M606 530 L565 545" stroke="#0f172a" stroke-width="14" stroke-linecap="round" opacity="0.85"/>
+    <path d="M606 530 L652 545" stroke="#0f172a" stroke-width="14" stroke-linecap="round" opacity="0.85"/>
+    <rect x="582" y="590" width="48" height="18" rx="9" fill="#f59e0b" opacity="0.95"/>
+  </g>
+
+  <circle cx="240" cy="140" r="58" fill="#ffffff" opacity="0.45"/>
+  <circle cx="980" cy="160" r="72" fill="#ffffff" opacity="0.35"/>
+</svg>
